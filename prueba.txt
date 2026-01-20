@@ -1,0 +1,449 @@
+messy data, interconnected systems, and people with varied objectives, many of us inevitably struggle to realize the potential of ML in practice.
+The job scope of a data scientist has evolved over the past few years.
+that one needs to possess the capabilities of a full-stack data scientist
+it’s common for ML projects to fail in the real world. Failure can come in various forms, including: Inability to ship an ML-enabled product to production Shipping products that customers don’t use Deploying defective products that customers don’t trust
+Inability to evolve and improve models in production quickly enough
+What we want is to fail in a low-cost and safe way,
+We also want to learn from failures—by documenting and socializing our experiments and lessons learned,
+Failing to solve the right problem or deliver value for users
+Challenges in productionizing models
+Challenges after productionizing models
+convoluted codebases ML codebases are often full of code smells—
+Data quality issues in production
+Inadequate data security and privacy
+responsibility of everyone in the organization, from product teams to data engineering teams and every team in between.
+Ethically problematic ML products
+Context switching also had a real cognitive cost that made them feel exhausted and unproductive.
+starts the day by checking the team project management tool and then attends standup where they can pick up a story card.
+provides clarity about what they have to work on with a clear definition of done.
+Dana pairs with a teammate to write code to solve the problem specified in the story card.
+As they code, each incremental code change is quickly validated within seconds or minutes by running automated tests—
+They run the end-to-end ML model training pipeline locally on a small dataset and get feedback on whether everything is still working as expected within a minute.
+If they need to do a full ML model training, they can trigger training on large-scale infrastructure from their local machine with their local code changes,
+They commit the code change, which passes through a number of automated checks on the continuous integration and continuous delivery (CI/CD) pipeline before triggering full ML model training, which can take between minutes to hours depending on the ML model architecture and the volume of data.
+Dana and her pair focus on their task for a few
+hours, peppered with regular breaks, coffee, and even walks (separately). They can do this without a tinge of guilt because they know it’ll help them work better,
+When the model training completes, a model deployment pipeline is automatically triggered.
+The deployment pipeline runs model quality tests and checks if the model is above the quality threshold for a set of specified metrics
+If the model is of a satisfactory quality, the newly trained model artifact is automatically packaged and deployed to a preproduction environment, and the CI/CD pipeline also runs post-deployment tests on the freshly deployed artifact.
+When the story card’s definition of done is satisfied, Dana informs the team, calls for a 20-minute team huddle to share context with the team, and demonstrates how the solution meets the definition of done.
+Whenever business wants to, they can release the change gradually to users in production, while monitoring business and operational metrics.
+Dana and her teammates make incremental progress on the delivery plan daily.
+In this section, we’ll explore why MLOps alone is insufficient for improving the effectiveness of ML practitioners.
+MLOps and ML platforms aren’t going to write comprehensive tests for you, talk to users for you, or reduce the negative impacts of team silos for you.
+We have seen time and again that delivering successful ML projects requires a mul⁠tidisciplinary approach across these five disciplines: product, software engineering, data, ML, and delivery
+Lean enables organizations to better serve customers by identifying customer value, and to efficiently deliver products that satisfy customer needs. By involving the voice of the customer in the development and delivery process, teams can better understand the end users’ needs and build relevant products for them.
+Principle 1: Identify value Determine what is most valuable to the customer and focus on maximizing that value.
+Principle 2: Map the value stream Identify the steps in the process that add value and eliminate those that do not.
+Principle 3: Create flow Streamline the process to create a smooth and continuous flow of work.
+Principle 4: Establish pull Use customer demand to trigger production and avoid overproduction.
+Principle 4: Establish pull Use customer demand to trigger production and avoid overproduction. Principle 5: Continuous improvement Continuously strive for improvement and eliminate waste in all areas of the value chain.
+When we don’t understand users’ needs and the organization’s business model, it makes it hard to gain alignment from business to get started.
+The goal here is not to avoid failure, but to fail more quickly and safely by creating fast feedback loops for building empathy and for learning.
+Discovery is a set of activities that helps us better understand the problem, the opportunity, and potential solutions.
+the principles can be practiced continuously as we build, measure, and learn our way toward building products that customers value.
+Prototypes allow us to rapidly test our ideas with users in a cost-effective way and allow us to validate—
+Prototypes allow us to rapidly test our ideas with users in a cost-effective way and allow us to validate—or invalidate—our assumptions and hypotheses.
+The delivery discipline focuses primarily on the shaping, sizing, and sequencing of work in three horizons (from near to far): user stories or features, iterations, and releases.
+Lean recognizes that talent is an organization’s most valuable asset, and the delivery discipline reinforces that belief by creating structures that minimize impediments in our systems of work and amplify each teammate’s contributions and collective ownership.
+Vertically sliced work A common pitfall in ML delivery is the horizontal slicing of work, where we sequentially deliver functional layers of a technical solution—e.g., data lake, ML platform, ML models, UX interfaces—from the bottom-up. This is a risky delivery approach because customers can only experience the product and provide valuable feedback after months and even years of significant engineering investment.
+A vertically sliced story refers to a story that is defined as an independently shippable unit of value, which contains all of the necessary functionality from the user-facing aspects (e.g., a frontend) to the more backend-ish aspects (e.g., data pipelines, ML models).
+Vertically sliced teams, or cross-functional teams Another common pitfall in ML delivery is splitting teams by function, for example by having data science, data engineering, and product engineering in separate teams.
+First, teams inevitably get caught in backlog coupling, which is the scenario where one team depends on another team to deliver a feature.
+This practice of building multidisciplinary teams
+brings four major benefits:
+Improves speed and quality of decision making
+Reduces back-and-forth handoffs and waiting
+Reduces blind spots through diversity
+Reduces batch
+Reduces batch size
+Working in smaller batches has many benefits and is one of the core principles of Lean software delivery.
+enable faster feedback, lower risk, less waste, and higher quality.
+There is no one-size-fits-all team shape and the right team shapes and interaction modes for your organization depend on many factors, which will evolve over time.
+In ML projects, it’s common to see heaps and heaps of code without automated tests. Without automated tests, changes become error-prone, tedious, and stressful.
+ML projects that lack automated tests are especially susceptible to exponential complexity because, without automated tests, refactoring can be tedious to test and is highly risky.
+In an effective team, refactoring is something that is so safe and easy to do that we can do some of it as part of feature delivery, not as an afterthought.
+Figure 1-5. The end-to-end CD4ML process (source: adapted from an image in “Continuous Delivery for Machine Learning”
+The ML discipline involves more than knowing how to train, select, improve, deploy, and consume ML models. It also encompasses competencies such as ML problem framing, ML systems design, designing for explainability, reliability, Responsible AI, and ML governance, among other things.
+For example, if we don’t validate our product ideas with users early and often—we know how this movie ends—we are more likely to invest lots of time and effort into building the wrong product.
+it’s important to note that these activities must be done collaboratively (and typically continuously) if teams want to improve their chances of building the right thing. Otherwise, we’ll end up with the old model of “mini-waterfall,”
+we may not know what product features are even possible with ML before having done some experiments and seeing some working software.
+ensure that the ML solutions they develop are not only technically feasible but also desirable to customers and viable for the business.
+Good product discovery includes the customer throughout the decision-making process.
+It is not enough to do your best; you must know what to do, and then do your best.
+These challenges stem from inadequate product discovery.
+product meets customers’ needs.
+continuous discovery—
+Having said that, we all know that there can be discrepancies between what customers say they will do and what they actually do. To reconcile that, we might use contextual inquiry to observe users in their natural environment, providing a complementary understanding of their challenges and real behaviors.
+You might augment these core techniques with a range of other discovery activities, such as diary studies, competitor research, surveys, or exploratory data analysis.
+What could go wrong? What are the failure modes of this product? What are the business and product costs of the model making mistakes?
+What could be the implications of these risks?
+Hypothesis Canvas
+helps us reduce uncertainty as we formulate testable hypotheses, identify objective metrics, and design lightweight experiments to rapidly validate or invalidate ideas.
+helped us to articulate the business value and measures of success,
+create alignment between various stakeholders—business
+create alignment between various stakeholders—business, product, engineering, ML, etc.
+While building a minimum viable product (MVP) in and of itself is a technique for testing our hypotheses about an opportunity, it’s a highly costly one in terms of time and labor as compared to other validation techniques
+MVP as a technique to help teams test if the product direction aligns with market needs, reduce the risk and cost of “big bang releases,”
+This iterative cycle of prototyping, testing, and refining helps in reducing the risks associated with product development. It ensures that when the time comes to build and release an MVP, the product is grounded in validated learning, user feedback, and a well-considered design approach.
+A well-designed PoC can help us discover any limitations in performance, technical feasibility, or sensitivity to various factors as early as possible, and help us determine if an idea is ready for delivery and productization.
+Building an MVP involves testing a few very risky and many not-so-risky assumptions. Conducting a Riskiest Assumption Test (RAT) would be a more cost-effective technique for identifying and testing the most critical assumptions that could make or break a product.
+risk is defined as the product of likelihood and impact)—
+This is the riskiest assumption and could be related to customer behavior, market demand, technical feasibility, or any other critical aspect of the product.
+Design Thinking is a problem-solving methodology widely used in various industries to address complex challenges through a user-centered approach. It involves understanding the needs and experiences of users, redefining problems, and creating innovative solutions.
+The core principles of Design Thinking are:
+Empathize Understand the needs, desires, and challenges of the end users.
+Define Articulate the problem clearly.
+guides the following Ideation process.
+Ideate Generate a wide range of creative ideas. This phase encourages thinking outside the box to explore a broad spectrum of possible solutions, without immediately limiting options due to feasibility or practicality.
+Prototype Create tangible representations of ideas.
+Test Put the prototypes into action and gather feedback.
+refine and improve the solution.
+Design Thinking is iterative, meaning that it often involves going back and forth between these stages,
+Product Thinking builds on Design Thinking
+incremental innovation,
+eventually to retirement as market fit wanes.
+means thinking about product commercial models and coordinating people and resources within organizations to deliver the product.
+By the end of our Discovery phase, the team and business should have converged on a product idea
+that is desirable
+viable
+and feasible
+By ensuring clarity and alignment from the outset, teams can avoid many common pitfalls and challenges that arise due to unclear or misaligned expectations.
+Product delivery is where most of the action happens, where most of the cost, time, and effort is incurred, and it’s also where teams experience common execution traps such as unplanned or hidden work, scope creep, shifting priorities, and unidentified dependencies—
+It’s also where we get to build something together and where value is delivered to the customer!
+Delivery activities that help teams establish a cadence of delivery, feedback, and continuous discovery
+Let’s look at a set of delivery activities that help teams foster such continuous discovery and continuous learning,
+Iteration planning helps the team align on the objectives and scope for the upcoming sprint or iteration.
+pulling in a set of high-priority stories that align with or define the team’s iteration goal.
+With each iteration, the team (often in pairs) will progress stories through the story lifecycle, including analysis, development, and testing activities.
+Retrospectives, also typically conducted at the end of each iteration, provide a forum for the team to reflect
+Reflection is essential for continuous learning and improvement,
+This involves continuous monitoring and assessment of risks throughout the project lifecycle.
+Ongoing risk management
+Regular risk assessment meetings can be integrated into the team’s routine,
+Architectural decisions
+Teams invariably need to make architectural decisions in the course of developing the solution, and this can range from choices about the solution architecture to the technologies used. These decisions have long-term impacts on the project’s scalability, maintainability, and functionality.
+Therefore, it’s important to approach them collaboratively, involving
+Therefore, it’s important to approach them collaboratively, involving
+Teams invariably need to make architectural decisions in the course of developing the solution, and this can range from choices about the solution architecture to the technologies used. These decisions have long-term impacts on the project’s scalability, maintainability, and functionality. Therefore, it’s important to approach them collaboratively, involving the
+team’s engineers, architects, and other interested stakeholders.
+By continuously engaging in these practices, teams evolve their understanding of customer needs and behaviors based on what’s needed for the product at each point in time.
+weekly interactions with customers to create a constant stream of feedback that informs rapid prototyping and testing.
+quickly validate or refute assumptions,
+making data-driven decisions
+It splits projects up into two distinct but interdependent tracks: Discovery and Development
+Dual-track delivery
+helps teams learn and deliver in short cycles by combining innovative exploration (Discovery) with effective execution (Development).
+we typically must choose model performance measures that are proxies for, or components of, product measures.
+we typically must choose model performance measures that are proxies for, or components of, product measures. We then attempt to build ML models that maximize these indirect measures.
+the process of translating product measures to model measures may not be straightforward and may be political, but it may be necessary in order to give teams autonomy to improve their model’s performance.
+The challenge then is how to measure discovery. Key indicators for discovery are that you have a deep and broad portfolio of meaningful experiments
+“when a measure becomes a target, it ceases to be a good measure.” So, teams should view these measures primarily as guides for improving their own performance, not as ends in themselves.
+In contrast, in a safe environment, delivery metrics are used purely for continuous improvement to help us improve our “production line” over time and help us meet our product delivery goals.
+spend an hour each week measuring the team’s velocity.
+How can you integrate discovery and validation techniques into your current ML product development process?
+As a takeaway, challenge yourself by writing down answers to these questions:
+In what ways can user stories enhance clarity and alignment within your team during product delivery?
+This is known as “check out and go”, and it is a common practice in teams with mature software engineering practices.
+Imagine this alternate reality: You’re onboarding a new teammate, and your instruction to them is simply “check out the project repo, run ./go.sh, and you’re done.”
+By running everything in consistent, reproducible, production-like environments, we can be sure that what works locally on our machines will work when we push our code and run code on the cloud,
+Dependencies can be further separated into two levels: OS-level dependencies and application-level dependencies.
+By specifying all dependencies and configuration as code, we enable all code contributors to create consistent development environments from code in an automated fashion.
+Dependencies “as code”
+We should ensure that we create production-like development environments as early as possible,
+Each application, project, or code repository should have its own isolated Python virtual environment.
+For that, teams can use Docker’s buildx tool to create multi-architecture images, ensuring that base images support multiple architectures, like ARM64 and AMD, across relevant operating systems—Linux, MacOS, Windows.
+Keeping dependencies up-to-date and free of security vulnerabilities can be prohibitively tedious if we do them manually.
+On the third point, here is an example of how you can use Docker multistage builds to exclude development dependencies from your production image.
+The second and most important practice for securing our application is to automate checks for security vulnerabilities in our dependencies.
+through Docker image scanning
+Automating checks for application-level security vulnerabilities, through dependency checking
+GitHub, you can do all of the above with Dependabot
+Software Composition Analysis (SCA) tools.
+For example, you can use Trivy to scan Docker images and Python dependencies, Snyk or Safety to check for vulnerable Python dependencies, and Renovate to automate dependency updates.
+PRs can really pile up and add a significant amount of work for teams to review, test and merge them. There tends to be a lot of nervousness and hesitation about whether randomly upgrading a package could somehow cause subtle bugs or model degradations in production.
+PRs can really pile up and add a significant amount of work for teams to review, test and merge them. There tends to be a lot of nervousness and hesitation about whether randomly upgrading a package could somehow cause subtle bugs or model degradations in production. Without comprehensive tests, teams can’t auto-merge PRs because they will be releasing untested changes to production, and these PRs can easily become unwelcome and oft-procrastinated interruptions.
+when we have CI/CD pipelines with comprehensive tests
+the CI/CD pipeline can automatically validate if the change worked.
+Each test should be independent—i.e., the outcome of one test should not depend on what happens in another test. Tests should also be idempotent—i.e., no matter how many times we execute them, we achieve the same result.
+To avoid this, you can adopt the principle of failing fast and loudly
+For example, if a model training pipeline takes an hour, you can fail fast and loudly by writing a test to exercise the entire pipeline with a very small dataset
+and get feedback within one to two minutes should your changes cause a regression.
+Tests should check behavior, not implementation
+Every test that we run on the cloud (e.g., on CI pipeline) should be runnable in your development environment—
+avoid the antipattern of “pushing to know if something works.”
+In some scenarios, it may not be possible to run some tests on a local machine—e.g., when a model is too large to fit on our local machine, or when it takes too long to train a model locally. In such cases, you can design your tests to be runnable locally by having a very small test dataset to train a very small model, simply to act as a smoke test before spending time running a full training in the cloud.
+Tests must be part of feature development You should be writing tests as part of feature development,
+First, post-hoc tests tend to be too coarse-grained and miss out on the value of writing tests as part of your development process.
+Second, “testing stories” don’t appear as valuable as developing new features and the sociopsychological pressures to “get work done” often cause such stories to be relegated to the graveyard of other backlog stories.
+Test-driven development is a software engineering practice that emphasizes writing tests before writing code. With TDD, developers write automated tests that define the desired functionality of a feature or component, then write code to make those tests pass.
+To implement TDD, we typically follow a three-step process: Write a test that defines the desired functionality of a feature or component. Run the test and watch it fail (since the feature has not yet been implemented). Write the minimal amount of code needed that makes the test pass.
+testing software components commonly found in ML systems: Unit tests Training smoke tests API tests Post-deployment tests
+Unit tests help ensure the correctness of individual building blocks of our ML system—most commonly functions.
+specify the function’s expected behavior and ensure that these expectations still hold true with every code change.
+How to design unit-testable code
+However, you may be looking at a codebase that looks incredibly difficult to test. For example, imagine if all of the code is in a very long Python script or notebook, with no callable functions—
+The good news is that, if you find yourself in a codebase like that, there are techniques that you can apply to refactor your way to a modular, reasonable, and testable codebase
+The thick functional core refers to a collection of pure functions
+Examples could include any kind of data processing, feature engineering, and data transformations.
+Examples could include any kind of data processing, feature engineering, and data transformations. Pure functions are deterministic and idempotent, and far easier to test.
+The thin imperative shell refers to a small collection of functions that perform side effects (e.g., loading data, or saving a file to disk or a remote bucket).
+The thin imperative shell refers to a small collection of functions that perform side effects (e.g., loading data, or saving a file to disk or a remote bucket). These interactions with the outside world are computationally expensive and also nondeterministic.
+The thin imperative shell refers to a small collection of functions that perform side effects (e.g., loading data, or saving a file to disk or a remote bucket). These interactions with the outside world are computationally expensive and also nondeterministic. By excluding them from our functional core, we make our
+functional core far easier and faster to test.
+In each unit test, we specify the inputs that we pass to the function under test and our expectations of the function’s return value
+Through writing this test, we uncovered a bug and found an opportunity to improve our feature engineering logic.
+A training smoke test works by exercising the entire code path, just as a full-scale ML training would, except that we use the smallest possible dataset—even 10 samples could suffice.
+We have also seen other practitioners in the ML community refer to this type of test as a pretrain test, or integration test
+While the implementation of these tests may differ depending on your ML training framework, the general approach is the same. Invoke your ML training pipeline locally, as you would in full-scale training, except that you will use a very small dataset.
+In one of our previous projects, we had an ML training pipeline that took three hours. The full-scale training ran on the cloud
+and ML practitioners sometimes waited two hours only to see an error in the final step of the pipeline. So, we devised a training smoke test by running a Metaflow flow in local mode with a small dataset and ran the training pipeline locally in one to two minutes.
+The training smoke test also runs as a pre-commit hook,
+This is where API tests are immensely helpful. They can serve as a lightweight contract test—a test that verifies you are still fulfilling your promise
+to the external world.
+The API test failure will also be a hook to prompt you to think about API versioning and managing API schema changes
+You can write these tests in three steps: Consider what behavior you expect for a given request. Find documentation on how to write API tests for the API library you are using (e.g., FastAPI TestClient if you are using FastAPI). Write and run the test!
+Recommended practice: Assert on “the whole elephant”
+One common pitfall we’ve seen in tests is piecemeal assertions.
+bad example below, the assertion on the response object is broken up into multiple assertions, while the good example asserts on the response object using a single dictionary:
+Asserting the whole elephant is better for two reasons. First, the test is more readable.
+Second, the test is more comprehensive—
+Second, the test is more comprehensive—we are testing the whole response payload returned by the API and can catch any unexpected changes to the response payload.
+In post-deployment tests, the subject under test is the API, which has been deployed to a real environment
+we want to test that it can handle requests successfully according to our expectations.
+Every time we promote a deployable to an environment, we want to test that it can handle requests successfully according to our expectations. If
+If the API has any dependencies (e.g., a database, a remote bucket, an external service), these tests also serve as a broad integration test to test that these dependencies are working as expected in a real environment.
+How do I write these tests? You should be careful not to duplicate the logic from your API tests, or you’ll end up maintaining and updating two sets of tests. You have tested your API thoroughly in your API tests, covering all code paths and edge cases. If the API has other dependencies (e.g., a database), your API tests could include logic to mock and stub responses to simulate errors, and you can’t do that in these tests, which are running against a real environment.
+automated tests are essential for teams that want to iterate quickly, safely, and reliably
+if we make mistakes while coding
+tests act as a safety net to catch us as we fall,
+As we identify measures and heuristics that tell us if a model is “good enough” or “better than before,” we can use model tests to help us automate these manual heuristics and checks.
+It’s common to see teams choose speed over quality, especially when they’re under “delivery pressure.”
+Instead of checking
+every code commit),
+every code commit), they start checking every 10–15 boxes
+commit), they start checking every
+pull request).
+every code commit), they start checking every
+pull request). Teams sometimes even skip complete quality checks or regression tests for a pull request and just sporadically check aspects of the product in the box.
+pull request). Teams sometimes even skip complete quality checks or regression tests for a pull request and just sporadically check aspects of the product in the box. The natural consequence is that they may discover a defect too late—
+In our experience, “speed versus quality” is a false choice.
+In our experience, “speed versus quality” is a false choice. In reality, low-quality, untested products inevitably slow teams down because teams end up wasting time on fixing issues and on manual testing.
+Model tests help us achieve both quality and speed. They help us continuously uncover or check for undesirable behavior in an automated
+As an added benefit, automated model tests free up ML practitioners to do more ML and solve higher-level problems rather than tedious manual testing in every pull request or release or, worse, fixing defects in production that are impacting customers and the business.
+Automated testing of an ML model can be more challenging than software tests for four main reasons. First, while software tests generally tend to be fast-running and deterministic, ML model training tends to be slow-running and nondeterministic
+while software tests tend to involve data
+that is example-based with just a handful of dimensions that we can even inline in our tests
+model tests typically require data that is sample-based, multidimensional, and nonstationary.
+model evaluation tends to require a level of exploration and visualization
+that is hard, if not impossible, to do through the interface of automated tests.
+Finally, in the early and exploratory stage of an ML product, it may not be clear what a good model looks like, and what exactly we should test.
+Since ML practitioners are generally familiar with the topic of metric selection, we won’t discuss that here, except to mention that there may also be domain-specific or industry-defined metrics for measuring the quality of a model.
+The global accuracy of a model may improve by 1%, but accuracy for one country could drop by 50%.
+The global accuracy of a model may improve by 1%, but accuracy for one country could drop by 50%. This is known as the hidden stratification problem
+That’s the problem that stratified metrics tests help to solve.
+That’s the problem that stratified metrics tests help to solve. The approach is similar to global metrics tests, except that we slice the validation dataset by one or more dimensions of interest (e.g., the target variable, gender, race1) and calculate metrics for each segment, rather than a single global metric.
+recall_for_single_strata = recall_score(y_test_stratified, y_pred_stratified, average="weighted")
+Stratified metrics tests can also be used for ethical bias testing, to test if any model is inadvertently disadvantageous or systematically erroneous for certain segments of the population.
+There are libraries (such as Giskard and PyCaret) that provide functions to measure stratified metrics and other types of model tests with fewer lines of code.
+Another limitation is that the assumption that the validation data and production data are independent and identically distributed (IID) often does not hold true in a nonstationary world.
+Invariance tests
+if there’s a dimension that we expect our model to be invariant to (e.g., occupation), we can write a test where all examples have the same attributes, except for the applicant’s occupation, and assert that the model’s prediction should remain invariant.
+In another example, say object detection, we could write a test where all example images have some variance in a given attribute—such as
+lighting or image resolution—and assert that the model produces the same prediction.
+lighting or image resolution—and assert that the model produces the same prediction. Each test verifies a given capability of a model (e.g., object detection under low-light or low-resolution conditions).
+Directional expectation tests A directional expectation test is like an invariance test, except that we expect the prediction to change in a specific direction when we perturb the input data. In our example, we can write a test where all examples have the same attributes except in one dimension that is known to have an effect on the prediction, and assert that the model’s predicted probabilities should change in the corresponding direction.
+“poor testing can lead to poor quality, but good testing won’t lead to good quality unless other parts of the process are in place and performed properly.”
+The following practices are essential complements to model tests and can help you create a feedback loop to continuously test and improve your models: Error analysis and visualization
+The following practices are essential complements to model tests and can help you create a feedback loop to continuously test and improve your models: Error analysis and visualization Learning from production by closing the data collection loop Open-closed test design Exploratory testing
+Means to improve the model Designing to minimize the cost of failures Monitoring in production
+To help us address this challenge, we can ensure that our ML systems include data collection loops and scalable data-labeling mechanisms (e.g., weak supervision, active learning, semi-supervised learning).
+exploratory testing can help you discover what good looks like.
+exploratory testing can help you discover what good looks like. Exploratory testing helps you identify bugs, issues, and edge cases (“unknown unknowns”) where the model is not behaving as expected.
+exploratory testing can help you discover what good looks like. Exploratory testing helps you identify bugs, issues, and edge cases (“unknown unknowns”) where the model is not behaving as expected. The issues that you discover through exploratory testing can trigger another cycle of model improvement,
+we can approach model improvement from two angles: Data-centric approach We can leverage the data collection loop that we described earlier to create training data that is more representative and of a better quality. We can also consider various feature engineering approaches, such as creating balanced datasets or feature scaling. Model-centric approach
+No, this is not just tuning hyperparameters. We can explore alternative model architectures, ensembles, or even decompose the ML problem into narrower subproblems that are easier to solve.
+If you find yourself in a position where the data is sparse or not sufficiently representative and you can’t train a “good enough” model, you can make progress by temporarily lowering the expectations of the downstream consumer of your ML system. This allows your team to deploy an initial version of the model and gather more training data from real-world usage—which enables you to improve the model using a data-centric approach.
+Designing to Minimize the Cost of Failures
+Given that ML models are bound to make wrong predictions some of the time, you need to design the product in a way that reduces risk
+of a wrong prediction, especially when the stakes are high.
+Highlighting costly mistakes Use metrics like weighted F1 score (or other custom metrics for regression) to ensure problematic errors are visible.
+Evaluating and training against cost-penalization metrics Incorporate real-world error costs in model evaluation suites as a start, and eventually include it as a loss function during model training to condition models to minimize costly
+mistakes.
+Inference-time cost consideration In high-stakes scenarios like large financial transactions, models should lean toward caution and flag potential issues, even with moderate fraud confidence or probability.
+our solution design can involve a human-in-the-loop to review and override model predictions when necessary. This can help to reduce the cost of a wrong prediction by allowing a human to intervene and make a more informed judgment.
+Production monitoring is an established practice in software engineering. If done well, monitoring (metrics, logs, and alerts) gives us useful feedback on how our product is behaving in the wild, and alerts us when there are any unexpected errors, performance degradation, or unusual activity.
+Production monitoring is an established practice in software engineering. If done well, monitoring (metrics, logs, and alerts) gives us useful feedback on how our product is behaving in the wild, and alerts us when there are any unexpected errors, performance degradation, or unusual activity. This gives us insight into scenarios that we haven’t considered before in our tests.
+Application monitoring Metrics such as throughput, latency, and error rates
+useful application logs,
+Data monitoring
+Data monitoring By observing and collecting every data point that your model sees in production, you can detect any data distribution shifts over time.
+you can also run skew tests on the data to detect outliers and drifts
+such as error analysis, data collection loops,
+Figure 6-8. Model testing can benefit from other enabling capabilities, such as error analysis, data collection loops, open-closed test design, and more
+Data pipeline tests
+test data processing pipelines to ensure various aspects of data quality including accuracy, completeness, consistency, representativeness, and timeliness.
+Data contract tests
+match the expected schema in terms of attribute names, value types, and
+value constraints.
+Data privacy tests Data privacy tests verify that the data we provide to our models does not contain any personal identifiable information (PII) such as names, identification numbers, or addresses.
+If your team is regularly encountering defects, or slow feedback points in your development cycle, consider how the tests outlined in this chapter can help. When you add tests, demonstrate the time saved from manual testing and resolving defects. Count how many hours you saved on manual testing in a story. Celebrate the number of times that the tests caught an error on the CI/CD pipeline, thereby preventing an error in production.
+Without refactoring, the internal design—the architecture—of software tends to decay.
+Regular refactoring helps keep the code in shape.
+team balance effective technical debt management and product delivery.
+The goal of this chapter is not to teach you design patterns so that you can write perfectly designed code without any issues. That is physically and empirically impossible. Rather, the goal is to equip you and your team with skills to incrementally and regularly improve your solutions, so that you can keep technical debt in check and execute ideas at a sustainable pace.
+We’ll start by discussing the costs of technical debt and how teams can pay down technical debt incrementally and regularly with tests, design, and refactoring techniques.
+A codebase with high technical debt tends to attract even more technical debt—because the state and structure of the codebase creates a path of least resistance that makes it easier to put in a quick hack than to “do it right.”
+technical debt negatively impacts developers’ morale, confidence, and rate of progress.
+The goal is not to be completely free of technical debt.
+Thankfully, there is a practice from the software engineering world that can help us keep our technical debt at a healthy level: refactoring.
+First, refactoring without automated tests is highly risky,
+First, refactoring without automated tests is highly risky, and we wouldn’t recommend it.
+Second, software design matters. Good design saves time and reduces effort.
+Similarly, creating software with the right abstractions—functions and classes with clear interfaces—can help us design composable and extensible systems
+Abstraction is the act of compartmentalizing complicated implementation details and replacing them with a simpler representation, such as a name of a function, or a class and its methods.
+Interfaces In the real world, an interface provides a user-friendly way to interact with a complex device
+without the need to know any implementation details
+in the software world, an interface refers to a set of related properties and callable methods that we use to interact with a class.
+When refactoring (one hat), don’t add functionality (a second hat), and vice versa.
+Leave the codebase a touch cleaner than when you found it. If you see a bit of “litter” on the road, pick it up as part of your task if it doesn’t cost you too much time to do so.
+Remove print statements.
+If it was added once upon a time to help with debugging and is now adding noise to both
+the code and the runtime logs, remove it.
+a function with five lines of explanatory comments is a smell that suggests that the function could be convoluted,
+Refactor iteratively. This is where you iteratively decompose a problematic codebase into modular, reasonable, tested components.
+Here are some common code smells that we often see in ML codebases. 1. Variable Names That Don’t Reveal Intent
+Comments can become problematic in a few ways: If some code needs comments, it’s a smell for deeper issues
+Comments can grow stale and they can lie. Comments can make code even harder to understand when there’s too many of them.
+We can avoid these problems by using sensible variable names, proper abstraction of our code into functions with single responsibility, and unit tests,
+Dead Code Dead code is code that is executed but its result is never used in any other computation.
+There are more than 60 refactoring techniques, which you can refer to in Martin Fowler’s “Refactoring Catalog” and refactoring.guru’s “Refactoring Techniques”
+ML practitioners who wish to manage technical debt effectively need to establish a social contract of desirable behavior within their team and create a shared understanding of problems and how to resolve them together.
+Thereafter, anyone who notices or creates new technical debt can add it to the wall asynchronously for the team’s awareness. In terms of execution, low-effort debt can be
+Thereafter, anyone who notices or creates new technical debt can add it to the wall asynchronously for the team’s awareness. In terms of execution, low-effort debt can be subsumed
+Thereafter, anyone who notices or creates new technical debt can add it to the wall asynchronously for the team’s awareness. In terms of execution, low-effort debt can be subsumed into an upcoming related story card. High-effort debt could have its own story card,
+For each story card, focus 80% of the time on delivering features and completing the story, and spend 20% of the time paying off some technical debt, so that the team can continue to deliver features at a sustainable and predictable pace.
+Development Can I set up the codebase, understand it, and confidently make changes? Operations Can I deploy the system, understand it and its dependencies, handle disaster recovery, and know if it’s performing in line with established service-level agreements (SLAs)? Architecture Does the system encapsulate a single responsibility with a clearly defined interface within understood realms?
+Figure 9-2. A typical MLOps architecture, including technical components and flow of tasks and actions
+Deployment automation In MLOps, automated deployments help reduce manual intervention, human errors, and inconsistencies, while also accelerating the development and deployment process.
+TorchServe,
+“As code” everything Adopting an “as code” approach in MLOps involves treating all aspects of the infrastructure, configuration, deployments, and monitoring as code.
+“As code” everything Adopting an “as code” approach in MLOps involves treating all aspects of the infrastructure, configuration, deployments, and monitoring as code. This practice allows for better version control, reproducibility,
+automation, and collaboration among team members.
+Artifact stores Artifact stores such as model registries, container registries, and metadata stores persist various artifacts generated during the ML lifecycle. These stores enable easy tracking, versioning, and retrieval of artifacts such as models, data, and metadata. This helps to facilitate collaboration, traceability, reproducibility, and auditability across projects.
+Feature stores or feature platforms (with data versioning) Feature stores serve as a centralized repository for feature engineering, storing preprocessed features used in training and inference stages.
+Data versioning in feature stores enables the tracking and management of different data versions, ensuring reproducibility and consistency in ML models.
+Feature stores or feature platforms (with data versioning) Feature stores serve as a centralized repository for feature engineering, storing preprocessed features used in training and inference stages. Data versioning in feature stores enables the tracking and management of different data versions, ensuring reproducibility and consistency in ML models.
+Infrequent deployments to production and preproduction environments suggest that a team is not confident in the reliability and quality of changes (in code, data, and model).
+Teams often throw away the data that a model generates in production (e.g., requests and predictions)—data that could be used to improve their ML models. This can occur due to lack of proper data collection, processing, and labeling mechanisms.
+When you hear the phrase, “X (e.g., deployment, integration, customer experience, security) is another team’s responsibility” in one form or another, it’s usually a smell that suggests a number of deeper underlying problems. The first issue relates to team structure:
+When you hear the phrase, “X (e.g., deployment, integration, customer experience, security) is another team’s responsibility” in one form or another, it’s usually a smell that suggests a number of deeper underlying problems. The first issue relates to team structure: The team wasn’t set up correctly and is lacking some key competency
+To move fast, a team should have these core competencies, or be supported by enabling teams for cross-cutting competencies
+This will allow the team to operate autonomously without
+depending on (and risk being blocked by) other teams.
+depending on (and risk being blocked by) other teams. The second issue relates to culture: X is someone else’s problem. We often detect the “someone else’s problem” mindset at the boundaries between teams, which indicates that both issues—structure and culture—are often mutually reinforcing.
+Without the Kaizen mindset, suggestions for improvement are almost always procrastinated to accommodate other priorities, and team members can often give up trying. Principle
+Principle 5: Everyone is responsible In high-performing ML teams, nothing is “somebody else’s problem.”
+delivering ML models. For the impatient, Table 9-1 provides an overview
+Shift left on security
+Shift left on security
+This practice can include:
+Reviewing, identifying, and mitigating failure modes of an ML model (e.g., adversarial attacks, data poisoning) Establishing access controls to prevent unauthorized use Automating the detection and updating of vulnerable dependencies
+Including automated security tests as part of the automated testing suite on the CI pipeline
+Beyond ML, there are also critical security practices for data: In terms of data privacy, teams must
+anonymize personal identifiable information (PII) so that they are not at risk of accessing it. In terms of data security, teams must encrypt and establish access control on production data.
+Version control of code, data, and artifacts (e.g., configuration, intermediate data, trained models)
+Version control of code, data, and artifacts (e.g., configuration, intermediate data, trained models) helps teams with reproducibility, traceability, auditability, and debugging.
+This is not just a matter of tracking changes in code but also involves
+versioning the datasets, model parameters, configuration settings, and even the random number generator seeds used during training.
+In the context of version control of source code, it’s also important to make small and frequent code commits
+every effective team must discover, and rediscover, its own unique path to success.
+three levels of the system need to be conceptually embraced to understand team
+effectiveness...within person over time, individuals within team, and between team or contextual effects.”
+Intra-team silos of specialization
+Unsurfaced conflicting approaches
+No one thinks to challenge this arrangement. It’s accepted by the team and all their external stakeholders, and that acceptance perpetuates the status quo. When Daksha is on holiday, the team has to wait for his return to explain why a model started failing a stratified test.
+No one thinks to challenge this arrangement. It’s accepted by the team and all their external stakeholders, and that acceptance perpetuates the status quo. When Daksha is on holiday, the team has to wait for his return to explain why a model started failing a stratified test. When Tanvi gets a new job offer, feature changes are blocked for a month while a replacement is found and comes up to speed.
+The segregation in responsibilities leads to multiple divergent goals, and the team can’t help one another achieve those goals or respond to incidents. As a result, work is less rewarding for team members, teams are less responsive, less connected, less innovative, deliver lower quality, and are less resilient.
+Lack of shared purpose
+find purpose or a goal that they can buy into. Some issues are generic and some—
+find purpose or a goal that they can buy into. Some issues are generic and some—like data drift—are specific to ML teams.
+find purpose or a goal that they can buy into. Some issues are generic and some—like data drift—are specific to ML teams. Without purpose and autonomy to solve problems, it is unlikely that these teams will be high-performing and morale will fizzle out over time.
+No sense of progress
+The team delivers working code every iteration, but a burndown chart shows no appreciable progress toward the first release. The team doesn’t know which items are high-priority so it chooses which items to work on based on what’s most interesting—from autoscaling to z-test support—which also leads the team to deciding the scope of each item.
+The team delivers working code every iteration, but a burndown chart shows no appreciable progress toward the first release. The team doesn’t know which items are high-priority so it chooses which items to work on based on what’s most interesting—from autoscaling to z-test support—which also leads the team to deciding the scope of each item. Week to week, the team loses any sense of accomplishment and has no incentive to coordinate activities because it has no mechanism for determining which tasks will move it closer to its goal. Stakeholders can’t see any progress either. This is not a high-performing team.
+Lack of diversity
+Diverse teams are better problem solvers, process facts more carefully, produce more innovative solutions, and produce better financial results. If you don’t prioritize diversity in your teams, not only are they likely to be less effective, they are also more likely to fail in preventable ways.
+When people are afraid of negative consequences for raising concerns, or admitting they lack knowledge
+Unsafe to fail, or even to ask
+they will keep their thoughts to themselves.
+they will keep their thoughts to themselves. This causes stress and inhibits growth of team members, and causes errors and knowledge gaps to remain hidden and to compound over time with magnified consequences. Not an effective team at all!
+Specifically, in this section we’ll address the following building blocks: Trust Communication Diverse membership Purposeful, shared progress
+you’ll start to see how building blocks can be interlocking and mutually reinforcing.
+The foundational building block of this mental model is trust within the team. In the absence of trust, we cannot truly foster healthy and respectful conflict around ideas, build collective commitment to decisions and plans of action, or develop a culture of accountability.
+building trust takes time.
+building trust takes time. It takes advocacy from leadership and it requires us to have a certain level of self-awareness, and awareness of the group dynamics at play.
+Bruce Tuckman describes these five stages as:
+Stage 1: Forming A new team has just been formed, or a new team member has just joined. Team members first meet, learn their roles and responsibilities, and are cautious with their behavior as they try to assimilate with the group.
+Stage 2: Storming Tensions rise as team members start to speak their minds and solidify their places within the group, and latent conflicts surface.
+Stage 3: Norming Conflicts start to resolve, team members
+appreciate each other’s strengths, and respect for authority grows.
+Stage 4: Performing The group functions together as a cohesive unit and without as much direction from the team leader. Stage 5: Adjourning The original goals of the team have been completed, and everyone can move on to new projects or teams.
+The process of team formation shouldn’t be seen as a barrier to effectiveness; rather, deliberate attention to this process may even be seen as a competitive advantage
+Belbin’s Team Roles framework defines nine archetypes for team roles
+People/social roles: Resource Investigator Teamworker Coordinator Thinking roles: Plant Monitor Evaluator Specialist
+Action roles: Shaper Implementer Completer Finisher
+No role is better or worse; all contribute to effective teams.
+However, in a given team, individuals are able to play multiple roles at any time or different times.
+Knowing your default role can be very helpful for you to recognize when this behavior would not help the team. It’s also helpful to be able to identify roles that aren’t being played, such as being a teamworker, and suggesting everyone grab a coffee and come back fresh at times when teamwork starts stalling.
+Creating and consuming data visualizations are skills the team should develop to aid communication.
+Remain focused on the outcome you’re collectively trying to achieve, and maintain a safe space by watching for signs of withdrawal or sabotage.
+Know your own motivations, and be prepared to explore your own path by sharing stories to which others will be receptive.
+Explore others’ paths with genuine empathy and compassion. See this process of communication as contributing to a pool of shared meaning. Be prepared and able to move from shared understanding to shared action.
+Communication is also the glue that binds diverse teams together and is the basis for collaboration in teams that are able to make shared progress.
+Diverse teams have been shown to be better at
+solving problems and processing facts and to more carefully produce more innovative solutions and better financial results
+If an organization’s purpose doesn’t resonate with employees, or ML objectives are irrelevant
+If an organization’s purpose doesn’t resonate with employees, or ML objectives are irrelevant or counter to that purpose, then doing ML for the intellectual exercise will quickly lose meaning.
+Autonomy is the freedom to self-direct, mastery is the cumulative effect of progress on personal skills, and purpose is the desire to contribute to something greater.
+But if individuals are working to many different ends, to many different purposes, then it can be hard to see progress as a team, because progress is a vector,
+But if everyone is progressing in different directions, the net result is no substantial change, and indeed some efforts undoing others.
+But if everyone is progressing in different directions, the net result is no substantial change, and indeed some efforts undoing others. When individuals are working to different ends, it becomes apparent that we no longer have a team.
+As we’ve discussed, ML teams share many of the same characteristics as software engineering teams (with some additions),
+25 sociotechnical factors that affect DevEx. For example, interruptions, unrealistic deadlines, and friction in development tools negatively affect DevEx, while having clear tasks, well-organized code, and pain-free releases improve it.
+human factors such as having clear goals for projects and feeling psychologically safe on a team have a substantial impact on developers’ performance.
+The same techniques that rapidly brought you to this stage of product development—such as clear definitions of done and heavy automation of processes—will help you shift smoothly from minimizing feedback cycle time to minimizing the feedback duty cycle.
+Similarly, studies have shown that developers who enjoy their work perform better and produce higher-quality products.
+Poorly designed work and output dependencies between teams are the external causes of ineffective teams,
+we introduce scenarios related to how teams interact with each other and how work flows to each team, which can also render teams more or less effective.
+Centralized team has too many responsibilities
+This mode of dependency is also known as backlog coupling
+Duplication of effort in multiple cross-functional teams
+Inter-team dependencies: handoffs and waiting
+The lesson here is that the work, technology systems, team member skills, and team interactions are interdependent.
+One of its central tenets is that by having the appropriate team structures and establishing a limited set of well-defined interaction modes
+we can reduce coupling between teams, keep cognitive load at
+a manageable level, and thereby improve delivery flow among autonomous and aligned teams.
+X-as-a-service
+Each team should only have as much work as they can handle while fully understanding the system they’re responsible for. Overloading teams harms productivity.
+Team-first thinking prioritizes the collective intelligence and capability of a team over individual capacities, recognizing that long-standing teams develop deeper synergies and collaborations.
+Team-first thinking prioritizes the collective intelligence and capability of a team over individual capacities, recognizing that long-standing teams develop deeper synergies and collaborations. The idea is to maintain stable, long-lived teams that evolve, learn, and grow together, as opposed to frequently disbanded and reformed teams for different projects.
+Team encapsulation Teams should maintain a certain level of encapsulation, where they expose well-defined interfaces or APIs that can be consumed and depended upon by teams while keeping their internal workings and details hidden.
+Organizations should use defined team interaction modes
+to reduce miscommunications, misalignments, and unnecessary dependencies between teams.
+X-as-a-service,
+Team shapes are not one and done and set in stone forever. As technology and the organization mature, the team structures and interactions should adapt accordingly.
+A stream-aligned ML team has a mix of digital, data, and ML capabilities, and delivers user-facing ML features, such as content recommendations.
+Stream-aligned team: ML product team
+To strike the appropriate balance of the many digital and data capabilities required within a reasonably-sized team, however, the stream-aligned team cannot support many ML specialists. In scaling from 0 to 1, the aim should be for the team to have minimal dependencies on other teams.
+Complicated subsystem team: ML domain
+Complicated subsystem team: ML domain team
+Some ML applications are sufficiently complex, or the business advantage from superior ML performance is sufficiently great, that there is a
+justification for building a team of experts around the application of ML, such as retail forecasts or content recommendations.
+these teams should arguably be considered enabling teams
+The reality of many so-called “centralized” data science or ML teams is that they are in fact domain teams—
+We see that when organizations fail to properly manage interaction modes, they limit the effectiveness of “centralized” teams.
+The ML domain team makes its products
+available as-a-service to multiple stream-aligned product teams and other consuming teams in the business.
+If a complicated subsystem team is servicing a wide range of business domains, we would instead call it a centralized data science or ML team. The reality of many so-called “centralized” data science or ML teams is that they are in fact domain teams—
+that will act in facilitation mode,

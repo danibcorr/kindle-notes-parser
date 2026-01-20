@@ -18,3 +18,25 @@ Anotaciones:
       podría exportar el documento en un txt y que lo procese posteriormente un LLM para
       generar un texto enriquecido. Por lo que las notas sería parte del contexto e
       información.
+
+Otras anotaciones:
+
+Por lo que veo el formato es siempre el mismo:
+
+```
+Título del libro (Autor)
+- Mi subrayado en la página 12 | Posición 185-186 | Añadido el viernes, 7 de junio de 2024 22:47:03
+
+Texto del libro
+==========
+```
+
+Por tanto:
+
++ LA primera fila es el titulo de libro/autor.
++ La segunda fila es informacion del subrayado.
++ La tercera fila es un espacio en blanco.
++ La cuarta fila es la informacion del subrayado.
++ LA quitan fila es un delimitador
+
+Para quedarme con informacion de

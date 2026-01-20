@@ -19,7 +19,7 @@ fn obtener_titulos_libros(path_notas: &str) -> Vec<String> {
 
     let contenido: String = fs::read_to_string(path_notas).expect("Error al leer el documento.");
     let mut contenido_iterable = contenido.lines();
-    
+
     let primer_titulo = contenido_iterable
         .next()
         .expect("Error, el fichero está vacio.")

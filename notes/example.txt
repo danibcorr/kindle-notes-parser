@@ -104,7 +104,7 @@ As they code, each incremental code change is quickly validated within seconds o
 They run the end-to-end ML model training pipeline locally on a small dataset and get feedback on whether everything is still working as expected within a minute.
 ==========
 ﻿Effective Machine Learning Teams (David Tan)
-- La subrayado en la página 35 | posición 531-532 | Añadido el lunes, 29 de diciembre de 2025 12:28:17
+- La subrayado en la página 35 | posición 531-532 .replace(from, to);| Añadido el lunes, 29 de diciembre de 2025 12:28:17
 
 If they need to do a full ML model training, they can trigger training on large-scale infrastructure from their local machine with their local code changes,
 ==========
