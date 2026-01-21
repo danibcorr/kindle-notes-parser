@@ -17,72 +17,72 @@ fn help() {
     );
 }
 
-fn obtener_titulos_libros(path_notas: &str) -> Vec<String> {
-    // La referencia (&) no significa necesariamente modificación, sino préstamo (borrowing).
-    // En Rust, una referencia &str es inmutable.
-
-    let contenido: String = fs::read_to_string(path_notas).expect("Error al leer el documento.");
-    let mut contenido_iterable = contenido.lines();
-
-    let primer_titulo = contenido_iterable
-        .next()
-        .expect("Error, el fichero está vacio.")
-        .to_string()
-        .replace("\u{feff}", "");
-
-    // Convertimos las líneas en un Vector, esto lo combina todo en un array dinámico
-    // donde cada elemento del array es una linea del documento
-    let vector_lineas: Vec<&str> = contenido_iterable.collect();
-    //println!("{:?}", vector_lineas);
-    //println!("{}", vector_lineas.len());
-
-    let mut vector_titulos: Vec<String> = Vec::new();
-
-    for indice_linea in 0..vector_lineas.len() {
-        if vector_lineas[indice_linea] == "==========" {
-            if indice_linea + 1 < vector_lineas.len() {
-                let titulo_libro = vector_lineas[indice_linea + 1]
-                    .trim()
-                    .replace("\u{feff}", "");
-                vector_titulos.push(titulo_libro);
-            }
+fn leer_fichero_notas(path_notas: &str) -> String {
+    return match fs::read_to_string(path_notas) {
+        Ok(contenido) => {
+            println!("El contenido del documento se ha leido correctamente.");
+            contenido
         }
-    }
-
-    // Tegno que meter el primer_titulo con el resto
-    vector_titulos.push(primer_titulo);
-
-    // Podemos eliminar duplicados creando un HashSet, que es como un hashmap pero en vez
-    // de tener almacenados parejas de keys y values pues solo tenemos keys, que seran
-    // los titulos de los libros
-    let mut vector_titulos_unico: HashSet<String> = HashSet::new();
-    vector_titulos.retain(|x| vector_titulos_unico.insert(x.to_string()));
-    //println!("{:?}", vector_titulos);
-
-    vector_titulos
+        Err(e) => {
+            panic!("Error al leer el fichero: {}", e);
+        }
+    };
 }
 
-fn elegir_titulo(todos_los_titulos: Vec<String>) -> String {
-    let mut indice_titulos = HashMap::new();
-    let mut contador: i64 = 0;
+fn limpiar_contenido(contenido: &str) -> String {
+    return contenido.trim().to_string().replace("\u{feff}", "");
+}
 
-    for titulo in todos_los_titulos.into_iter() {
-        indice_titulos.insert(contador, titulo);
-        contador += 1;
-    }
+fn obtener_titulos_libros(contenido_notas: &str) -> HashSet<String> {
+    // Podemos crear un iterable del documento
+    let contenido_iterable = contenido_notas.lines();
 
-    println!("Títulos disponibles: {:?}", indice_titulos);
+    // Podemos ahora utilizar enumerate para que cada linea ahora sea una tupla de
+    // su indice y contenido, para posteriormente aplicar un filtrado junto con un mapeo
+    // donde si el resto de dividir el valor del indice entre 5 es 0, entonces estoy
+    // en la posicion del titulo
+    let mut titulos_disponibles: Vec<String> = contenido_iterable
+        .enumerate()
+        .filter_map(|(indice, contenido)| {
+            if indice % 5 == 0 {
+                Some(limpiar_contenido(contenido))
+            } else {
+                None
+            }
+        })
+        .collect();
 
-    println!("Introduce el indice del titulo a seleccionar: ");
+    // Podemos eliminar duplicados creando un HashSet, que es como un HashMap pero en vez
+    // de tener almacenados parejas de keys y values pues solo tenemos keys, que seran
+    // los titulos de los libros
+    let mut titulos_disponibles_filtrados: HashSet<String> = HashSet::new();
+    titulos_disponibles.retain(|titulos| titulos_disponibles_filtrados.insert(titulos.to_string()));
+    println!(
+        "Títulos de libros encontrados: {:?}",
+        titulos_disponibles_filtrados
+    );
+
+    return titulos_disponibles_filtrados;
+}
+
+fn elegir_titulo(titulos_disponibles: HashSet<String>) -> String {
+    // Para crear un mapeo entre cada título disponible y un indice que permita al
+    // usuario elegir un titulo, podemos usar un HashMap
+    let indice_titulos: HashMap<usize, String> =
+        titulos_disponibles.into_iter().enumerate().collect();
+
+    println!("\nIndice de títulos: \n{:?}", indice_titulos);
+
+    println!("\nIntroduce el indice del titulo a seleccionar:");
 
     loop {
-        let mut input_texto = String::new();
+        let mut input_texto: String = String::new();
 
         io::stdin()
             .read_line(&mut input_texto)
             .expect("Error al leer el input");
 
-        let input_user: i64 = match input_texto.trim().parse() {
+        let input_user: usize = match input_texto.trim().parse() {
             Ok(num) => {
                 if indice_titulos.contains_key(&num) {
                     num
@@ -97,36 +97,32 @@ fn elegir_titulo(todos_los_titulos: Vec<String>) -> String {
             }
         };
 
-        return indice_titulos[&input_user].to_string();
+        let titulo_seleccionado: String = indice_titulos
+            .get(&input_user)
+            .expect("Error al obtener el título.")
+            .to_string();
+
+        println!("Titulo seleccionado: {titulo_seleccionado}");
+
+        return titulo_seleccionado;
     }
 }
 
-fn mapear_contenido_titulo(path_notas: &str, titulo_seleccionado: String) -> Vec<String> {
-    let contenido: String = fs::read_to_string(path_notas).expect("Error al leer el fichero");
-    let contenido_iterable = contenido.lines();
+fn obtener_contenido(contenido_notas: &str, titulo_seleccionado: &str) -> Vec<String> {
+    let vector_de_contenidos: Vec<&str> = contenido_notas.lines().collect();
 
-    let vector_de_contenidos: Vec<&str> = contenido_iterable.collect();
-
-    let mut titulo_contenido = HashMap::new();
+    let mut resultados = Vec::new();
 
     for index in (0..vector_de_contenidos.len()).step_by(5) {
-        let titulo_libro = vector_de_contenidos[index].trim().replace("\u{feff}", "");
-        if let Some(contenido_del_libro) = vector_de_contenidos.get(index + 3) {
-            titulo_contenido
-                .entry(titulo_libro)
-                .or_insert(Vec::new())
-                .push(contenido_del_libro.to_string());
+        let titulo_libro = limpiar_contenido(vector_de_contenidos[index]);
+        if titulo_libro == titulo_seleccionado {
+            if let Some(contenido_del_libro) = vector_de_contenidos.get(index + 3) {
+                resultados.push(contenido_del_libro.to_string());
+            }
         }
     }
 
-    let contenido_final = titulo_contenido
-        .remove(&titulo_seleccionado)
-        .unwrap_or_else(|| Vec::new());
-
-    println!("Mostrando contenido para: {}", titulo_seleccionado);
-    println!("{:?}", contenido_final);
-
-    contenido_final
+    return resultados;
 }
 
 fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>) {
@@ -134,8 +130,10 @@ fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>) {
 
     let contenido_unido = contenido_titulo_seleccionado.join("\n");
 
-    file.write_all(contenido_unido.as_bytes())
-        .expect("Error al escribir el fichero.");
+    match file.write_all(contenido_unido.as_bytes()) {
+        Ok(_) => println!("El fichero se ha guardado correctamente."),
+        Err(_) => println!("Error al guardar el fichero."),
+    };
 }
 
 fn main() {
@@ -152,18 +150,20 @@ fn main() {
         },
         3 => {
             let comando = &args[1];
-            let valor_comando = &args[2];
+            let path_notas = &args[2];
 
             match comando.to_lowercase().as_str() {
                 "--parser" | "-p" => {
-                    let todos_los_titulos = obtener_titulos_libros(&valor_comando);
-                    println!("Títulos de libros encontrados: {:?}", todos_los_titulos);
+                    let contenido_notas: String = leer_fichero_notas(path_notas);
 
-                    let titulo_seleccionado = elegir_titulo(todos_los_titulos);
-                    println!("Titulo seleccionado: {titulo_seleccionado}");
+                    let titulos_disponibles: HashSet<String> =
+                        obtener_titulos_libros(&contenido_notas);
+
+                    let titulo_seleccionado = elegir_titulo(titulos_disponibles);
 
                     let contenido_titulo_seleccionado =
-                        mapear_contenido_titulo(&valor_comando, titulo_seleccionado);
+                        obtener_contenido(&contenido_notas, &titulo_seleccionado.as_str());
+
                     guardar_contenido(contenido_titulo_seleccionado);
                 }
                 _ => println!("Comando no disponible, utiliza --help o -h."),
