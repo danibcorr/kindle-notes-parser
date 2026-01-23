@@ -145,7 +145,10 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     match args.len() {
-        1 => println!("No se ha introducido ningún argumento."),
+        1 => {
+            println!("No se ha introducido ningún argumento.");
+            println!("Si necesitas ayuda, utiliza --help o -h.");
+        }
         2 => match args[1].to_lowercase().as_str() {
             "--help" | "-h" => help(),
             "--parser" | "-p" => {
