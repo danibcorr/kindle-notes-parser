@@ -125,8 +125,13 @@ fn obtener_contenido(contenido_notas: &str, titulo_seleccionado: &str) -> Vec<St
     return resultados;
 }
 
-fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>) {
-    let mut file = File::create("prueba.txt").expect("Error al crear el fichero");
+fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>, titulo_seleccionado: &str) {
+    if fs::exists("outputs").is_err() {
+        fs::create_dir("outputs").expect("Error al crear la carpeta 'outputs'.");
+    }
+
+    let path_fichero = format!("outputs/{}.txt", titulo_seleccionado);
+    let mut file = File::create(path_fichero).expect("Error al crear el fichero");
 
     let contenido_unido = contenido_titulo_seleccionado.join("\n");
 
@@ -164,7 +169,7 @@ fn main() {
                     let contenido_titulo_seleccionado =
                         obtener_contenido(&contenido_notas, &titulo_seleccionado.as_str());
 
-                    guardar_contenido(contenido_titulo_seleccionado);
+                    guardar_contenido(contenido_titulo_seleccionado, &titulo_seleccionado);
                 }
                 _ => println!("Comando no disponible, utiliza --help o -h."),
             }

@@ -2,5 +2,13 @@
 name = "kindle-notes-parser"
 version = "0.1.0"
 edition = "2024"
+authors = ["Daniel Bazo Correa"]
+license = "MIT"
+description = "Herramienta para extraer el contenido de las notas de Kindle"
+readme = "README.md"
+homepage = "https://github.com/danibcorr/kindle-notes-parser"
+repository = "https://github.com/danibcorr/kindle-notes-parser"
+keywords = ["cli", "kindle"]
+categories = ["command-line-utilities"]
 
 [dependencies]
