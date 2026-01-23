@@ -1,10 +1,7 @@
-// Esto es para leer los argumentos
-use std::env;
-// Esto es para soportar lectura de argumentos
-use std::fs;
-// Esto es para crear el HashSet
 use std::collections::HashMap;
 use std::collections::HashSet;
+use std::env;
+use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::Write;
@@ -126,7 +123,7 @@ fn obtener_contenido(contenido_notas: &str, titulo_seleccionado: &str) -> Vec<St
 }
 
 fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>, titulo_seleccionado: &str) {
-    if fs::exists("outputs").is_err() {
+    if !fs::exists("outputs").unwrap_or(false) {
         fs::create_dir("outputs").expect("Error al crear la carpeta 'outputs'.");
     }
 
