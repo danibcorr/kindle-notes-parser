@@ -1,25 +1,25 @@
+use clap::Parser;
 use std::collections::HashMap;
 use std::collections::HashSet;
-use std::env;
 use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::Write;
+use std::path::PathBuf;
 
-fn help() {
-    println!(
-        "\nAyuda de la linea de comandos para el parseador de notas de Kindle.\n\
-        \nComandos disponibles:\n\n\
-        \t--parser o -p <path>: Realizar el parseo del documento introducido.\n"
-    );
+#[derive(Parser, Debug)]
+#[command(name = "Kindle Parser")]
+#[command(version = "0.1")]
+#[command(about = "CLI para parsear ficheros txt de los subrayados y notas de Kindle.")]
+struct KindleCLI {
+    /// Parsea el fichero txt dado el path donde se encuentra el fichero
+    #[arg(short, long, value_name = "PATH")]
+    parser: Option<PathBuf>,
 }
 
-fn leer_fichero_notas(path_notas: &str) -> String {
+fn leer_fichero_notas(path_notas: &PathBuf) -> String {
     return match fs::read_to_string(path_notas) {
-        Ok(contenido) => {
-            println!("El contenido del documento se ha leido correctamente.");
-            contenido
-        }
+        Ok(contenido) => contenido,
         Err(e) => {
             panic!("Error al leer el fichero: {}", e);
         }
@@ -54,10 +54,6 @@ fn obtener_titulos_libros(contenido_notas: &str) -> HashSet<String> {
     // los titulos de los libros
     let mut titulos_disponibles_filtrados: HashSet<String> = HashSet::new();
     titulos_disponibles.retain(|titulos| titulos_disponibles_filtrados.insert(titulos.to_string()));
-    println!(
-        "Títulos de libros encontrados: {:?}",
-        titulos_disponibles_filtrados
-    );
 
     return titulos_disponibles_filtrados;
 }
@@ -68,7 +64,14 @@ fn elegir_titulo(titulos_disponibles: HashSet<String>) -> String {
     let indice_titulos: HashMap<usize, String> =
         titulos_disponibles.into_iter().enumerate().collect();
 
-    println!("\nIndice de títulos: \n{:?}", indice_titulos);
+    // Los HashMap no están ordenados
+    let mut indice_titulos_ordenados: Vec<(&usize, &String)> = indice_titulos.iter().collect();
+    indice_titulos_ordenados.sort_by_key(|(indice, _)| *indice);
+
+    println!("Indice de títulos encontrados:\n");
+    indice_titulos_ordenados.iter().for_each(|(id, titulo)| {
+        println!("{} - {}", id, titulo);
+    });
 
     println!("\nIntroduce el indice del titulo a seleccionar:");
 
@@ -123,9 +126,7 @@ fn obtener_contenido(contenido_notas: &str, titulo_seleccionado: &str) -> Vec<St
 }
 
 fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>, titulo_seleccionado: &str) {
-    if !fs::exists("outputs").unwrap_or(false) {
-        fs::create_dir("outputs").expect("Error al crear la carpeta 'outputs'.");
-    }
+    fs::create_dir_all("outputs").expect("Error al crear la carpeta 'outputs'.");
 
     let path_fichero = format!("outputs/{}.txt", titulo_seleccionado);
     let mut file = File::create(path_fichero).expect("Error al crear el fichero");
@@ -139,41 +140,14 @@ fn guardar_contenido(contenido_titulo_seleccionado: Vec<String>, titulo_seleccio
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let cli = KindleCLI::parse();
 
-    match args.len() {
-        1 => {
-            println!("No se ha introducido ningún argumento.");
-            println!("Si necesitas ayuda, utiliza --help o -h.");
-        }
-        2 => match args[1].to_lowercase().as_str() {
-            "--help" | "-h" => help(),
-            "--parser" | "-p" => {
-                println!("Te ha faltado introducir el path del fichero.")
-            }
-            _ => println!("Comando no disponible, utiliza --help o -h."),
-        },
-        3 => {
-            let comando = &args[1];
-            let path_notas = &args[2];
-
-            match comando.to_lowercase().as_str() {
-                "--parser" | "-p" => {
-                    let contenido_notas: String = leer_fichero_notas(path_notas);
-
-                    let titulos_disponibles: HashSet<String> =
-                        obtener_titulos_libros(&contenido_notas);
-
-                    let titulo_seleccionado = elegir_titulo(titulos_disponibles);
-
-                    let contenido_titulo_seleccionado =
-                        obtener_contenido(&contenido_notas, &titulo_seleccionado.as_str());
-
-                    guardar_contenido(contenido_titulo_seleccionado, &titulo_seleccionado);
-                }
-                _ => println!("Comando no disponible, utiliza --help o -h."),
-            }
-        }
-        _ => println!("Comando no disponible, utiliza --help o -h."),
+    if let Some(path_notas) = cli.parser.as_ref() {
+        let contenido_notas: String = leer_fichero_notas(path_notas);
+        let titulos_disponibles: HashSet<String> = obtener_titulos_libros(&contenido_notas);
+        let titulo_seleccionado = elegir_titulo(titulos_disponibles);
+        let contenido_titulo_seleccionado =
+            obtener_contenido(&contenido_notas, &titulo_seleccionado.as_str());
+        guardar_contenido(contenido_titulo_seleccionado, &titulo_seleccionado);
     }
 }
