@@ -1,40 +1,42 @@
 # Kindle Notes Parser
 
-**Kindle Notes Parser** es una herramienta de CLI escrita en **Rust** diseñada para
-extraer y filtrar las notas de tus libros de Kindle. Esta herramienta te permite
-interactuar con tu archivo `.txt`, seleccionar un título específico y generar un archivo
-limpio con tus anotaciones, ideal para ser procesado posteriormente por un LLM (ChatGPT,
-Claude, etc.) o integrado en tu sistema de gestión de conocimiento.
+**Kindle Notes Parser** is a CLI tool written in **Rust** designed to extract and filter
+notes from your Kindle books. This tool allows you to interact with your `.txt` file,
+select a specific title, and generate a clean file with your annotations.
 
-## Instalación y Compilación
+Perfect for further processing by an LLM (ChatGPT, Claude, etc.) or integration into
+your personal knowledge management system.
 
-Asegúrate de tener instalado [Rust y Cargo](https://rustup.rs/).
+## Installation and Compilation
 
-1. **Clona el repositorio:**
+Make sure you have Rust and Cargo installed.
+
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/danibcorr/kindle-notes-parser
    cd kindle-notes-parser
    ```
 
-2. **Compila el proyecto:**
+2. **Compile the project:**
 
    ```bash
    cargo build
    ```
 
-Encontrarás el ejecutable en `./target/debug/kindle-notes-parser`.
+You will find the executable at `./target/debug/kindle-notes-parser`.
 
-## Uso
+## Usage
 
-Para iniciar el parseo de un archivo de notas, utiliza el comando `-p` seguido de la
-ruta de tu archivo:
+To start parsing a notes file, use the `-p` command followed by the path to your file:
 
 ```bash
-./target/debug/kindle-notes-parser -p /ruta/a/tus/anotaciones.txt
+./target/debug/kindle-notes-parser -p /path/to/your/annotations.txt
 ```
 
-El contenido se guarda automáticamente en: `outputs/[Nombre del Libro].txt`
+### Output
 
-Este archivo contendrá únicamente los textos subrayados, separados por saltos de línea,
-eliminando metadatos innecesarios como fechas o posiciones de página.
+The content is automatically saved to: `outputs/[Book Name].txt`
+
+> **Note:** This file will contain only the highlighted text, separated by line breaks,
+> removing unnecessary metadata such as dates or page positions.

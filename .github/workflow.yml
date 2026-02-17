@@ -1,0 +1,25 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+env: 
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+    steps:
+      - uses: actions/checkout@v6
+      - run:
+          rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain
+          }}
+      - run: cargo build --verbose
