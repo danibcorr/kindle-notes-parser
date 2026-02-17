@@ -42,11 +42,12 @@ pub fn extract_book_titles(notes_content: &str) -> HashSet<String> {
 pub fn select_book_title_index(available_titles: HashSet<String>) -> String {
     let term = Term::stdout();
 
-    let vector_available_titles: Vec<String> = available_titles
+    let titles: Vec<String> = available_titles.into_iter().collect();
+
+    let display_labels: Vec<String> = titles
         .iter()
         .map(|content| {
             if content.chars().count() as i32 > MAX_TITLE_LENGTH {
-                // We take the first MAX_TITLE_LENGTH characters and create a new String
                 format!(
                     "{}...",
                     content
@@ -55,7 +56,6 @@ pub fn select_book_title_index(available_titles: HashSet<String>) -> String {
                         .collect::<String>()
                 )
             } else {
-                // We clone the original string so that the vector owns its data
                 content.clone()
             }
         })
@@ -63,25 +63,24 @@ pub fn select_book_title_index(available_titles: HashSet<String>) -> String {
 
     let selection = Select::with_theme(&ColorfulTheme::default())
         .with_prompt("Select one of the titles found")
-        .items(&vector_available_titles)
+        .items(&display_labels)
         .default(0)
         .interact_opt()
         .expect("Error in the terminal");
 
     match selection {
         Some(index) => {
-            let selected = vector_available_titles[index].clone();
+            let selected_full = titles[index].clone();
 
-            // Move up one line and clear to delete the previous prompt
             term.clear_last_lines(1).unwrap();
 
             println!(
                 "{} Selected: {}",
                 style("✔").green(),
-                style(&selected).yellow()
+                style(&display_labels[index]).yellow()
             );
 
-            selected
+            selected_full
         }
         None => std::process::exit(0),
     }
