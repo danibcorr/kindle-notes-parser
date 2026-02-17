@@ -1,42 +1,45 @@
 # Kindle Notes Parser
 
-**Kindle Notes Parser** is a CLI tool written in **Rust** designed to extract and filter
-notes from your Kindle books. This tool allows you to interact with your `.txt` file,
-select a specific title, and generate a clean file with your annotations.
+Kindle Notes Parser is a command-line interface utility developed in Rust for the
+purpose of extracting annotations from Kindle devices.
 
-Perfect for further processing by an LLM (ChatGPT, Claude, etc.) or integration into
-your personal knowledge management system.
+This tool is designed for users who require distilled text for integration into personal
+knowledge management systems or as optimized input for large language models.
 
 ## Installation and Compilation
 
-Make sure you have Rust and Cargo installed.
+Pre-compiled binaries for Linux, Windows, and macOS are available for immediate use on
+the official releases page. Users who prefer to build the software from the source must
+ensure that the Rust toolchain and Cargo package manager are installed on their system.
 
-1. **Clone the repository:**
+To begin the build process, clone the repository using the following command:
 
-   ```bash
-   git clone https://github.com/danibcorr/kindle-notes-parser
-   cd kindle-notes-parser
-   ```
+```bash
+git clone https://github.com/danibcorr/kindle-notes-parser
+```
 
-2. **Compile the project:**
+Navigate into the project directory and execute the compilation command:
 
-   ```bash
-   cargo build
-   ```
+```bash
+cargo build --release
+```
 
-You will find the executable at `./target/debug/kindle-notes-parser`.
+The resulting executable is located within the `target/release/` directory.
 
 ## Usage
 
-To start parsing a notes file, use the `-p` command followed by the path to your file:
+The application requires a path to the source clippings file provided via the `-p` flag.
+Execution follows this syntax:
 
 ```bash
-./target/debug/kindle-notes-parser -p /path/to/your/annotations.txt
+./target/release/kindle-notes-parser -p /path/to/your/annotations.txt
 ```
 
-### Output
+The parser analyzes the provided file and allows for the selection of specific titles.
+Upon completion, the tool generates a clean text file containing only the highlighted
+passages.
 
-The content is automatically saved to: `outputs/[Book Name].txt`
-
-> **Note:** This file will contain only the highlighted text, separated by line breaks,
-> removing unnecessary metadata such as dates or page positions.
+Processed content is automatically exported to the `outputs/` directory using the naming
+convention `[Book Name].txt`. The output logic prioritizes the integrity of the original
+highlights while systematically removing non-essential data such as timestamps, page
+numbers, and location coordinates.
