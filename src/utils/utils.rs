@@ -1,12 +1,13 @@
-use std::collections::HashMap;
+use crate::utils::processing;
+use console::{Term, style};
+use dialoguer::{Select, theme::ColorfulTheme};
 use std::collections::HashSet;
 use std::fs;
 use std::fs::File;
-use std::io;
 use std::io::Write;
 use std::path::PathBuf;
 
-use crate::utils::processing;
+const MAX_TITLE_LENGTH: i32 = 50;
 
 pub fn read_file_notes(path_notes: &PathBuf) -> String {
     return match fs::read_to_string(path_notes) {
@@ -39,50 +40,50 @@ pub fn extract_book_titles(notes_content: &str) -> HashSet<String> {
 }
 
 pub fn select_book_title_index(available_titles: HashSet<String>) -> String {
-    let index_titles: HashMap<usize, String> =
-        available_titles.into_iter().enumerate().collect();
+    let term = Term::stdout();
 
-    let mut index_titles_sorted: Vec<(&usize, &String)> = index_titles.iter().collect();
-    index_titles_sorted.sort_by_key(|(index, _)| *index);
-
-    println!("Titles found:\n");
-
-    index_titles_sorted.iter().for_each(|(id, title)| {
-        println!("{} - {}", id, title);
-    });
-
-    println!("\nEnter the index of the title to select:");
-
-    loop {
-        let mut text_input: String = String::new();
-
-        io::stdin()
-            .read_line(&mut text_input)
-            .expect("Error reading input");
-
-        let input_user: usize = match text_input.trim().parse() {
-            Ok(num) => {
-                if index_titles.contains_key(&num) {
-                    num
-                } else {
-                    println!("The index does not exist, please try again");
-                    continue;
-                }
+    let vector_available_titles: Vec<String> = available_titles
+        .iter()
+        .map(|content| {
+            if content.chars().count() as i32 > MAX_TITLE_LENGTH {
+                // We take the first MAX_TITLE_LENGTH characters and create a new String
+                format!(
+                    "{}...",
+                    content
+                        .chars()
+                        .take(MAX_TITLE_LENGTH as usize)
+                        .collect::<String>()
+                )
+            } else {
+                // We clone the original string so that the vector owns its data
+                content.clone()
             }
-            Err(_) => {
-                println!("Please enter a valid number");
-                continue;
-            }
-        };
+        })
+        .collect();
 
-        let selected_title: String = index_titles
-            .get(&input_user)
-            .expect("Error retrieving title")
-            .to_string();
+    let selection = Select::with_theme(&ColorfulTheme::default())
+        .with_prompt("Select one of the titles found")
+        .items(&vector_available_titles)
+        .default(0)
+        .interact_opt()
+        .expect("Error in the terminal");
 
-        println!("Selected title: {}", selected_title);
+    match selection {
+        Some(index) => {
+            let selected = vector_available_titles[index].clone();
 
-        return selected_title;
+            // Move up one line and clear to delete the previous prompt
+            term.clear_last_lines(1).unwrap();
+
+            println!(
+                "{} Selected: {}",
+                style("✔").green(),
+                style(&selected).yellow()
+            );
+
+            selected
+        }
+        None => std::process::exit(0),
     }
 }
 
