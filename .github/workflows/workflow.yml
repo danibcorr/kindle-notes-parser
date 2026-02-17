@@ -20,26 +20,26 @@ jobs:
           - os: ubuntu-latest
             platform: Linux x86_64
             target: x86_64-unknown-linux-gnu
-            artifact_name: kindle-notes-parser
-            asset_name: kindle-notes-parser-linux-x86_64
+            artifact_name: knp
+            asset_name: knp-linux-x86_64
 
           - os: windows-latest
             platform: Windows x86_64
             target: x86_64-pc-windows-msvc
-            artifact_name: kindle-notes-parser.exe
-            asset_name: kindle-notes-parser-windows-x86_64.exe
+            artifact_name: knp.exe
+            asset_name: knp-windows-x86_64.exe
 
           - os: macos-latest
             platform: macOS x86_64
             target: x86_64-apple-darwin
-            artifact_name: kindle-notes-parser
-            asset_name: kindle-notes-parser-macos-x86_64
+            artifact_name: knp
+            asset_name: knp-macos-x86_64
 
           - os: macos-latest
             platform: macOS ARM64
             target: aarch64-apple-darwin
-            artifact_name: kindle-notes-parser
-            asset_name: kindle-notes-parser-macos-aarch64
+            artifact_name: knp
+            asset_name: knp-macos-aarch64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v6
@@ -115,6 +115,6 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           files: |
-            **/kindle-notes-parser-*
+            **/knp-*
           draft: false
           prerelease: false
