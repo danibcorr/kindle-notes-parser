@@ -107,7 +107,7 @@ jobs:
 
       - name: Download Artifacts
         if: steps.check_tag.outputs.exists == 'false'
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
 
       - name: Create Tag and Release
         if: steps.check_tag.outputs.exists == 'false'
