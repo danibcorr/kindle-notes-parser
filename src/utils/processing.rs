@@ -1,3 +1,35 @@
 pub fn clean_content(content: &str) -> String {
     return content.trim().to_string().replace("\u{feff}", "");
 }
+
+pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
+    // Enumerate the vector content to create tuples of (index, content)
+    let mut indexed_content: Vec<(usize, String)> =
+        content.into_iter().enumerate().collect();
+
+    // Sort the content by string length in descending order
+    indexed_content.sort_by(|a, b| b.1.len().cmp(&a.1.len()));
+
+    // Create a new vector to store the filtered results
+    let mut results: Vec<(usize, String)> = Vec::new();
+
+    // Iterate to check if the indexed content is a substring of an existing result;
+    // push it if it's not already contained
+    for (idx, content) in indexed_content {
+        if !results
+            .iter()
+            .any(|(_, r_content)| r_content.contains(&content))
+        {
+            results.push((idx, content));
+        }
+    }
+
+    // Sort the results by their original keys (the indices) to restore chronological order
+    results.sort_by_key(|(r_idx, _)| *r_idx);
+
+    // Extract only the text content for the final output
+    return results
+        .into_iter()
+        .map(|(_, r_content)| r_content)
+        .collect();
+}
