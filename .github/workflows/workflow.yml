@@ -73,7 +73,7 @@ jobs:
         shell: bash
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.asset_name }}
           path: ${{ matrix.asset_name }}
@@ -107,11 +107,11 @@ jobs:
 
       - name: Download Artifacts
         if: steps.check_tag.outputs.exists == 'false'
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
 
       - name: Create Tag and Release
         if: steps.check_tag.outputs.exists == 'false'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           files: |

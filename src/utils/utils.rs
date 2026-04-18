@@ -100,7 +100,7 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
         }
     }
 
-    return results;
+    return processing::delete_duplicates(results);
 }
 
 pub fn save_content(selected_title_content: Vec<String>, selected_title: &str) {
