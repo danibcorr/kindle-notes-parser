@@ -7,7 +7,9 @@ use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
 
-const MAX_TITLE_LENGTH: i32 = 50;
+const NUM_LINES_CLIPPING_FORMAT: usize = 5;
+const STARTING_INDEX_CONTENT: usize = 3;
+const MAX_TITLE_LENGTH: usize = 50;
 
 pub fn read_file_notes(path_notes: &PathBuf) -> String {
     return match fs::read_to_string(path_notes) {
@@ -24,7 +26,7 @@ pub fn extract_book_titles(notes_content: &str) -> HashSet<String> {
     let mut available_titles: Vec<String> = iterable_doc_content
         .enumerate()
         .filter_map(|(index, content)| {
-            if index % 5 == 0 {
+            if index % NUM_LINES_CLIPPING_FORMAT == 0 {
                 Some(processing::clean_content(content))
             } else {
                 None
@@ -47,7 +49,7 @@ pub fn select_book_title_index(available_titles: HashSet<String>) -> String {
     let display_labels: Vec<String> = titles
         .iter()
         .map(|content| {
-            if content.chars().count() as i32 > MAX_TITLE_LENGTH {
+            if content.chars().count() > MAX_TITLE_LENGTH {
                 format!(
                     "{}...",
                     content
@@ -91,10 +93,12 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
 
     let mut results = Vec::new();
 
-    for index in (0..notes_content_vector.len()).step_by(5) {
+    for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
         let titulo_libro = processing::clean_content(notes_content_vector[index]);
         if titulo_libro == selected_title {
-            if let Some(book_content) = notes_content_vector.get(index + 3) {
+            if let Some(book_content) =
+                notes_content_vector.get(index + STARTING_INDEX_CONTENT)
+            {
                 results.push(book_content.to_string());
             }
         }
@@ -103,11 +107,16 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
     return processing::delete_duplicates(results);
 }
 
-pub fn save_content(selected_title_content: Vec<String>, selected_title: &str) {
-    fs::create_dir_all("outputs").expect("Error creating the ‘outputs’ folder");
+pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str) {
+    let path_directory: Vec<&str> = output_path_notes.split('/').collect();
+    let path_directory_without_file =
+        path_directory.get(0..path_directory.len() - 1).unwrap();
+    let path_directory_without_file = path_directory_without_file.join("/");
 
-    let file_path = format!("outputs/{}.txt", selected_title);
-    let mut file = File::create(file_path).expect("Error creating file");
+    fs::create_dir_all(path_directory_without_file)
+        .expect("Error creating the output folder");
+
+    let mut file = File::create(output_path_notes).expect("Error creating file");
 
     let unified_content = selected_title_content.join("\n");
 
@@ -115,4 +124,24 @@ pub fn save_content(selected_title_content: Vec<String>, selected_title: &str) {
         Ok(_) => println!("The file has been saved successfully"),
         Err(_) => println!("Error saving the file"),
     };
+}
+
+pub fn delete_content(notes_content: &str, selected_title: &str) -> Vec<String> {
+    let notes_content_vector: Vec<&str> = notes_content.lines().collect();
+
+    let mut results = Vec::new();
+
+    for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
+        let titulo_libro = processing::clean_content(notes_content_vector[index]);
+        if titulo_libro != selected_title {
+            if let Some(book_content) =
+                notes_content_vector.get(index..index + NUM_LINES_CLIPPING_FORMAT - 1)
+            {
+                results.push(book_content.join("\n"));
+                results.push("==========".to_string());
+            }
+        }
+    }
+
+    return results;
 }
