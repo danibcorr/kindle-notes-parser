@@ -1,0 +1,2320 @@
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:50:36
+
+by default, variables are immutable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:50:46
+
+gives you to write your code
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:50:49
+
+gives you to write your code in a way that takes advantage of the safety and easy concurrency
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:50:54
+
+safety and easy concurrency
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:51:18
+
+When a variable is immutable, once a value is bound to a name, you can’t change that value
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 73-73 | Añadido el domingo, 18 de enero de 2026 22:53:50
+
+Variables and Mutability
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 75 | Añadido el domingo, 18 de enero de 2026 22:54:03
+
+Constants
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 75-75 | Añadido el domingo, 18 de enero de 2026 22:54:15
+
+First, you aren’t allowed to use mut with constants
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 75-75 | Añadido el domingo, 18 de enero de 2026 22:54:24
+
+First, you aren’t allowed to use mut with constants. Constants aren’t just immutable by default—they’re always immutable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 76-76 | Añadido el domingo, 18 de enero de 2026 22:54:47
+
+Constants can be declared in any scope, including the global scope, which makes them useful for values that many parts of code need to know about
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 75-75 | Añadido el domingo, 18 de enero de 2026 22:55:04
+
+First, you aren’t allowed to use mut with constants. Constants aren’t just immutable by default—they’re always immutable. You declare constants using the const keyword instead of the let keyword
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 76-76 | Añadido el domingo, 18 de enero de 2026 22:55:10
+
+const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 76-76 | Añadido el domingo, 18 de enero de 2026 22:55:25
+
+Rust’s naming convention for constants is to use all uppercase with underscores between words
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 76 | Añadido el domingo, 18 de enero de 2026 22:56:09
+
+Shadowing
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 77-77 | Añadido el domingo, 18 de enero de 2026 22:56:30
+
+you can declare a new variable with the same name as a previous variable. Rustaceans say that the first variable is shadowed by the second, which means that the second variable is what the compiler will see when you use the name of the variable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 77-77 | Añadido el domingo, 18 de enero de 2026 22:57:31
+
+We can shadow a variable by using the same variable’s name and repeating the use of the let keyword
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 77-77 | Añadido el domingo, 18 de enero de 2026 22:58:27
+
+, taking the original value and adding 1 so the value of x is then 6. Then, within an inner scope created with the curly brackets
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 77-77 | Añadido el domingo, 18 de enero de 2026 22:58:31
+
+Then, within an inner scope created with the curly brackets
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 78-78 | Añadido el domingo, 18 de enero de 2026 22:59:03
+
+By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 78-78 | Añadido el domingo, 18 de enero de 2026 23:00:06
+
+The other difference between mut and shadowing is that because we’re effectively creating a new variable when we use the let keyword again, we can change the type of the value but reuse the same name
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 78-78 | Añadido el domingo, 18 de enero de 2026 23:00:52
+
+Data Types
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 79-79 | Añadido el domingo, 18 de enero de 2026 23:01:06
+
+We’ll look at two data type subsets: scalar and compound
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 79-79 | Añadido el domingo, 18 de enero de 2026 23:01:34
+
+Keep in mind that Rust is a statically typed language, which means that it must know the types of all variables at compile time
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 79-79 | Añadido el domingo, 18 de enero de 2026 23:01:42
+
+The compiler can usually infer what type we want to use based on the value and how we use it
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 80-80 | Añadido el domingo, 18 de enero de 2026 23:03:34
+
+signed integer types start with i instead of
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 80-80 | Añadido el domingo, 18 de enero de 2026 23:03:39
+
+signed integer types start with i instead of u
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 80-80 | Añadido el domingo, 18 de enero de 2026 23:04:15
+
+Signed numbers are stored using two’s complement representation
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 80-80 | Añadido el domingo, 18 de enero de 2026 23:04:45
+
+Additionally, the isize and usize types depend on the architecture of the computer your program is running on, which is denoted in the table as “arch”: 64 bits if you’re on a 64-bit architecture and 32 bits if you’re on a 32-bit architecture
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 81-81 | Añadido el domingo, 18 de enero de 2026 23:05:11
+
+also use _ as a visual separator to make the number easier to read, such as 1_000
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 81-81 | Añadido el domingo, 18 de enero de 2026 23:05:24
+
+Rust’s defaults are generally good places to start: integer types default to i32
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 82-82 | Añadido el domingo, 18 de enero de 2026 23:05:57
+
+Rust uses the term panicking when a program exits with an error
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 82-82 | Añadido el domingo, 18 de enero de 2026 23:06:39
+
+When you’re compiling in release mode with the --release flag, Rust does not include checks for integer overflow that cause panics
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 82-82 | Añadido el domingo, 18 de enero de 2026 23:07:10
+
+To explicitly handle the possibility of overflow, you can use these families of methods provided by the standard library for primitive numeric types: Wrap in all modes with the wrapping_* methods, such as wrapping_add. Return the None value if there is overflow with the checked_* methods. Return the value and a Boolean indicating whether there was overflow with the overflowing_* methods. Saturate at the value’s minimum or maximum values with the saturating_* methods.
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 82-82 | Añadido el domingo, 18 de enero de 2026 23:07:28
+
+Rust’s floating-point types are f32 and f64, which are 32 bits and 64 bits in size, respectively. The default type is f64 because on modern CPUs
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 84-84 | Añadido el jueves, 22 de enero de 2026 21:28:50
+
+Note that we specify char literals with single quotes, as opposed to string literals, which use double quotes
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 84-84 | Añadido el jueves, 22 de enero de 2026 21:29:00
+
+Note that we specify char literals with single quotes, as opposed to string literals, which use double quotes. Rust’s char type is four bytes in size and represents a Unicode scalar value, which means it can represent a lot more than just ASCII
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 85-85 | Añadido el jueves, 22 de enero de 2026 21:31:51
+
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 85-85 | Añadido el jueves, 22 de enero de 2026 21:32:10
+
+src/main.rs fn main() { let tup: (i32, f64, u8) = (500, 6.4, 1); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 85-85 | Añadido el jueves, 22 de enero de 2026 21:32:37
+
+a tuple is considered a single compound element. To get the individual values out of a tuple, we can use pattern matching to destructure a tuple value, like this: src/main.rs fn main() { let tup = (500, 6.4, 1); let (x, y, z) = tup; println!("The value of y is: {y}"); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 85-85 | Añadido el jueves, 22 de enero de 2026 21:33:37
+
+This is called destructuring because it breaks the single tuple into three parts
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 86-86 | Añadido el jueves, 22 de enero de 2026 21:33:54
+
+We can also access a tuple element directly by using a period (.) followed by the index of the value we want to access. For example: src/main.rs fn main() { let x: (i32, f64, u8) = (500, 6.4, 1); let five_hundred = x.0; let six_point_four = x.1; let one = x.2; }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 86-86 | Añadido el jueves, 22 de enero de 2026 21:36:31
+
+The tuple without any values has a special name, unit. This value and its corresponding type are both written () and represent an empty value or an empty return type
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 86-86 | Añadido el jueves, 22 de enero de 2026 21:36:45
+
+The Array Type Another way to have a collection of multiple values is with an array. Unlike a tuple, every element of an array must have the same type. Unlike arrays in some other languages, arrays in Rust have a fixed length
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 86-86 | Añadido el jueves, 22 de enero de 2026 21:36:57
+
+We write the values in an array as a comma-separated list inside square brackets: src/main.rs fn main() { let a = [1, 2, 3, 4, 5]; } Arrays are useful when you want your data allocated on the stack rather than the heap
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:37:21
+
+. An array isn’t as flexible as the vector type, though. A vector is a similar collection type provided by the standard library that is allowed to grow or shrink in size
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:37:36
+
+However, arrays are more useful when you know the number of elements will not need to change
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:37:54
+
+You write an array’s type using square brackets with the type of each element, a semicolon, and then the number of elements in the array, like so: let a: [i32; 5] = [1, 2, 3, 4, 5]
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:38:00
+
+Here, i32 is the type of each element. After the semicolon, the number 5 indicates the array contains five elements
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:38:20
+
+let a = [3; 5]; The array named a will contain 5 elements that will all be set to the value 3 initially. This is the same as writing let a = [3, 3, 3, 3, 3]; but in a more concise way
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 87-87 | Añadido el jueves, 22 de enero de 2026 21:39:29
+
+Accessing Array Elements An array is a single chunk of memory of a known, fixed size that can be allocated on the stack. You can access elements of an array using indexing
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 89-89 | Añadido el jueves, 22 de enero de 2026 21:40:53
+
+When you attempt to access an element using indexing, Rust will check that the index you’ve specified is less than the array length. If the index is greater than or equal to the length, Rust will panic
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 89-89 | Añadido el jueves, 22 de enero de 2026 21:41:34
+
+the main function, which is the entry point of many programs
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 89 | Añadido el jueves, 22 de enero de 2026 21:41:38
+
+Functions
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 89-89 | Añadido el jueves, 22 de enero de 2026 21:41:54
+
+the main function, which is the entry point of many programs. You’ve also seen the fn keyword, which allows you to declare new functions
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 90-90 | Añadido el jueves, 22 de enero de 2026 21:42:01
+
+Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 91-91 | Añadido el jueves, 22 de enero de 2026 21:43:00
+
+Parameters We can define functions to have parameters, which are special variables that are part of a function’s signature
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 91-91 | Añadido el jueves, 22 de enero de 2026 21:43:14
+
+Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 91-91 | Añadido el jueves, 22 de enero de 2026 21:43:42
+
+In function signatures, you must declare the type of each parameter
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 92-92 | Añadido el jueves, 22 de enero de 2026 21:44:15
+
+src/main.rs fn main() { print_labeled_measurement(5, 'h'); } f n print_labeled_measurement(value: i32, unit_label: char) { println!("The measurement is: {value}{unit_label}"); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 92-92 | Añadido el jueves, 22 de enero de 2026 21:44:24
+
+src/main.rs fn main() { print_labeled_measurement(5, 'h'); } f n print_labeled_measurement(value: i32, unit_label: char) { println!("The measurement is: {value}{unit_label}"); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 92-92 | Añadido el jueves, 22 de enero de 2026 21:44:43
+
+Statements and Expressions
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 93-93 | Añadido el jueves, 22 de enero de 2026 21:44:49
+
+Statements are instructions that perform some action and do not return a value. Expressions evaluate to a resultant value
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 94-94 | Añadido el jueves, 22 de enero de 2026 21:50:16
+
+such as C and Ruby, where the assignment returns the value of the assignment. In those languages, you can write x = y = 6 and have both x and y have the value 6; that is not the case in Rust
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 95-95 | Añadido el jueves, 22 de enero de 2026 21:52:42
+
+Functions with Return Values
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 95-95 | Añadido el jueves, 22 de enero de 2026 21:53:02
+
+Functions can return values to the code that calls them. We don’t name return values, but we must declare their type after an arrow (- >)
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 95-95 | Añadido el jueves, 22 de enero de 2026 21:53:13
+
+You can return early from a function by using the return keyword and specifying a value, but most functions return the last expression implicitly
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 95-95 | Añadido el jueves, 22 de enero de 2026 21:53:28
+
+main.rs fn five() -> i32 { 5 } f n main() { let x = five(); println!("The value of x is: {x}"); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 97 | Añadido el jueves, 22 de enero de 2026 21:55:28
+
+Comments
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 97-97 | Añadido el jueves, 22 de enero de 2026 21:55:42
+
+Here’s a simple comment: // hello, world
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 98-98 | Añadido el jueves, 22 de enero de 2026 21:56:01
+
+But you’ll more often see them used in this format, with the comment on a separate line above the code it’s annotating: src/main.rs fn main() { // I'm feeling lucky today let
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 98-98 | Añadido el jueves, 22 de enero de 2026 21:56:05
+
+But you’ll more often see them used in this format, with the comment on a separate line above the code it’s annotating: src/main.rs fn main() { // I'm feeling lucky today let lucky_number = 7; }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 98-98 | Añadido el jueves, 22 de enero de 2026 21:58:35
+
+Control Flow The ability to run some code depending on whether a condition is true and to run some code repeatedly while a condition is true are basic building blocks in most programming languages
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 98-98 | Añadido el jueves, 22 de enero de 2026 21:58:40
+
+if Expressions
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 100-100 | Añadido el jueves, 22 de enero de 2026 21:59:22
+
+Rust will not automatically try to convert non-Boolean types to a Boolean. You must be explicit and always provide if with a Boolean as its condition
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 101-101 | Añadido el jueves, 22 de enero de 2026 21:59:40
+
+Handling Multiple Conditions with else if
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 102-102 | Añadido el lunes, 26 de enero de 2026 20:14:47
+
+Using if in a let Statement Because if is an expression, we can use it on the right side of a let statement to assign the outcome to a variable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 105-105 | Añadido el martes, 27 de enero de 2026 22:16:21
+
+Returning Values from Loops
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 105-105 | Añadido el martes, 27 de enero de 2026 22:16:26
+
+To do this, you can add the value you want returned after the break expression you use to stop the loop
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 105-105 | Añadido el martes, 27 de enero de 2026 22:16:39
+
+fn main() { let mut counter = 0; let result = loop { counter += 1; if counter == 10 { break counter * 2; } }; println!("The result is {result}"); }
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 106-106 | Añadido el martes, 27 de enero de 2026 22:17:44
+
+If you have loops within loops, break and continue apply to the innermost loop at that point. You can optionally specify a loop label on a loop that you can then use with break or continue to specify that those keywords apply to the labeled loop instead of the innermost loop. Loop labels must begin with a single quote. Here’s an example with two nested loops: fn main() { let mut count = 0; 'counting_up: loop { println!("count = {count}"); let mut remaining = 10; loop { println!("remaining = {remaining}"); if remaining == 9 { break; } i f count == 2 { break 'counting_up; } r emaining -= 1; } c ount += 1; } p rintln!("End count = {count}"); } The
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111 | Añadido el martes, 27 de enero de 2026 22:18:52
+
+Ownership
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111-111 | Añadido el martes, 27 de enero de 2026 22:18:57
+
+enables Rust to make memory safety guarantees without needing a garbage collector
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111-111 | Añadido el martes, 27 de enero de 2026 22:19:12
+
+borrowing, slices, and how Rust lays data out in memory
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111-111 | Añadido el martes, 27 de enero de 2026 22:20:05
+
+Some languages have garbage collection that regularly looks for no-longer-used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111-111 | Añadido el martes, 27 de enero de 2026 22:20:43
+
+Some languages have garbage collection that regularly looks for no-longer-used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory. Rust uses a third approach: memory is managed through a system of ownership with a set of rules that the compiler checks
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 111-111 | Añadido el martes, 27 de enero de 2026 22:20:50
+
+Some languages have garbage collection that regularly looks for no-longer-used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory. Rust uses a third approach: memory is managed through a system of ownership with a set of rules that the compiler checks. If any of the rules are violated, the program won’t compile
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:22:13
+
+But in a systems programming language like Rust, whether a value is on the stack or the heap affects how the language behaves and why you have to make certain decisions
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:22:30
+
+Both the stack and the heap are parts of memory available to your code to use at runtime, but they are structured in different ways
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:23:03
+
+Both the stack and the heap are parts of memory available to your code to use at runtime, but they are structured in different ways. The stack stores values in the order it gets them and removes the values in the opposite order
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:23:34
+
+This is referred to as last in, first out
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:24:13
+
+The heap is less organized: when you put data on the heap, you request a certain amount of space. The memory allocator finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:24:36
+
+The heap is less organized: when you put data on the heap, you request a certain amount of space. The memory allocator finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called allocating on the heap
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:25:10
+
+. Because the pointer to the heap is a known, fixed size, you can store the pointer on the stack, but when you want the actual data, you must follow the pointer
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:25:55
+
+Pushing to the stack is faster than allocating on the heap because the allocator never has to search for a place to store new data; that location is always at the top of the stack. Comparatively, allocating space on the heap requires more work because the allocator must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 113-113 | Añadido el martes, 27 de enero de 2026 22:26:08
+
+Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 114-114 | Añadido el martes, 27 de enero de 2026 22:27:26
+
+When your code calls a function, the values passed into the function (including, potentially, pointers to data on the heap) and the function’s local variables get pushed onto the stack. When the function is over, those values get popped off the stack
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 114-114 | Añadido el martes, 27 de enero de 2026 22:28:23
+
+Once you understand ownership, you won’t need to think about the stack and the heap very often, but knowing that the main purpose of ownership is to manage heap data can help explain why it works the way it does
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 114-114 | Añadido el martes, 27 de enero de 2026 22:29:53
+
+Each value in Rust has an owner
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 114-114 | Añadido el martes, 27 de enero de 2026 22:29:58
+
+There can only be one owner at a time
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 114-114 | Añadido el martes, 27 de enero de 2026 22:30:04
+
+When the owner goes out of scope, the value will be dropped
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 115-115 | Añadido el martes, 27 de enero de 2026 22:32:08
+
+The types covered previously are of a known size, can be stored on the stack and popped off the stack when their scope is over, and can be quickly and trivially copied to make a new, independent instance if another part of code needs to use the same value in a different scope
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 116-116 | Añadido el martes, 27 de enero de 2026 22:34:14
+
+String. This type manages data allocated on the heap and as such is able to store an amount of text that is unknown to us at compile time
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 116-116 | Añadido el martes, 27 de enero de 2026 22:35:14
+
+So, what’s the difference here? Why can String be mutated but literals cannot? The difference is in how these two types deal with memory
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 117-117 | Añadido el martes, 27 de enero de 2026 22:35:46
+
+In the case of a string literal, we know the contents at compile time, so the text is hardcoded directly into the final executable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 117-117 | Añadido el martes, 27 de enero de 2026 22:35:57
+
+In the case of a string literal, we know the contents at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient. But these properties only come from the string literal’s immutability
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 117-117 | Añadido el martes, 27 de enero de 2026 22:36:19
+
+With the String type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the contents
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 117-117 | Añadido el martes, 27 de enero de 2026 22:37:59
+
+However, the second part is different. In languages with a garbage collector (GC), the GC keeps track of and cleans up memory that isn’t being used anymore, and we don’t need to think about it. In most languages without a GC, it’s our responsibility to identify when memory is no longer being used and to call code to explicitly free it, just as we did to request it. Doing this correctly has historically been a difficult programming problem. If we forget, we’ll waste memory. If we do it too early, we’ll have an invalid variable. If we do it twice, that’s a bug too. We need to pair exactly one allocate with exactly one free
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 117-117 | Añadido el martes, 27 de enero de 2026 22:38:28
+
+Rust takes a different path: the memory is automatically returned once the variable that owns it goes out of scope
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 118-118 | Añadido el martes, 27 de enero de 2026 22:39:01
+
+When a variable goes out of scope, Rust calls a special function for us. This function is called drop
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 118-118 | Añadido el martes, 27 de enero de 2026 22:40:10
+
+We can probably guess what this is doing: “bind the value 5 to x; then make a copy of the value in x and bind it to y.” We now have two variables, x and y, and both equal 5. This is indeed what is happening, because integers are simple values with a known, fixed size, and these two 5 values are pushed onto the stack
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 119-119 | Añadido el martes, 27 de enero de 2026 22:40:53
+
+let s1 = String::from("hello"); let s2 = s1;
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 119-119 | Añadido el lunes, 2 de febrero de 2026 20:48:40
+
+A String is made up of three parts, shown on the left: a pointer to the memory that holds the contents of the string, a length, and a capacity
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 119-119 | Añadido el lunes, 2 de febrero de 2026 20:49:20
+
+The length is how much memory, in bytes, the contents of the String are currently using. The capacity is the total amount of memory, in bytes, that the String has received from the allocator
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 119-119 | Añadido el lunes, 2 de febrero de 2026 20:49:30
+
+The length is how much memory, in bytes, the contents of the String are currently using. The capacity is the total amount of memory, in bytes, that the String has received from the allocator. The difference between length and capacity matters
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 121-121 | Añadido el lunes, 2 de febrero de 2026 20:51:18
+
+both data pointers pointing to the same location. This is a problem: when s2 and s1 go out of scope, they will both try to free the same memory. This is known as a double free error and is one of the memory safety bugs we mentioned previously
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 121-121 | Añadido el lunes, 2 de febrero de 2026 20:51:25
+
+both data pointers pointing to the same location. This is a problem: when s2 and s1 go out of scope, they will both try to free the same memory. This is known as a double free error and is one of the memory safety bugs we mentioned previously. Freeing memory twice can lead to memory corruption, which can potentially lead to security vulnerabilities
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 121-121 | Añadido el lunes, 2 de febrero de 2026 20:51:48
+
+To ensure memory safety, after the line let s2 = s1;, Rust considers s1 as no longer valid
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 122-122 | Añadido el lunes, 2 de febrero de 2026 20:52:17
+
+If you’ve heard the terms shallow copy and deep copy while working with other languages, the concept of copying the pointer, length, and capacity without copying the data probably sounds like making a shallow copy. But because Rust also invalidates the first variable, instead of being called a shallow copy, it’s known as a move
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 123-123 | Añadido el lunes, 2 de febrero de 2026 20:56:30
+
+In addition, there’s a design choice that’s implied by this: Rust will never automatically create “deep” copies of your data
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 123-123 | Añadido el lunes, 2 de febrero de 2026 20:57:12
+
+If we do want to deeply copy the heap data of the String, not just the stack data, we can use a common method called clone
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 124-124 | Añadido el lunes, 2 de febrero de 2026 20:59:34
+
+The reason is that types such as integers that have a known size at compile time are stored entirely on the stack, so copies of the actual values are quick to make
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 124-124 | Añadido el lunes, 2 de febrero de 2026 20:59:54
+
+In other words, there’s no difference between deep and shallow copying here, so calling clone wouldn’t do anything different from the usual shallow copying, and we can leave it out.
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 125-125 | Añadido el lunes, 2 de febrero de 2026 21:03:45
+
+If we tried to use s after the call to takes_ownership, Rust would throw a compile-time error. These static checks protect us from mistakes. Try adding code to main that uses s and x to see where you can use them and where the ownership rules prevent you from doing so
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 126-126 | Añadido el lunes, 2 de febrero de 2026 21:04:06
+
+Returning values can also transfer ownership
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 127-127 | Añadido el lunes, 2 de febrero de 2026 21:04:47
+
+The ownership of a variable follows the same
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 127-127 | Añadido el lunes, 2 de febrero de 2026 21:04:51
+
+The ownership of a variable follows the same pattern every time: assigning a value to another variable moves
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 127-127 | Añadido el lunes, 2 de febrero de 2026 21:04:55
+
+The ownership of a variable follows the same pattern every time: assigning a value to another variable moves it
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 127-127 | Añadido el lunes, 2 de febrero de 2026 21:05:10
+
+The ownership of a variable follows the same pattern every time: assigning a value to another variable moves it. When a variable that includes data on the heap goes out of scope, the value will be cleaned up by drop unless ownership of the data has been moved to another variable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 127-127 | Añadido el lunes, 2 de febrero de 2026 21:05:24
+
+What if we want to let a function use a value but not take ownership
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 128-128 | Añadido el lunes, 2 de febrero de 2026 21:05:43
+
+References and Borrowing
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 126-126 | Añadido el lunes, 2 de febrero de 2026 21:05:48
+
+Return Values and Scope
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 128-128 | Añadido el lunes, 2 de febrero de 2026 21:07:20
+
+Instead, we can provide a reference to the String value. A reference is like a pointer in that it’s an address we can follow to access the data stored at that address; that data is owned by some other variable
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 128-128 | Añadido el lunes, 2 de febrero de 2026 21:07:28
+
+Instead, we can provide a reference to the String value. A reference is like a pointer in that it’s an address we can follow to access the data stored at that address; that data is owned by some other variable. Unlike a pointer, a reference is guaranteed to point to a valid value of a particular type for the life of that reference
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 128-128 | Añadido el lunes, 2 de febrero de 2026 21:07:59
+
+These ampersands represent references, and they allow you to refer to some value without taking ownership of it
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 129-129 | Añadido el lunes, 2 de febrero de 2026 21:08:20
+
+The opposite of referencing by using & is dereferencing, which is accomplished with the dereference operator,
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 129-129 | Añadido el lunes, 2 de febrero de 2026 21:08:32
+
+The opposite of referencing by using & is dereferencing, which is accomplished with the dereference operator, *.
+==========
+﻿The Rust Programming Language - Steve Klabnik & Carol Nichols  
+- La subrayado en la página 129-129 | Añadido el lunes, 2 de febrero de 2026 21:09:17
+
+The &s1 syntax lets us create a reference that refers to the value of s1 but does not own it. Because it does not own it, the value it points to will not be dropped when the reference stops being used
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 11 | posición 168-169 | Añadido el sábado, 7 de febrero de 2026 16:41:18
+
+Es decir, pongo en «Casa» (o «Vivienda», si os gusta ser más formales) el alquiler, el IBI, el seguro del hogar, la electricidad y todos los gastos que van asociados a esa casa,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 13 | posición 185-185 | Añadido el sábado, 7 de febrero de 2026 16:42:52
+
+Trabajo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 13 | posición 186-187 | Añadido el sábado, 7 de febrero de 2026 16:42:55
+
+Lo importante es darse cuenta de que en esta categoría entran tanto los ingresos como los gastos relacionados con nuestro trabajo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 203-204 | Añadido el sábado, 7 de febrero de 2026 16:44:20
+
+Salud. En esta categoría irían los seguros médicos, las consultas, los tratamientos y los gastos de farmacia o copagos. En definitiva, todo lo que nos mantiene operativos y con vida tiene cabida aquí.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 205-206 | Añadido el sábado, 7 de febrero de 2026 16:44:38
+
+Transporte. Lo llamo así porque soy optimista por naturaleza, pero «Pozo sin fondo»
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 207-208 | Añadido el sábado, 7 de febrero de 2026 16:44:48
+
+Lo importante es meter aquí todos los gastos relacionados con el transporte para darnos cuenta de lo que podríamos ahorrar si fuéramos en transporte público al trabajo en lugar de en coche, no digamos ya en bici o andando.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 211-211 | Añadido el sábado, 7 de febrero de 2026 16:45:34
+
+Finanzas. Esta categoría tiene mucha guasa y dice mucho de la sofisticación financiera de cada uno.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 211-212 | Añadido el sábado, 7 de febrero de 2026 16:45:40
+
+Finanzas. Esta categoría tiene mucha guasa y dice mucho de la sofisticación financiera de cada uno. Mientras que para algunos solo habrá comisiones e impuestos, otros pueden tener ganancias muy importantes de dividendos, intereses y revalorizaciones de su cartera
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 14 | posición 214-215 | Añadido el sábado, 7 de febrero de 2026 16:45:53
+
+Lo ideal es que esta categoría pase de ser un gasto a ser una fuente de ingresos,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 15 | posición 221-222 | Añadido el sábado, 7 de febrero de 2026 16:46:25
+
+Ocio. En esta categoría pondríamos todo eso que significa pasarlo bien, incluyendo los deportes
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 15 | posición 224-225 | Añadido el sábado, 7 de febrero de 2026 16:46:53
+
+Gastos personales. Esta última categoría está destinada a todos aquellos gastos que nos hacen quienes somos, todas esas rarezas exclusivas de cada uno que nos definen.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 21 | posición 314-314 | Añadido el sábado, 7 de febrero de 2026 16:50:11
+
+Ingresos – gastos – ahorro = 0
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 21 | posición 317-319 | Añadido el sábado, 7 de febrero de 2026 16:53:00
+
+De todas formas, no pasa nada porque un año tiremos de ahorro, siempre y cuando sea para pagar algo excepcional, como una boda, un viaje o una reforma. El dinero está para gastarlo, pero si nos sale negativo en el día a día tenemos que empezar a plantearnos que algo hay que cambiar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 22 | posición 336-337 | Añadido el sábado, 7 de febrero de 2026 16:55:00
+
+Llamemos a cada gasto por su nombre.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 339-344 | Añadido el sábado, 7 de febrero de 2026 16:55:32
+
+Los que se pagan una vez al año: el IBI, los seguros de cuota anual, la cuota de la asociación de antiguos alumnos, las visitas al dentista… Los gastos estacionales: vacaciones, puestas a punto y otras rutinas de temporada. Los que parecen excepcionales, pero tienden a repetirse cada año: regalos de cumpleaños, fiestas, reparaciones, gastos de mantenimiento… Los gastos que preferimos olvidar porque nos duele el bolsillo solo de pensarlo: la declaración de la renta, las revisiones del coche y otros sospechosos habituales.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 350-351 | Añadido el sábado, 7 de febrero de 2026 16:56:40
+
+Hay ciertas cosas, como los electrodomésticos o el coche, que van perdiendo valor gradualmente y que algún día habrá que reponer.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 352-353 | Añadido el sábado, 7 de febrero de 2026 16:56:47
+
+Lo que hacen las empresas y podemos hacer nosotros también es ir amortizando estos gastos en nuestro presupuesto. Es decir, crear una categoría para dedicar una parte de nuestro
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 352-353 | Añadido el sábado, 7 de febrero de 2026 16:56:52
+
+Lo que hacen las empresas y podemos hacer nosotros también es ir amortizando estos gastos en nuestro presupuesto. Es decir, crear una categoría para dedicar una parte de nuestro presupuesto
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 352-353 | Añadido el sábado, 7 de febrero de 2026 16:56:55
+
+Lo que hacen las empresas y podemos hacer nosotros también es ir amortizando estos gastos en nuestro presupuesto. Es decir, crear una categoría para dedicar una parte de nuestro presupuesto mensual a ahorrar para reponer estos cacharros cuando toque.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 23 | posición 352-355 | Añadido el sábado, 7 de febrero de 2026 16:57:04
+
+Lo que hacen las empresas y podemos hacer nosotros también es ir amortizando estos gastos en nuestro presupuesto. Es decir, crear una categoría para dedicar una parte de nuestro presupuesto mensual a ahorrar para reponer estos cacharros cuando toque. La ventaja de hacerlo así es que tenemos ese gasto en mente, con nombre y apellidos, y no nos vamos a gastar ese dinero tan alegremente en otra cosa, ni nos va a doler tanto cuando toque aflojar la pasta.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 24 | posición 356-357 | Añadido el sábado, 7 de febrero de 2026 16:57:37
+
+Porque, siendo realistas, Hacienda no se va a olvidar de nosotros. Así que yo, religiosamente, incluyo en mi presupuesto lo que creo que me va a salir en la declaración de ese año.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 24 | posición 356-357 | Añadido el sábado, 7 de febrero de 2026 16:57:42
+
+Porque, siendo realistas, Hacienda no se va a olvidar de nosotros. Así que yo, religiosamente, incluyo en mi presupuesto lo que creo que me va a salir en la declaración de ese año. En principio, asumo que va a ser parecida a la del año anterior,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 25 | posición 370-372 | Añadido el sábado, 7 de febrero de 2026 16:59:06
+
+No solo es importante saber cuánto dinero gastamos, también conviene saber de qué cuenta sale o va a salir ese dinero para asegurarnos de que no nos quedamos en descubierto o se devuelve algún recibo, dos cosas que, además de engorrosas, pueden salir caras.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 30 | posición 455-456 | Añadido el sábado, 7 de febrero de 2026 17:01:11
+
+Esto no significa que no pueda haber meses negativos, pero, en general, el ahorro anual debería ser positivo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 33 | posición 492-493 | Añadido el sábado, 7 de febrero de 2026 17:03:30
+
+Como veis, a grandes rasgos, nuestra foto financiera nos representa y se ajusta bastante a nuestras prioridades.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 33 | posición 494-495 | Añadido el sábado, 7 de febrero de 2026 17:03:37
+
+Hay que intentar que el dinero se vaya en cosas que te hacen feliz.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 33 | posición 497-497 | Añadido el sábado, 7 de febrero de 2026 17:05:17
+
+Al final, es todo cuestión de prioridades.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 33 | posición 504-505 | Añadido el sábado, 7 de febrero de 2026 17:06:09
+
+La capacidad de reacción es el porcentaje de tus gastos que puedes reducir de un día para otro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 35 | posición 533-534 | Añadido el sábado, 7 de febrero de 2026 17:09:54
+
+En un mundo ideal, me gustaría tener una capacidad de reacción del 50 % (poder reducir nuestros gastos un 50 % de un día para otro), pero, como mínimo imprescindible, hay que tener un 25 %.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 541-542 | Añadido el sábado, 7 de febrero de 2026 17:10:42
+
+Auditar tus cuentas y productos financieros para ver cuánto te estás dejando en comisiones e intereses y, si toca, hablar con tu banco para negociarlos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 35 | posición 535-536 | Añadido el sábado, 7 de febrero de 2026 17:10:46
+
+Dar de baja esas suscripciones que nunca utilizas,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 538-538 | Añadido el sábado, 7 de febrero de 2026 17:10:49
+
+Revisar tus seguros y compararlos con otros proveedores.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 539-540 | Añadido el sábado, 7 de febrero de 2026 17:10:52
+
+Revisar tus contratos de telefonía,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 542-544 | Añadido el sábado, 7 de febrero de 2026 17:11:08
+
+Llegado el caso, si realmente vamos muy achuchados, pensar si podría compensar renegociar la hipoteca o, incluso, cambiar de banco
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 545-546 | Añadido el sábado, 7 de febrero de 2026 17:11:20
+
+En realidad, esto habría que hacerlo como quien cambia el armario, una vez al año, para asegurarnos de que no estamos manteniendo contratos que no utilizamos o cuyas condiciones ya no son competitivas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 36 | posición 545-547 | Añadido el sábado, 7 de febrero de 2026 17:11:34
+
+En realidad, esto habría que hacerlo como quien cambia el armario, una vez al año, para asegurarnos de que no estamos manteniendo contratos que no utilizamos o cuyas condiciones ya no son competitivas. En el caso de la hipoteca, una vez al año no, pero cada cinco años es sano darse una vuelta por el mercado bancario para ver si sería posible mejorar nuestras condiciones.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 39 | posición 588-588 | Añadido el sábado, 7 de febrero de 2026 17:13:53
+
+Aunque parezca pura palabrería, las repercusiones de cómo define cada uno la riqueza son bastante determinantes.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 39 | posición 592-593 | Añadido el sábado, 7 de febrero de 2026 17:14:36
+
+pero a mí la definición que más me gusta es que la riqueza es la capacidad de consumir en el futuro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 39 | posición 594-594 | Añadido el sábado, 7 de febrero de 2026 17:14:46
+
+Visto así, rico es aquel que tiene cubiertas no solo las necesidades de hoy, sino también las de mañana.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 39 | posición 594-595 | Añadido el sábado, 7 de febrero de 2026 17:14:57
+
+Obviamente, cuanto mayores sean nuestras necesidades, más riqueza nos hará falta para cubrirlas en un futuro y, por eso mismo, ganar mucho no es sinónimo de ser rico aunque lo parezca.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 39 | posición 597-597 | Añadido el sábado, 7 de febrero de 2026 17:15:13
+
+para ser ricos hay que poder mantener nuestro estilo de vida.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 599-600 | Añadido el sábado, 7 de febrero de 2026 17:15:55
+
+no es más que lo que tienes menos lo que debes,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 600-601 | Añadido el sábado, 7 de febrero de 2026 17:16:06
+
+Para calcular nuestro valor neto, primero hay que sumar lo que tenemos
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 601-603 | Añadido el sábado, 7 de febrero de 2026 17:16:18
+
+Entre nuestros activos estará el dinero que tengamos en cuentas, depósitos o debajo del colchón, la casa o casas que podamos tener, las acciones, fondos (de inversión y de pensiones), planes de ahorro, participaciones en empresas, etcétera.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 608-608 | Añadido el sábado, 7 de febrero de 2026 17:16:56
+
+Y lo mismo, no se pone el importe original, sino lo que nos quede por devolver en ese momento.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 609-609 | Añadido el sábado, 7 de febrero de 2026 17:17:02
+
+La suma de todo lo que tenemos menos todo lo que debemos es nuestro valor neto en ese momento.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 40 | posición 611-611 | Añadido el sábado, 7 de febrero de 2026 17:17:07
+
+Valor neto = Lo que tengo (activos) – Lo que debo (pasivos)
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 41 | posición 624-626 | Añadido el sábado, 7 de febrero de 2026 17:18:37
+
+Si debes más de lo que tienes, tu valor neto puede ser negativo. Pero, tranquilos, en según qué circunstancias, es normal. Sobre todo si somos jóvenes, estamos montando un negocio, invirtiendo en formación para tener un trabajo mejor
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 41 | posición 627-628 | Añadido el sábado, 7 de febrero de 2026 17:18:48
+
+Al final, lo importante no es lo que valgamos hoy, sino la evolución, que nuestro valor neto vaya creciendo para poder vivir como queremos cuando nos jubilemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 41 | posición 629-630 | Añadido el sábado, 7 de febrero de 2026 17:19:01
+
+a medida que nos vamos haciendo mayores, tenemos menos tiempo y, muchas veces, menos capacidad para generar valor, por lo que, cuanto antes empecemos, mejor.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 632-633 | Añadido el sábado, 7 de febrero de 2026 17:19:26
+
+Como podéis deducir del gráfico, lo importante es que ese pico al que llegamos antes de jubilarnos sea lo suficientemente alto para que la caída no nos deje a cero —o, peor, bajo cero— antes de tiempo. Hay que intentar no sobrevivir a nuestro dinero.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 634-635 | Añadido el sábado, 7 de febrero de 2026 17:41:01
+
+Hay muchas formas de aumentar nuestro valor neto, como por ejemplo:
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 635-635 | Añadido el sábado, 7 de febrero de 2026 17:41:06
+
+Ahorrando,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 636-636 | Añadido el sábado, 7 de febrero de 2026 17:41:14
+
+Amortizando hipoteca o pagando nuestras deudas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 636-637 | Añadido el sábado, 7 de febrero de 2026 17:41:19
+
+Haciendo aportaciones a nuestro plan de pensiones, planes de ahorro o seguros de ahorro a largo plazo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 637-637 | Añadido el sábado, 7 de febrero de 2026 17:41:27
+
+Heredando.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 42 | posición 638-640 | Añadido el sábado, 7 de febrero de 2026 17:41:45
+
+Invirtiendo. Este último punto merece mención especial porque nuestras inversiones, ya sea en casas, acciones o vestidos de alta costura, pueden subir y aumentar nuestro valor neto, pero también pueden bajar, destruyendo valor a su paso.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 43 | posición 647-648 | Añadido el sábado, 7 de febrero de 2026 17:42:44
+
+Esto, a no ser que nos demos a la ingeniería fiscal, es bastante sencillo y, al preverlo, es más fácil organizarlo para optimizar el importe por pagar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 43 | posición 651-652 | Añadido el sábado, 7 de febrero de 2026 17:43:13
+
+Por ejemplo, hay veces que puede compensar vender una inversión a final de año en lugar de a principios del siguiente para compensar las ganancias de una inversión con las pérdidas de otra, o al contrario.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 43 | posición 655-656 | Añadido el sábado, 7 de febrero de 2026 17:43:52
+
+Y no solo eso: Hacienda somos todos y, por eso, en la página web de la Agencia Tributaria hay mucha información útil y, si no lo entendemos bien, siempre se puede llamar y preguntar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 43 | posición 660-660 | Añadido el sábado, 7 de febrero de 2026 17:44:40
+
+En temas fiscales, las prisas nunca son buenas consejeras, más vale prevenir.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 44 | posición 669-670 | Añadido el sábado, 7 de febrero de 2026 17:45:49
+
+La liquidez no es más que la disponibilidad del dinero, lo fácil o lo difícil que es transformar ese activo en euros contantes y sonantes.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 44 | posición 673-674 | Añadido el sábado, 7 de febrero de 2026 17:46:19
+
+Las casas son activos muy valiosos, pero no demasiado líquidos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 46 | posición 698-700 | Añadido el sábado, 7 de febrero de 2026 17:48:04
+
+los ahorros que tengamos para emergencias y vacas flacas tienen que ser muy líquidos precisamente por eso, porque ante una urgencia lo que necesitamos es tener acceso a ese dinero de manera rápida e indolora, sin tener que incurrir en pérdidas innecesarias.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 47 | posición 708-708 | Añadido el sábado, 7 de febrero de 2026 17:49:04
+
+Valor neto = (tus ingresos netos × tu edad)/
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 47 | posición 708-708 | Añadido el sábado, 7 de febrero de 2026 17:49:11
+
+Valor neto = (tus ingresos netos × tu edad)/10
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 47 | posición 710-711 | Añadido el sábado, 7 de febrero de 2026 17:52:11
+
+En cualquier caso, si tu valor neto es positivo y va
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 47 | posición 716-717 | Añadido el sábado, 7 de febrero de 2026 17:52:52
+
+De cara a hacer frente a imprevistos, nuestros activos líquidos (ojo, que esto es muy importante) deberían cubrir, por lo menos, entre tres y seis meses de nuestros ingresos netos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 49 | posición 745-746 | Añadido el sábado, 7 de febrero de 2026 17:53:45
+
+Otro numerito que nos da una idea de la salud de nuestras finanzas es la ratio de endeudamiento
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 49 | posición 746-747 | Añadido el sábado, 7 de febrero de 2026 17:54:25
+
+Suena fatal, pero no es otra cosa que nuestras deudas divididas entre nuestro valor neto. En el ejemplo anterior, sería 165.000/77.000 = 2,14, bastante alto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 49 | posición 748-749 | Añadido el sábado, 7 de febrero de 2026 17:56:56
+
+En este caso, como diría mi padre, más que preocuparse, hay que ocuparse: ponerse a ahorrar y a pagar nuestras deudas sin prisa, pero sin pausa.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 49 | posición 750-751 | Añadido el sábado, 7 de febrero de 2026 17:57:07
+
+Si tu ratio de endeudamiento (deuda/valor neto) es mayor que 1, no deberías endeudarte más.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 50 | posición 755-756 | Añadido el sábado, 7 de febrero de 2026 17:57:38
+
+Al final, como en todo, lo bueno es encontrar un equilibrio y tener un mix adecuado de activos líquidos y poco líquidos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 50 | posición 758-759 | Añadido el sábado, 7 de febrero de 2026 18:03:18
+
+ahorraría para invertir en activos de liquidez media, como acciones y fondos de inversión, que nos pueden dar cobertura si las vacas flacas se alargan más de lo previsto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 53 | posición 804-804 | Añadido el sábado, 7 de febrero de 2026 18:03:59
+
+De hecho, en general, nuestros activos deberían tender a ser una pirámide:
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 53 | posición 804-804 | Añadido el sábado, 7 de febrero de 2026 18:04:07
+
+
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 55 | posición 834-835 | Añadido el sábado, 7 de febrero de 2026 18:06:39
+
+Por eso, las modas del 50-30-20 (uno debería, según los expertos, gastar un 50 % en los gastos fijos, un 30 % en ocio y, agarraos los machos, ahorrar un 20 % del sueldo)
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 56 | posición 850-851 | Añadido el domingo, 8 de febrero de 2026 14:01:17
+
+El ahorro es necesario no porque tengamos poco, sino porque los gastos y los ingresos no siempre van de la mano.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 56 | posición 850-851 | Añadido el domingo, 8 de febrero de 2026 14:01:22
+
+El ahorro es necesario no porque tengamos poco, sino porque los gastos y los ingresos no siempre van de la mano. Hay épocas en las que se gasta mucho y se ingresa poco, y otras al contrario.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 57 | posición 860-860 | Añadido el domingo, 8 de febrero de 2026 14:02:19
+
+En esto de ahorrar lo importante es saber por y para qué estamos ahorrando en cada momento.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 57 | posición 862-862 | Añadido el domingo, 8 de febrero de 2026 14:02:41
+
+Lo primero, en términos de
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 57 | posición 862-863 | Añadido el domingo, 8 de febrero de 2026 14:02:46
+
+ahorro, es llegar a fin de mes y, más en concreto, llegar a fin de mes todos los meses del año.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 57 | posición 865-866 | Añadido el domingo, 8 de febrero de 2026 14:03:08
+
+eso, hay que estar bien organizados para guardar algo de dinero los meses facilones para ir más holgados cuando no quedan más narices que gastar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 57 | posición 873-875 | Añadido el domingo, 8 de febrero de 2026 14:04:09
+
+Para que nos entendamos, si nuestros gastos fijos, los que no se pueden cambiar de un día para otro, son más del 50 % de nuestros ingresos, deberíamos tener ahorrados seis meses de sueldo
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 875-875 | Añadido el domingo, 8 de febrero de 2026 14:04:17
+
+para emergencias.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 875-875 | Añadido el domingo, 8 de febrero de 2026 14:04:26
+
+recordad, estos seis meses hay que tenerlos en activos muy líquidos,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 879-880 | Añadido el domingo, 8 de febrero de 2026 14:04:58
+
+hay que empezar a ahorrar para el futuro sin prisa, pero sin pausa.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 880-882 | Añadido el domingo, 8 de febrero de 2026 14:05:16
+
+Las buenas noticias son que comprarse una casa cuenta, pero algo que no todo el mundo tiene en cuenta es que cuanto más ganes, más tienes que ahorrar para la jubilación, porque la pensión supondrá un porcentaje menor de tu sueldo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 881-882 | Añadido el domingo, 8 de febrero de 2026 14:05:29
+
+cuanto más ganes, más tienes que ahorrar para la jubilación, porque la pensión supondrá un porcentaje menor de tu sueldo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 58 | posición 889-890 | Añadido el domingo, 8 de febrero de 2026 14:06:26
+
+Recapitulemos: primero, el fin de mes; luego, el colchón de emergencia; a continuación, la jubilación, seguida de los objetivos a medio plazo, y ya, si eso, el yate.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 59 | posición 895-896 | Añadido el domingo, 8 de febrero de 2026 14:06:54
+
+Podemos ponernos ese 20 % como objetivo, pero como mínimo cuando las cosas van razonablemente bien, hay que intentar ahorrar un 10 % de nuestros ingresos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 59 | posición 896-897 | Añadido el domingo, 8 de febrero de 2026 14:07:03
+
+Para no deprimirnos, recordemos que comprarse una casa o hacer aportaciones a nuestro plan de pensiones es ahorrar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 60 | posición 912-912 | Añadido el domingo, 8 de febrero de 2026 14:08:42
+
+No dejes para mañana lo que puedas ahorrar hoy.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 60 | posición 914-916 | Añadido el domingo, 8 de febrero de 2026 14:09:10
+
+Es decir, nos fastidia más perder un billete de veinte que la alegría que nos daría encontrarnos ese mismo billete en el metro. Y, por un mecanismo parecido, nos cuesta más renunciar a gastar hoy que poder gastar más adelante, porque lo percibimos como una renuncia o una pérdida.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 62 | posición 946-946 | Añadido el domingo, 8 de febrero de 2026 14:12:33
+
+Cuanto antes empieces, menos tendrás que ahorrar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 64 | posición 967-970 | Añadido el domingo, 8 de febrero de 2026 14:15:00
+
+Yo, para no morir de bajón, lo que hago es revisar una categoría de gastos cada mes y ver cómo puedo optimizarla, ya sea llamando para ver qué me ofrecen otros proveedores, ya sea pensando estrategias, como cambiar las bombillas por otras de menos consumo y rollos así, para reducir los costes. Google es una mina de ideas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 67 | posición 1018-1019 | Añadido el domingo, 8 de febrero de 2026 14:18:09
+
+Parece obvio, pero la Comisión Nacional del Mercado de Valores (CNMV) publica periódicamente listas de lo que llaman chiringuitos financieros
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 67 | posición 1022-1023 | Añadido el domingo, 8 de febrero de 2026 14:18:31
+
+Para que podamos dormir tranquilos, el Banco Central Europeo (BCE) publica periódicamente los índices de solvencia y morosidad de las principales entidades financieras.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 67 | posición 1024-1025 | Añadido el domingo, 8 de febrero de 2026 14:18:50
+
+los bancos están obligados a adherirse al Fondo de Garantía de Depósitos, que garantiza cien mil euros por institución y titular.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 69 | posición 1051-1053 | Añadido el domingo, 8 de febrero de 2026 14:21:37
+
+Si bien tener demasiados bancos nos puede complicar la vida y ocasionar gastos de mantenimiento innecesarios, yo os recomendaría tener dos bancos de cabecera para mantener cierta flexibilidad y no pillarnos los dedos con ninguno.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 70 | posición 1072-1074 | Añadido el domingo, 8 de febrero de 2026 14:23:22
+
+para evaluar cualquier producto financiero solo hace falta tener claros tres conceptos: Comisiones Ataduras Intereses
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 71 | posición 1075-1076 | Añadido el domingo, 8 de febrero de 2026 14:23:35
+
+Si se trata de un producto de inversión, como veremos en el capítulo 10, a este célebre trío hay que sumarle otro no menos célebre: el riesgo, la liquidez y la fiscalidad.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 74 | posición 1121-1122 | Añadido el domingo, 8 de febrero de 2026 14:28:30
+
+El periodo de devengo de los intereses es la frecuencia con la que se calculan (o devengan) los intereses. Puede ser anual, trimestral, mensual, diario...
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 75 | posición 1137-1137 | Añadido el domingo, 8 de febrero de 2026 14:30:09
+
+Cuando los intereses son a nuestro favor, nos conviene que el periodo de devengo sea lo más frecuente posible.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 75 | posición 1138-1139 | Añadido el domingo, 8 de febrero de 2026 14:31:20
+
+el tipo de interés nominal o TIN de estas dos cuentas sería el mismo, pero el tipo de interés efectivo o TIE,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 77 | posición 1176-1177 | Añadido el domingo, 8 de febrero de 2026 14:31:45
+
+Si encima consideramos las comisiones de cada producto, lo que tenemos es la tasa anual equivalente o TAE,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 81 | posición 1229-1230 | Añadido el domingo, 8 de febrero de 2026 14:32:40
+
+Para saber qué producto financiero nos conviene más, tenemos que comparar la TAE, que, por ley, nos tiene que facilitar el banco que comercializa el producto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 81 | posición 1230-1232 | Añadido el domingo, 8 de febrero de 2026 14:33:03
+
+Como queda bastante claro en estos ejemplos, para ahorrar nos interesará optar por productos que tengan interés compuesto para que los intereses se vayan sumando al capital inicial, generando más intereses, y nuestros ahorros se multipliquen sin movernos del sillón.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 84 | posición 1281-1283 | Añadido el domingo, 8 de febrero de 2026 14:34:24
+
+Cuando contratamos productos de ahorro, nos interesa que el tipo de interés sea compuesto, es decir, que los intereses se vayan sumando a la cantidad inicial para generar todavía más intereses.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 84 | posición 1285-1286 | Añadido el domingo, 8 de febrero de 2026 14:34:53
+
+Cuando pedimos dinero, lo que nos interesa es conseguir el tipo más bajo posible, y cuando ponemos nuestros ahorros a buen recaudo, lo que queremos es que nos den el tipo de interés más alto posible.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 84 | posición 1287-1290 | Añadido el domingo, 8 de febrero de 2026 14:36:00
+
+Cuando decimos que un tipo de interés es variable, significa que está referenciado a algún índice, normalmente el euríbor —el tipo de interés que se cobran los bancos europeos entre ellos—, de forma que te dirán que el tipo de interés de tu hipoteca es el euríbor + x %. Esa x % es lo que se llama diferencial.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 84 | posición 1287-1291 | Añadido el domingo, 8 de febrero de 2026 14:36:10
+
+Cuando decimos que un tipo de interés es variable, significa que está referenciado a algún índice, normalmente el euríbor —el tipo de interés que se cobran los bancos europeos entre ellos—, de forma que te dirán que el tipo de interés de tu hipoteca es el euríbor + x %. Esa x % es lo que se llama diferencial. Cuando contratamos productos con tipo de interés variable, hay que preguntar cada
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 85 | posición 1291-1291 | Añadido el domingo, 8 de febrero de 2026 14:36:19
+
+cuánto tiempo se revisa el índice
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 85 | posición 1291-1292 | Añadido el domingo, 8 de febrero de 2026 14:36:25
+
+para saber cuándo van a actualizar la cuota de nuestro préstamo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 85 | posición 1298-1299 | Añadido el domingo, 8 de febrero de 2026 14:37:42
+
+CUENTAS CORRIENTES
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 86 | posición 1305-1305 | Añadido el domingo, 8 de febrero de 2026 14:37:50
+
+además de que sean fáciles y
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 86 | posición 1304-1305 | Añadido el domingo, 8 de febrero de 2026 14:37:55
+
+Como están diseñadas para operar y no para darnos rentabilidad, lo que tenemos que mirar con lupa en estas cuentas, además de que sean fáciles y cómodas
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 86 | posición 1304-1307 | Añadido el domingo, 8 de febrero de 2026 14:38:00
+
+Como están diseñadas para operar y no para darnos rentabilidad, lo que tenemos que mirar con lupa en estas cuentas, además de que sean fáciles y cómodas de utilizar, y que nos permitan acceder online o por teléfono, son las comisiones, que nos cobren lo mínimo posible por las operaciones que hacemos más a menudo y por los productos que puedan tener asociados, como las tarjetas de débito o de crédito.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 88 | posición 1341-1341 | Añadido el domingo, 8 de febrero de 2026 14:41:21
+
+Nunca hay que fraccionar un pago en cuotas tan pequeñas que no cubran los intereses.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 91 | posición 1394-1395 | Añadido el domingo, 8 de febrero de 2026 14:44:58
+
+Es más, comprarte una casa que no te puedes permitir o hipotecarte por encima de tus posibilidades te puede salir mucho más caro que un alquiler.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 92 | posición 1402-1404 | Añadido el domingo, 8 de febrero de 2026 14:46:04
+
+Nuestra casa cumple tantas funciones y tan esenciales que es lógico que represente nuestro gasto más importante. Y a mucha honra. De hecho, ver la primera vivienda como una inversión es arriesgado y nos puede poner en un aprieto. A veces no es ni un ahorro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 92 | posición 1411-1411 | Añadido el domingo, 8 de febrero de 2026 14:46:54
+
+la vivienda es una inversión muy poco líquida.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1412-1412 | Añadido el domingo, 8 de febrero de 2026 14:47:04
+
+no se puede vender un poquito de casa,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1413-1414 | Añadido el domingo, 8 de febrero de 2026 14:47:10
+
+comprar una casa limita tu capacidad de diversificar
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1414-1415 | Añadido el domingo, 8 de febrero de 2026 14:47:17
+
+que es la forma más efectiva, por no decir la única, de evitar riesgos excesivos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1415-1417 | Añadido el domingo, 8 de febrero de 2026 14:47:25
+
+Además, tener todo nuestro dinero atado a una casa nos puede hacer perder otras oportunidades más atractivas de inversión, lo que se llama coste de oportunidad,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1418-1418 | Añadido el domingo, 8 de febrero de 2026 14:47:37
+
+los gastos asociados a la compra, el mantenimiento y la venta de una casa son muy elevados.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 93 | posición 1421-1422 | Añadido el domingo, 8 de febrero de 2026 14:47:53
+
+Para nada, comprar una casa es una forma estupenda de ahorrar (ojo, que no he dicho de invertir) para el futuro y uno de los pilares sobre los que planificar la jubilación.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 94 | posición 1432-1433 | Añadido el domingo, 8 de febrero de 2026 14:49:18
+
+y comprar una casa que no nos podemos permitir sigue entrañando unos riesgos que no deberíamos asumir.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 94 | posición 1433-1435 | Añadido el domingo, 8 de febrero de 2026 14:49:31
+
+En esto, la paciencia es la madre de todas las ciencias. Más vale seguir ahorrando, euro a euro, y esperar a que los vientos cambien para poder aprovechar una oportunidad acorde con nuestras posibilidades que meternos en un fregado del que luego puede ser difícil salir.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 94 | posición 1440-1440 | Añadido el domingo, 8 de febrero de 2026 14:49:57
+
+El precio total no debe ser más que cinco veces tu salario bruto anual, y esto ya es generoso. Si es menos, mejor.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 94 | posición 1441-1441 | Añadido el domingo, 8 de febrero de 2026 14:50:08
+
+La cuota de la hipoteca no debe superar el 30 % de tus ingresos netos mensuales.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 94 | posición 1442-1443 | Añadido el domingo, 8 de febrero de 2026 14:50:13
+
+Tienes que poder pagar, como mínimo, un 20 % a tocateja.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 95 | posición 1443-1444 | Añadido el domingo, 8 de febrero de 2026 14:50:17
+
+Tienes que acabar de pagar la casa antes de jubilarte.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 95 | posición 1444-1445 | Añadido el domingo, 8 de febrero de 2026 14:50:23
+
+Si no cumplís alguno de estos criterios, no deberíais compraros esa casa. Y punto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 95 | posición 1448-1450 | Añadido el domingo, 8 de febrero de 2026 14:51:04
+
+Pero, claro, si alquilamos, también hay un límite para lo que nos podemos permitir, porque además, si alquilamos, como no estamos ahorrando implícitamente para el futuro, tenemos que ahorrar más cada mes, ya sea para comprar una casa en el futuro o para la jubilación.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 95 | posición 1450-1452 | Añadido el domingo, 8 de febrero de 2026 14:51:10
+
+En este sentido, no es prudente gastar más de un 20-25 % de nuestro sueldo en el alquiler para poder ahorrar un 15-20 % de nuestros ingresos netos mensuales.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 96 | posición 1471-1471 | Añadido el domingo, 8 de febrero de 2026 14:53:18
+
+comprar compensa a largo plazo, pero no a corto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 96 | posición 1471-1472 | Añadido el domingo, 8 de febrero de 2026 14:53:26
+
+comprar compensa a largo plazo, pero no a corto. A corto te salen más caros los gastos asociados a la compra y los intereses que pagas por el dinero que no es tuyo que un alquiler equivalente
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 97 | posición 1473-1474 | Añadido el domingo, 8 de febrero de 2026 14:53:53
+
+El horizonte exacto en el que empieza a compensar comprar depende del caso particular de cada uno, pero para el común de los mortales suele estar entre cinco y diez años
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 97 | posición 1479-1479 | Añadido el domingo, 8 de febrero de 2026 14:54:07
+
+Aunque compremos una casa, tenemos que seguir ahorrando para la jubilación.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 97 | posición 1487-1489 | Añadido el domingo, 8 de febrero de 2026 14:55:30
+
+Además, si tenemos una casa en propiedad, podemos tener más gastos inesperados, como una gotera. Por eso, es importante tener un buen seguro del hogar y el colchón de emergencia siempre listo para sacarnos de un apuro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 98 | posición 1502-1503 | Añadido el domingo, 8 de febrero de 2026 14:56:29
+
+Cuando uno alquila a largo plazo, para evitar sustos, puede compensar tener un seguro de protección jurídica para, llegado el caso, poder asesorarnos sin dejarnos un riñón.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 99 | posición 1503-1504 | Añadido el domingo, 8 de febrero de 2026 14:56:42
+
+mudarse es caro y tampoco tenemos la libertad de reformar la casa a nuestro gusto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 99 | posición 1508-1509 | Añadido el domingo, 8 de febrero de 2026 14:57:16
+
+hay que ser más disciplinados y tomar medidas para asegurarnos de que nuestros gastos van a estar cubiertos cuando nos jubilemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 99 | posición 1510-1511 | Añadido el domingo, 8 de febrero de 2026 14:57:26
+
+Tengamos en cuenta que, según vamos cumpliendo años, el acceso a la vivienda en propiedad se complica, porque los plazos de las hipotecas que podemos pedir son más cortos y, por tanto, las cuotas que tendremos que pagar más altas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 100 | posición 1527-1528 | Añadido el domingo, 8 de febrero de 2026 14:59:14
+
+Si el tipo es fijo se negocia una vez, al principio del contrato, y ya. Para cambiarlo habría que renegociar la hipoteca o cambiarnos a otro banco.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 100 | posición 1528-1530 | Añadido el domingo, 8 de febrero de 2026 14:59:21
+
+Si el tipo es variable, significa que está referenciado a un índice, que suele ser el euríbor. El tipo de interés que nos van a aplicar a nosotros es ese tipo de referencia más un diferencial.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 100 | posición 1528-1532 | Añadido el domingo, 8 de febrero de 2026 14:59:26
+
+Si el tipo es variable, significa que está referenciado a un índice, que suele ser el euríbor. El tipo de interés que nos van a aplicar a nosotros es ese tipo de referencia más un diferencial. Por último, si el tipo es mixto, significa que se negocia un tipo fijo para un periodo determinado y, pasado este, empieza a aplicarse un tipo variable.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 100 | posición 1532-1534 | Añadido el domingo, 8 de febrero de 2026 14:59:40
+
+Las ventajas del tipo fijo son precisamente esas, que sabemos desde un principio lo que vamos a pagar hasta que la casa sea nuestra. Y las desventajas son las mismas: si firmamos una hipoteca a tipo fijo y luego bajan los tipos de interés, no nos beneficiaremos del descenso.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 101 | posición 1535-1535 | Añadido el domingo, 8 de febrero de 2026 14:59:54
+
+las ventajas de negociar un buen tipo fijo ganan por goleada.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 102 | posición 1550-1551 | Añadido el domingo, 8 de febrero de 2026 15:01:39
+
+Con los tipos bajo cero, es un momento ideal para negociar un buen tipo fijo con uñas y dientes, y a vivir, que son dos días.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 102 | posición 1563-1564 | Añadido el domingo, 8 de febrero de 2026 15:02:34
+
+Dentro de los parámetros de prudencia financiera, siempre y cuando la cuota no supere el 30 % de nuestros ingresos, cuanto más corto sea el plazo, mejor.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 103 | posición 1570-1572 | Añadido el domingo, 8 de febrero de 2026 15:03:31
+
+Ahora mismo, si el plazo de nuestra hipoteca es superior a quince años y no vamos a poder hacer amortizaciones extraordinarias, lo mejor es negociar un tipo fijo atractivo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 103 | posición 1575-1575 | Añadido el domingo, 8 de febrero de 2026 15:04:35
+
+Las comisiones más comunes que suelen llevar asociadas las hipotecas son estas:
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 103 | posición 1576-1576 | Añadido el domingo, 8 de febrero de 2026 15:04:42
+
+De estudio y apertura.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 103 | posición 1578-1578 | Añadido el domingo, 8 de febrero de 2026 15:04:45
+
+De novación, si pretendes renegociar tu hipoteca en algún momento.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 103 | posición 1579-1579 | Añadido el domingo, 8 de febrero de 2026 15:04:48
+
+De subrogación, si quieres cambiar de banco a mitad del contrato.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1580-1580 | Añadido el domingo, 8 de febrero de 2026 15:04:51
+
+De la cuenta asociada al pago de la hipoteca.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1581-1581 | Añadido el domingo, 8 de febrero de 2026 15:04:57
+
+De cancelación o amortización anticipada, si
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1581-1581 | Añadido el domingo, 8 de febrero de 2026 15:05:01
+
+quieres ir haciendo pagos extraordinarios.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1582-1583 | Añadido el domingo, 8 de febrero de 2026 15:05:11
+
+Hay que pelear por reducirlas todas al máximo, pero hay una en particular que yo intentaría evitar a toda costa: la comisión por cancelación o amortización anticipada
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1584-1586 | Añadido el domingo, 8 de febrero de 2026 15:05:25
+
+Porque ir amortizando nuestra hipoteca por adelantado, reduciendo el plazo en lugar de la cuota, es una de las formas más fáciles de abaratar el coste financiero (en intereses), sobre todo si estamos en los primeros años del contrato.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1592-1593 | Añadido el domingo, 8 de febrero de 2026 15:08:04
+
+significa que, al principio de una hipoteca, estamos ahorrando poco y pagando muchos gastos financieros, mientras que, al final, pagamos pocos gastos y ahorramos mucho.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1592-1593 | Añadido el domingo, 8 de febrero de 2026 15:08:09
+
+significa que, al principio de una hipoteca, estamos ahorrando poco y pagando muchos gastos financieros, mientras que, al final, pagamos pocos gastos y ahorramos mucho. Por eso compensa más amortizar al principio de un préstamo, para pagar menos intereses, que al final.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 104 | posición 1593-1594 | Añadido el domingo, 8 de febrero de 2026 15:08:21
+
+Y también por eso, comprar compensa a largo plazo, porque cuando verdaderamente dejamos de gastar y empezamos a ahorrar es al final del préstamo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 105 | posición 1605-1606 | Añadido el domingo, 8 de febrero de 2026 15:09:20
+
+Para pagar menos intereses, podemos amortizar por adelantado, reduciendo el plazo de la hipoteca en lugar de la cuota.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 105 | posición 1606-1607 | Añadido el domingo, 8 de febrero de 2026 15:10:00
+
+Por suerte, legalmente, las comisiones por amortización anticipada están limitadas a un máximo que, ahora mismo,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 105 | posición 1606-1607 | Añadido el domingo, 8 de febrero de 2026 15:10:05
+
+Por suerte, legalmente, las comisiones por amortización anticipada están limitadas a un máximo
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 107 | posición 1626-1628 | Añadido el domingo, 8 de febrero de 2026 15:18:24
+
+La ley establece que, aunque el banco puede obligarnos a contratar ambos seguros, no puede obligarnos a contratarlos con ellos, aunque pueden darnos una bonificación si lo hacemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 107 | posición 1639-1643 | Añadido el domingo, 8 de febrero de 2026 15:19:40
+
+Antes de firmar una hipoteca hay que… Evaluar el pack completo con tipos de interés, comisiones, gastos y obligaciones de todos los productos que nos obliguen a contratar. Entender todas y cada una de las cláusulas del contrato de hipoteca y de todos los productos asociados y preguntar todo lo que no nos quede claro. Comparar ofertas por lo menos de tres bancos. Acordaos de que hay que comparar las TAE para el mismo importe y el mismo plazo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 110 | posición 1686-1688 | Añadido el domingo, 8 de febrero de 2026 15:22:35
+
+Es más, gran parte del desarrollo económico ha sido posible gracias a la facultad de prestar y pedir prestado dinero. Si todos tuviéramos que financiar nuestros proyectos a tocateja, casi nadie podría comprarse una casa o montar un negocio. Gracias a los préstamos, los ciudadanos de a pie tenemos acceso a muchas cosas que, de otra forma, solo estarían al alcance de los ricos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 111 | posición 1695-1696 | Añadido el domingo, 8 de febrero de 2026 15:23:32
+
+Mientras que una cierta cantidad de deuda puede ser buena para nuestra salud financiera, si nos pasamos de la raya, nos puede salir carísimo, y puede, literalmente, hundir nuestras finanzas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 111 | posición 1698-1699 | Añadido el domingo, 8 de febrero de 2026 15:24:09
+
+La suma de todas las cuotas de nuestros préstamos, incluida la hipoteca, no debe ser superior al 40 % de nuestros ingresos netos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 112 | posición 1705-1705 | Añadido el domingo, 8 de febrero de 2026 15:24:26
+
+Pero, cuidado, que tengamos capacidad para asumir más deuda no significa que debamos hacerlo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 112 | posición 1710-1711 | Añadido el domingo, 8 de febrero de 2026 15:24:40
+
+Solo hay que endeudarse para pagar cosas que puedan incrementar
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 112 | posición 1711-1711 | Añadido el domingo, 8 de febrero de 2026 15:24:44
+
+nuestros ingresos o nuestro valor neto.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 112 | posición 1714-1715 | Añadido el domingo, 8 de febrero de 2026 15:25:30
+
+Nunca hay que pedir un préstamo para inversiones de alto riesgo, como la bolsa, el oro, las criptomonedas o lo que quiera que diga el vecino que va a ser el próximo hit de la inversión. Y tampoco para invertir en un negocio que no sea nuestro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 113 | posición 1732-1733 | Añadido el domingo, 8 de febrero de 2026 15:27:04
+
+Otro tipo de deuda extremadamente peligroso es pedir un préstamo para pagar otro préstamo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 116 | posición 1764-1765 | Añadido el domingo, 8 de febrero de 2026 15:29:57
+
+Planificar bien y pagar los coches al contado con el dinero que hemos ahorrado para ello.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 115 | posición 1758-1760 | Añadido el domingo, 8 de febrero de 2026 15:30:10
+
+Comprar un coche de segunda mano. Los coches pierden la mayor parte de su valor los tres primeros años, así que perderemos menos dinero si compramos un coche de segunda mano.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 118 | posición 1809-1810 | Añadido el domingo, 8 de febrero de 2026 15:32:16
+
+Si la cuota mensual es inferior a los intereses, cada mes, aunque vayamos haciendo pequeños pagos, deberemos más dinero en lugar de menos, y nuestra deuda, como una bola de nieve, irá aumentando
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 121 | posición 1851-1852 | Añadido el domingo, 8 de febrero de 2026 16:22:40
+
+en situaciones de crisis, no solo importa lo que hagas, sino cómo de rápido lo hagas para minimizar daños y evitar que un bache puntual se pueda convertir en un problema duradero.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 121 | posición 1852-1854 | Añadido el domingo, 8 de febrero de 2026 16:22:49
+
+La capacidad de una persona para absorber y recuperarse de un bache económico es lo que se conoce como resiliencia financiera.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 122 | posición 1861-1862 | Añadido el domingo, 8 de febrero de 2026 16:23:22
+
+Lo primero, primerísimo, que tenemos que hacer cuando la vida se pone puñetera es asegurarnos de que vamos a poder hacer frente a nuestras deudas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 124 | posición 1899-1900 | Añadido el domingo, 8 de febrero de 2026 16:26:23
+
+Lo he dicho mil veces y lo diré una más: cuando las cosas van mal, el colchón de emergencia es nuestra arma más potente.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 125 | posición 1905-1906 | Añadido el domingo, 8 de febrero de 2026 16:27:07
+
+Recordemos que el colchón de emergencia hay que tenerlo contante y sonante, en activos líquidos, como efectivo, cuentas corrientes o depósitos a la vista, para poder echar mano de él en cualquier momento.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 125 | posición 1908-1908 | Añadido el domingo, 8 de febrero de 2026 16:27:13
+
+En épocas de crisis, el efectivo es el rey.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 125 | posición 1911-1913 | Añadido el domingo, 8 de febrero de 2026 16:27:46
+
+Tener una gran capacidad de reacción significa que, si nos vienen mal dadas, podemos reducir nuestros gastos muy rápido, adaptarnos inmediatamente a la nueva situación y, ojo al dato, multiplicar nuestro colchón de emergencia.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 125 | posición 1915-1915 | Añadido el domingo, 8 de febrero de 2026 16:27:51
+
+Resiliencia a corto plazo = meses de colchón de emergencia/(1 – capacidad de reacción)
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 126 | posición 1928-1931 | Añadido el domingo, 8 de febrero de 2026 16:29:43
+
+Hemos dicho por activa y por pasiva que el colchón de emergencia hay que tenerlo en activos muy líquidos; pero, claro, estos activos no nos suelen dar ninguna rentabilidad y, además, en realidad, estos ahorros están perdiendo valor al ritmo de la inflación. Por eso, cuando ya tenemos un colchón de emergencia suficiente, si contamos con más ahorros, puede ser conveniente tenerlos en activos que nos den más rentabilidad, es decir, invertirlos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 127 | posición 1937-1938 | Añadido el domingo, 8 de febrero de 2026 16:30:20
+
+Para que nos entendamos, no conviene depender de nuestras inversiones para sacarnos de un apuro a corto plazo, pero podemos contar con ellas si la cosa se alarga.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 127 | posición 1937-1939 | Añadido el domingo, 8 de febrero de 2026 16:30:28
+
+Para que nos entendamos, no conviene depender de nuestras inversiones para sacarnos de un apuro a corto plazo, pero podemos contar con ellas si la cosa se alarga. Lo importante es tener el tiempo suficiente para tomar las decisiones con calma y no tener que vender deprisa y corriendo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 127 | posición 1943-1945 | Añadido el domingo, 8 de febrero de 2026 16:31:08
+
+Al final, como siempre, lo ideal es tener un buen mix de liquidez en nuestro valor neto: una casa que nos podamos permitir, una hipoteca que no supere el 30 % de nuestros ingresos mensuales, seis meses de ahorros en una cuenta muy líquida y otros seis meses en inversiones de cierta liquidez sería un buen punto de partida.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 129 | posición 1978-1979 | Añadido el domingo, 8 de febrero de 2026 16:32:25
+
+Cuantos más años podamos mantener nuestro estilo de vida, más ricos somos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 132 | posición 2018-2020 | Añadido el domingo, 8 de febrero de 2026 16:34:26
+
+el seguro de vida y sus primos hermanos. Si tenemos hijos o una hipoteca en común con alguien, este seguro es poco menos que obligatorio
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 132 | posición 2024-2028 | Añadido el domingo, 8 de febrero de 2026 16:35:28
+
+Lo importante cuando uno contrata un seguro de vida es tener claro qué cantidad queremos asegurar para que nuestros seres queridos tengan el tiempo y los recursos para reponerse de la pérdida y seguir con sus vidas. Por supuesto, cuanto mayor sea esta cantidad, más nos va a costar el seguro, así que hay que encontrar un equilibrio. Además, se puede contratar más de una póliza o renegociar la cobertura de la que ya tenemos. Lo ideal es revisar la situación periódicamente para ver si seguimos estando bien cubiertos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 133 | posición 2040-2040 | Añadido el domingo, 8 de febrero de 2026 16:36:40
+
+Antes de firmar cualquier póliza hay que leer la letra pequeña.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 134 | posición 2041-2043 | Añadido el domingo, 8 de febrero de 2026 16:37:27
+
+Por defecto, los seguros de vida solo cubren el fallecimiento o la invalidez absoluta. Según nuestro trabajo y nuestras circunstancias, puede ser conveniente ampliar esta cobertura para incluir otros tipos de incapacidad profesional, invalidez o accidente,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 134 | posición 2043-2045 | Añadido el domingo, 8 de febrero de 2026 16:37:41
+
+Si tenemos hijos, es posible que, incluso con la hipoteca cubierta, uno de los dos no fuera capaz de mantener la familia sin los ingresos del otro. En este caso, es necesario calcular cuánto necesitaríamos para vivir sin esos ingresos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 134 | posición 2049-2050 | Añadido el domingo, 8 de febrero de 2026 16:38:28
+
+Otra forma de calcular una cobertura razonable podría ser sumar cinco veces nuestro salario más toda la deuda que nos quede por pagar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 143 | posición 2180-2183 | Añadido el domingo, 8 de febrero de 2026 16:48:52
+
+La realidad es que la tasa de reemplazo de las pensiones en España está muy por encima de la media de la Unión Europea, que es el 52 %, y no digamos ya de la media de la OCDE, que es del 49 %, y que, simple y llanamente, no es sostenible, porque tal y como está concebido el sistema no va a haber dinero para pagarlo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 146 | posición 2229-2230 | Añadido el domingo, 8 de febrero de 2026 16:55:07
+
+Lo ideal sería empezar a ahorrar para la jubilación el mismo día que empezamos a trabajar, pero como tardísimo, si es humanamente posible, hay que empezar antes de cumplir los cuarenta.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 147 | posición 2243-2244 | Añadido el domingo, 8 de febrero de 2026 16:56:04
+
+Hay que darle tiempo al interés compuesto para que haga el trabajo sucio.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 147 | posición 2251-2252 | Añadido el domingo, 8 de febrero de 2026 16:58:41
+
+Una es intentar predecir hoy cómo va a ser ese futuro: lo que ganaremos dentro de diez o quince años, cómo evolucionarán nuestros gastos, cuánto subirá la inflación, lo que bajarán las pensiones, si
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 147 | posición 2251-2252 | Añadido el domingo, 8 de febrero de 2026 16:58:50
+
+Una es intentar predecir hoy cómo va a ser ese futuro: lo que ganaremos dentro de diez o quince años, cómo evolucionarán nuestros gastos, cuánto subirá la inflación, lo que bajarán las pensiones, si seguirán
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 147 | posición 2251-2253 | Añadido el domingo, 8 de febrero de 2026 16:58:53
+
+Una es intentar predecir hoy cómo va a ser ese futuro: lo que ganaremos dentro de diez o quince años, cómo evolucionarán nuestros gastos, cuánto subirá la inflación, lo que bajarán las pensiones, si seguirán tan bajos los tipos de interés, cómo fluctuarán los mercados más relevantes para nuestras inversiones presentes y futuras… Si no habéis desistido ya, sois unos campeones.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 147 | posición 2254-2255 | Añadido el domingo, 8 de febrero de 2026 16:59:04
+
+La otra opción, la de no cortarse las venas antes casi de empezar, como todos estos cambios se van a ir produciendo gradualmente, es ir revisando ese plan periódicamente para que se vaya actualizando y corrigiendo solo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 148 | posición 2259-2259 | Añadido el domingo, 8 de febrero de 2026 16:59:20
+
+Hay que revisar el plan para la jubilación una vez al año.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2271-2275 | Añadido el domingo, 8 de febrero de 2026 17:00:42
+
+Para no liarnos, vamos a coger nuestro presupuesto anual y vamos a quitar solo las siguientes categorías de gasto: El ahorro. La educación. Y aquí viene lo gordo…: la hipoteca, siempre y cuando la vayamos a tener pagada cuando nos jubilemos. El resto de los gastos en vivienda hay que dejarlos. Si vivimos de alquiler, no podemos quitarlo, porque tendremos que seguir pagándolo cuando nos jubilemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2277-2278 | Añadido el domingo, 8 de febrero de 2026 17:00:50
+
+Gastos futuros = gastos actuales – ahorro – educación – hipoteca
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2280-2281 | Añadido el domingo, 8 de febrero de 2026 17:01:08
+
+Cuanto más ahorremos hoy, menos dinero necesitaremos cuando nos jubilemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2281-2282 | Añadido el domingo, 8 de febrero de 2026 17:01:16
+
+Tener una casa en propiedad con una hipoteca pagada es una ventaja bastante importante de cara a la jubilación,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2281-2282 | Añadido el domingo, 8 de febrero de 2026 17:01:23
+
+Tener una casa en propiedad con una hipoteca pagada es una ventaja bastante importante de cara a la jubilación, porque hace que necesitemos una tasa de
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 149 | posición 2282-2283 | Añadido el domingo, 8 de febrero de 2026 17:01:27
+
+sustitución inferior para vivir tranquilamente.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 150 | posición 2286-2287 | Añadido el domingo, 8 de febrero de 2026 17:02:17
+
+En la página de la Seguridad Social tenemos todos los datos para saber más o menos cuál será nuestra pensión de jubilación, y también hay páginas web y simuladores que nos pueden ayudar a calcularlo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 151 | posición 2308-2308 | Añadido el domingo, 8 de febrero de 2026 17:04:32
+
+Cuanto mejor te vaya, más tienes que ahorrar para el futuro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 151 | posición 2315-2316 | Añadido el domingo, 8 de febrero de 2026 17:05:33
+
+En otras palabras, nuestro valor neto disponible cuando nos jubilemos (el que calculamos sin la casa en la que vivimos) debería ser veinticinco veces esa diferencia… Que no es poco.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 152 | posición 2323-2324 | Añadido el domingo, 8 de febrero de 2026 17:06:32
+
+si retiras el 4 % de tus ahorros al año desde el día que te jubiles, tienes un 90 % de posibilidades de no pulírtelos antes de irte al otro barrio
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 152 | posición 2330-2331 | Añadido el domingo, 8 de febrero de 2026 17:07:09
+
+Cuando nos jubilemos, deberíamos tener unos ahorros que sean veinticinco veces la diferencia anual entre nuestros gastos y nuestros ingresos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 152 | posición 2331-2332 | Añadido el domingo, 8 de febrero de 2026 17:08:25
+
+Si cogemos este valor neto que vamos a necesitar cuando nos jubilemos y le restamos nuestro valor neto actual, la diferencia es lo que tenemos que ahorrar de aquí a que nos jubilemos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 153 | posición 2332-2333 | Añadido el domingo, 8 de febrero de 2026 17:08:38
+
+Y, dependiendo de cuántos años nos queden para jubilarnos, ya sabremos cuánto tendríamos que ahorrar cada año para conseguir nuestro objetivo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 153 | posición 2337-2339 | Añadido el domingo, 8 de febrero de 2026 17:09:17
+
+Si estamos muy lejos de poder ahorrar las cantidades que hemos calculado, tendremos que tomar medidas más drásticas, como pensar en cambiarnos a otra casa más barata el día que nos jubilemos u optimizar nuestra estructura de gastos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 153 | posición 2336-2337 | Añadido el domingo, 8 de febrero de 2026 17:09:23
+
+hay que hacer estos números cada año e ir adaptando nuestro ahorro a largo plazo según vayan evolucionando nuestras circunstancias.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 153 | posición 2344-2346 | Añadido el domingo, 8 de febrero de 2026 17:11:52
+
+Por eso, aunque hay que tener el colchón de emergencia en la cuenta, tener el ahorro a largo plazo en una cuenta o depósito con rentabilidades prácticamente nulas no nos deja aprovechar el empujón que puede darle el interés compuesto a nuestros ahorros o, lo que es peor, si la rentabilidad que nos da es inferior a la inflación, directamente nuestro ahorro estará perdiendo valor
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 154 | posición 2347-2348 | Añadido el domingo, 8 de febrero de 2026 17:12:08
+
+La inflación funciona un poco como un interés negativo: cada año, nuestros ahorros pierden un poquito de su valor según lo que suba el IPC.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 154 | posición 2349-2349 | Añadido el domingo, 8 de febrero de 2026 17:12:18
+
+Hay que intentar tener los ahorros a largo plazo en productos que nos den, como mínimo, una rentabilidad igual a la inflación.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 154 | posición 2351-2352 | Añadido el domingo, 8 de febrero de 2026 17:12:37
+
+En cualquier caso, hay que intentar sacar una rentabilidad mínima del 1,5-2 % para que nuestros ahorros no vayan perdiendo valor.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 154 | posición 2359-2360 | Añadido el domingo, 8 de febrero de 2026 17:13:24
+
+El producto financiero de ahorro a largo plazo por excelencia son los planes de pensiones.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 156 | posición 2391-2392 | Añadido el domingo, 8 de febrero de 2026 17:16:21
+
+Los milagros no existen: para obtener más rentabilidad hay que asumir más riesgos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 156 | posición 2392-2393 | Añadido el domingo, 8 de febrero de 2026 17:16:31
+
+Como el plan de pensiones es un producto de inversión, lo que pretende es dar rentabilidades atractivas, pero, claro, asumiendo algún riesgo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 159 | posición 2431-2434 | Añadido el domingo, 8 de febrero de 2026 17:19:39
+
+Y lo que sí tenemos que saber es que, por ley, uno puede mover el dinero de un plan de pensiones a otro sin ninguna penalización ni comisión, y sin pagar impuestos sobre las ganancias que hayamos acumulado. Si no estamos contentos o nuestro perfil de riesgo cambia con la edad, podemos ir cambiando nuestro dinero de un plan a otro sin problemas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 160 | posición 2444-2445 | Añadido el domingo, 8 de febrero de 2026 17:20:40
+
+Cuanto más jóvenes seamos, más riesgos podemos asumir. A medida que nos vayamos haciendo mayores, tendremos que ir optando por productos más conservadores.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 164 | posición 2509-2511 | Añadido el domingo, 8 de febrero de 2026 17:30:05
+
+Con los productos de ahorro que tributan como rentas del capital mobiliario (todos menos los planes de pensiones y los PPA) no podemos desgravarnos las aportaciones, pero el día que cobremos solo pagaremos impuestos sobre lo que hayamos ganado.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 166 | posición 2545-2546 | Añadido el domingo, 8 de febrero de 2026 17:32:12
+
+En definitiva, si optas por una renta vitalicia y te organizas bien, puedes no pagar prácticamente impuestos sobre tus inversiones.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 171 | posición 2613-2614 | Añadido el domingo, 8 de febrero de 2026 17:36:31
+
+En realidad, desde el día mismo en que nacemos, no paramos de invertir. Nadie se libra, porque, al final, la inversión no es otra cosa que renunciar a algo hoy para tener algo y un poquito más en el futuro.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 172 | posición 2626-2626 | Añadido el domingo, 8 de febrero de 2026 17:37:37
+
+Retorno de la inversión = (valor al final de la inversión – valor cuando invertimos)/valor cuando invertimos
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 172 | posición 2631-2633 | Añadido el domingo, 8 de febrero de 2026 17:38:20
+
+No solo porque una mala salud puede limitar nuestra capacidad de ganar dinero, sino porque, además, puede multiplicar nuestros costes, especialmente después de la jubilación, cuando ya tenemos muy poca capacidad de reconducir nuestra situación económica.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 172 | posición 2636-2638 | Añadido el domingo, 8 de febrero de 2026 17:39:07
+
+Si tenemos buena salud, no solo nos van a salir más baratos muchos seguros —como el seguro médico y el de vida—, es que, además, podremos trabajar más años y tener una mejor tasa de sustitución, porque los sistemas de pensiones penalizan las jubilaciones anticipadas y bonifican cada año de más que trabajemos
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 173 | posición 2639-2640 | Añadido el domingo, 8 de febrero de 2026 17:39:22
+
+Nos pongamos como nos pongamos, invertir en tu salud y en la de los tuyos tiene un retorno de la inversión imbatible.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 173 | posición 2651-2651 | Añadido el domingo, 8 de febrero de 2026 17:40:13
+
+Ya que vamos a invertir tiempo en ello, seamos prácticos y concentrémonos en cultivar cosas que quiera el mercado.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 174 | posición 2656-2658 | Añadido el domingo, 8 de febrero de 2026 17:40:47
+
+Se trata de aumentar nuestra competitividad invirtiendo en lo que los entendidos llaman capital humano, que, como deberíais saber, es uno de los activos económicos más importantes de un país y, a título personal, nuestro capital más importante.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 181 | posición 2763-2763 | Añadido el domingo, 8 de febrero de 2026 18:40:43
+
+Cuanto más retorno queramos, más riesgo hay que asumir.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 182 | posición 2779-2781 | Añadido el domingo, 8 de febrero de 2026 18:42:36
+
+Pero no hay que irse tan lejos. Según los datos del INE, el IPC acumulado en los últimos veinte años es del 47,6 %. Es decir, cada euro que ahorramos en 2000 equivale a 68 céntimos de hoy.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 182 | posición 2779-2781 | Añadido el domingo, 8 de febrero de 2026 18:42:48
+
+Pero no hay que irse tan lejos. Según los datos del INE, el IPC acumulado en los últimos veinte años es del 47,6 %. Es decir, cada euro que ahorramos en 2000 equivale a 68 céntimos de hoy. Por eso decíamos que el ahorro a medio y largo plazo no hay que tenerlo en la cuenta.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 182 | posición 2788-2790 | Añadido el domingo, 8 de febrero de 2026 18:43:22
+
+Lo que tenemos que saber es que, si optamos por dejar el dinero en una cuenta corriente, una opción tan lícita como cualquier otra, tenemos que ahorrar más para cubrir la inflación. Eso es todo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 184 | posición 2807-2807 | Añadido el domingo, 8 de febrero de 2026 18:44:58
+
+Cuanto más a largo plazo invirtamos, más riesgos podemos asumir.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 184 | posición 2807-2809 | Añadido el domingo, 8 de febrero de 2026 18:45:09
+
+En ese sentido, yo dejaría la inversión a corto plazo a los especuladores profesionales. El común de los mortales tiene que plantearse invertir con un horizonte mínimo de cinco años.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 184 | posición 2820-2821 | Añadido el domingo, 8 de febrero de 2026 18:46:23
+
+A una inversión no hay que preguntarle cuánto va a subir su precio, sino qué valor va a crear con nuestro dinero.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 184 | posición 2821-2823 | Añadido el domingo, 8 de febrero de 2026 18:46:38
+
+Así, aunque el precio baje en un momento dado, si estamos convencidos de que es una inversión sólida que va a crear valor, lo normal es que a largo plazo el precio se ajuste a esas expectativas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 185 | posición 2834-2835 | Añadido el domingo, 8 de febrero de 2026 18:47:51
+
+Tener un horizonte de inversión a largo plazo evita tener que vender en épocas malas, porque, no nos engañemos, épocas malas va a haber siempre.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 186 | posición 2843-2844 | Añadido el domingo, 8 de febrero de 2026 18:48:32
+
+el conjunto de todas ellas, nuestra cartera, nos dé la rentabilidad que queremos.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 187 | posición 2864-2864 | Añadido el domingo, 8 de febrero de 2026 18:50:32
+
+Por eso, cuando invertimos, una de nuestras prioridades tiene que ser evitar grandes pérdidas.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 188 | posición 2872-2872 | Añadido el domingo, 8 de febrero de 2026 18:51:13
+
+Por eso es importante que nuestro
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 188 | posición 2872-2872 | Añadido el domingo, 8 de febrero de 2026 18:51:17
+
+horizonte de inversión sea a largo plazo,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 188 | posición 2873-2874 | Añadido el domingo, 8 de febrero de 2026 18:51:24
+
+En temas de inversión, ninguna pérdida es real hasta que no se vende.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 188 | posición 2878-2878 | Añadido el domingo, 8 de febrero de 2026 18:51:47
+
+Dicho esto, hay que tener claro desde el principio que invertir significa perder unas veces y ganar otras.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 189 | posición 2893-2893 | Añadido el domingo, 8 de febrero de 2026 18:53:17
+
+Como norma, cuando hay que vender algo empezaremos siempre por lo que peor esté funcionando,
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 189 | posición 2893-2893 | Añadido el domingo, 8 de febrero de 2026 18:53:24
+
+Como norma, cuando hay que vender algo empezaremos siempre por lo que peor esté funcionando, a no ser que tengamos razones de mucho
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 189 | posición 2893-2894 | Añadido el domingo, 8 de febrero de 2026 18:53:27
+
+peso para pensar que esa tendencia va a cambiar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 189 | posición 2895-2897 | Añadido el domingo, 8 de febrero de 2026 18:53:41
+
+Dicho esto, igual que debemos mantener la calma en los momentos de pánico, tampoco nos tenemos que fiar de los momentos de entusiasmo que nos pueden llevar a comprar acciones cuando están caras y ya no tienen casi recorrido para seguir subiendo.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 191 | posición 2916-2917 | Añadido el domingo, 8 de febrero de 2026 18:55:13
+
+Recordemos que, como inversores de andar por casa, no queremos especular, sino invertir, así que los movimientos a corto plazo de los mercados nos tienen que dar igual.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 191 | posición 2921-2923 | Añadido el domingo, 8 de febrero de 2026 18:55:46
+
+Y, al final, tenemos que ser conscientes de que raro será que nosotros, desde el salón de nuestra casa, tengamos la información privilegiada de saber cuál va a ser la próxima Apple. Nuestra mejor opción será siempre diversificar, diversificar y volver a diversificar.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 192 | posición 2933-2935 | Añadido el domingo, 8 de febrero de 2026 18:56:50
+
+Cuando una empresa, un país o una Administración pública necesita dinero, puede hacer varias cosas; una de las más comunes es endeudarse con un banco. Otra opción es endeudarse con el público en general, emitiendo títulos de deuda que puede comprar cualquiera, de manera que, en lugar de deberle mucho dinero a un solo banco, debe pequeñas cantidades a mucha gente.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 192 | posición 2942-2943 | Añadido el domingo, 8 de febrero de 2026 18:57:32
+
+En otras palabras, la rentabilidad está fijada desde un principio.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 193 | posición 2945-2946 | Añadido el domingo, 8 de febrero de 2026 18:57:45
+
+El principal riesgo de la renta fija es que quiebre el emisor.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 193 | posición 2946-2947 | Añadido el domingo, 8 de febrero de 2026 18:58:01
+
+Precisamente, para evaluar este riesgo están las agencias de rating que se dedican a analizar el riesgo de impago de este tipo
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 193 | posición 2947-2949 | Añadido el domingo, 8 de febrero de 2026 18:58:09
+
+de deuda y, en función de sus conclusiones, si la empresa va de lujo y el riesgo es pequeño, le darán una calificación buena, como AAA (triple A) o, si no acaban de verlo claro, pueden llegar a calificar la deuda como junk, que, como no se andan con chiquitas, significa ni más ni menos que «basura
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 193 | posición 2949-2950 | Añadido el domingo, 8 de febrero de 2026 18:58:37
+
+Ya os imaginaréis que la deuda basura suele ofrecernos rentabilidades mayores que la AAA.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 194 | posición 2964-2965 | Añadido el domingo, 8 de febrero de 2026 18:59:39
+
+Administraciones públicas se conoce como deuda pública, y la que emiten las empresas, como deuda
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 194 | posición 2965-2965 | Añadido el domingo, 8 de febrero de 2026 18:59:42
+
+privada.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 195 | posición 2984-2984 | Añadido el domingo, 8 de febrero de 2026 19:01:26
+
+Cuando somos accionistas, la rentabilidad no está garantizada de ninguna forma, pero tampoco está limitada.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 199 | posición 3038-3040 | Añadido el domingo, 8 de febrero de 2026 19:06:39
+
+Según el tipo de fondo del que se trate habrá que compararlo con un índice u otro, pero, al final, lo que queremos saber es si nuestro fondo consigue o no batir al índice.
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 199 | posición 3038-3040 | Añadido el domingo, 8 de febrero de 2026 19:06:44
+
+Según el tipo de fondo del que se trate habrá que compararlo con un índice u otro, pero, al final, lo que queremos saber es si nuestro fondo consigue o no batir al índice. Ya os adelanto que muchos no lo consiguen, mientras que unos pocos obtienen muy buenos resultados
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 204 | posición 3123-3124 | Añadido el domingo, 8 de febrero de 2026 19:45:35
+
+El porcentaje de la cartera que deberíamos tener en renta variable es 110 menos nuestra edad (110 – x años).
+==========
+﻿Invierte en ti (Natalia de Santiago)
+- La subrayado en la página 208 | posición 3175-3177 | Añadido el domingo, 8 de febrero de 2026 19:46:50
+
+Esto es un must. No solo debemos mirar con lupa todas y cada una de las comisiones que tengan nuestros productos de inversión, sino que además tenemos que procurar hacer el menor número de movimientos posibles para minimizar nuestros costes de transacción.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 27 | posición 232-236 | Añadido el domingo, 8 de febrero de 2026 20:54:53
+
+Casi todo el mundo quiere ganar más dinero, y de hecho es una de sus principales preocupaciones, pero casi nadie se preocupa por adquirir los conocimientos adecuados para gestionar mejor el dinero que ya tiene y que ya está ganando en la actualidad. El futuro económico, y no económico, de una persona lo determina más la buena o mala gestión del dinero que haga esa persona que los ingresos que llegue a tener a lo largo de su vida.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 33 | posición 286-287 | Añadido el domingo, 8 de febrero de 2026 20:57:42
+
+Esto es lo que usted debe decidir en primer lugar; sus objetivos. Después aprenderá a utilizar el medio (el dinero) para conseguir esos objetivos.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 33 | posición 288-292 | Añadido el domingo, 8 de febrero de 2026 20:57:55
+
+Los pasos que debe seguir son: 1) Analice su vida actual 2) Defina sus objetivos a largo plazo, qué es lo que quiere hacer con el resto de su vida 3) Tome la determinación de transformar su vida actual en la vida que desea vivir
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 55 | posición 546-546 | Añadido el domingo, 8 de febrero de 2026 21:17:35
+
+No sólo han rebajado sus gastos
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 58 | posición 577-578 | Añadido el domingo, 8 de febrero de 2026 21:21:08
+
+Lo primero que tiene que hacer para definir su proyecto personal de vida es analizar de forma objetiva su vida actual:
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 58 | posición 579-588 | Añadido el domingo, 8 de febrero de 2026 21:21:48
+
+¿Está satisfecho con la forma en que ha gestionado su dinero hasta ahora? 2) La gestión que ha hecho de su dinero hasta ahora, ¿le ha permitido ganar poder adquisitivo y/o mejorar su nivel de vida? 3) ¿Está contento con su trabajo, o desearía cambiarlo? 4) ¿Está contento con su profesión, o desearía cambiarla? 5) ¿Ha hecho todo lo posible por incrementar sus ingresos?
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 59 | posición 588-600 | Añadido el domingo, 8 de febrero de 2026 21:22:11
+
+concretas para conseguir este objetivo, no simplemente a desear tener más ingresos. 6) ¿Ha llevado un control razonablemente bueno de sus gastos? 7) En cuanto a la vivienda habitual: ¿Ya tiene una y le gusta? ¿Tiene una pero le gustaría cambiarla por otra mejor? ¿No tiene vivienda habitual? En caso de tenerla, ¿ya la tiene pagada o aún está en ello? Si aún no la ha pagado, ¿la está pagando de la mejor forma posible o podría optimizar ese gasto? 8) Segunda residencia. ¿Tiene ya o quiere tener una segunda residencia? ¿Con qué características? 9) ¿Su nivel de vida le parece suficiente, o desea incrementarlo en el futuro? ¿Cuánto le gustaría subir su nivel de vida, siendo realistas? 10) Tiempo libre. ¿Tiene mucho o poco? ¿Quiere tener más?
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 60 | posición 601-602 | Añadido el domingo, 8 de febrero de 2026 21:22:15
+
+11) ¿Le gusta la ciudad donde vive o le gustaría vivir en otro sitio?
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 62 | posición 609-610 | Añadido el domingo, 8 de febrero de 2026 22:34:33
+
+Para llegar a un sitio hay que saber a dónde se quiere ir. Si no se planifica el viaje también se llegará a un sitio, pero a un sitio cualquiera que probablemente no sea lo que usted esperaba.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 62 | posición 612-614 | Añadido el domingo, 8 de febrero de 2026 22:34:48
+
+Todo el mundo tiene pensamientos fugaces y desordenados acerca de lo que le gustaría que fuera el futuro, pero poca gente se para a pensar detenidamente sobre el tema para trazar un plan.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 63 | posición 622-622 | Añadido el domingo, 8 de febrero de 2026 22:35:30
+
+Es muy importante concretar los objetivos lo máximo posible:
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 66 | posición 659-662 | Añadido el domingo, 8 de febrero de 2026 22:36:10
+
+A medida que la vida de una persona va evolucionando los objetivos se van modificando. Esto es algo normal, y debe ser así.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 67 | posición 670-672 | Añadido el domingo, 8 de febrero de 2026 22:37:16
+
+Pero no importa, los planes aunque no se cumplan a rajatabla son muy útiles y ayudan a mejorar mucho más y mucho más rápido que si no se tiene ningún plan.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 72 | posición 716-719 | Añadido el domingo, 8 de febrero de 2026 22:40:50
+
+Una vez cumplido el objetivo de medio plazo hay que establecer nuevos objetivos de corto y medio plazo, basándonos en la nueva situación alcanzada, para definir la siguiente etapa que nos acercará cada vez más al destino final.
+==========
+﻿Educación Financiera avanzada partiendo de cero (Aprenda a gestionar su dinero para transformar su vida) (Spanish Edition) (Gregorio Hernández Jiménez)
+- La subrayado en la página 73 | posición 720-721 | Añadido el domingo, 8 de febrero de 2026 22:41:08
+
+Siempre que sea posible, por cada objetivo de largo plazo deberían ir estableciéndose objetivos de corto y medio plazo, para ir marcando el camino correcto.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 3 | posición 41-42 | Añadido el sábado, 14 de febrero de 2026 22:59:47
+
+Por qué nos interesan los chismes? Porque es mucho más fácil, y también más entretenido, encontrar y etiquetar los errores de otros que reconocer los propios.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 3 | posición 41-44 | Añadido el sábado, 14 de febrero de 2026 23:00:02
+
+Por qué nos interesan los chismes? Porque es mucho más fácil, y también más entretenido, encontrar y etiquetar los errores de otros que reconocer los propios. En el mejor de los casos, cuestionar lo que creemos y queremos es difícil, especialmente cuando más necesitamos hacerlo, pero podemos beneficiarnos de la opinión informada de otros.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 4 | posición 52-53 | Añadido el sábado, 14 de febrero de 2026 23:01:49
+
+Disponer de una etiqueta para diagnosticar esta inclinación o sesgo —el efecto halo— nos hace más fácil anticipar, reconocer y entender.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 7 | posición 96-97 | Añadido el sábado, 14 de febrero de 2026 23:07:18
+
+es mucho más fácil esforzarse por lograr la perfección cuando nunca se está aburrido.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 13 | posición 188-188 | Añadido el sábado, 14 de febrero de 2026 23:18:35
+
+Pero la idea de que nuestras mentes son susceptibles de incurrir en errores sistemáticos es ahora generalmente aceptada.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 246-247 | Añadido el sábado, 14 de febrero de 2026 23:23:36
+
+Un avance importante es que la emoción está ahora en nuestra comprensión de juicios y elecciones intuitivos mucho más presente que en el pasado.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 255-256 | Añadido el sábado, 14 de febrero de 2026 23:24:48
+
+La cuestión que encaró el ejecutivo (¿debo invertir en acciones de la Ford?) era difícil, pero inmediatamente vino a su mente la respuesta a una cuestión más fácil y en sintonía con ella (¿me gustan los automóviles Ford?), y esta determinó su elección.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 255-258 | Añadido el sábado, 14 de febrero de 2026 23:24:58
+
+La cuestión que encaró el ejecutivo (¿debo invertir en acciones de la Ford?) era difícil, pero inmediatamente vino a su mente la respuesta a una cuestión más fácil y en sintonía con ella (¿me gustan los automóviles Ford?), y esta determinó su elección. Tal es la esencia de la heurística intuitiva: cuando nos vemos ante una cuestión difícil, a menudo respondemos a otra más fácil, por lo general sin advertir la sustitución.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 251-260 | Añadido el sábado, 14 de febrero de 2026 23:25:24
+
+individuo tiene una experiencia relevante, reconocerá la situación, y es probable que la solución intuitiva que le venga a la mente sea la correcta. Es lo que ocurre cuando un maestro ajedrecista examina una posición complicada: las pocas jugadas que inmediatamente se le ocurren son todas buenas. Cuando el problema es difícil y no se tiene una solución adecuada, la intuición dispone todavía de un cartucho: una respuesta puede venir rauda a la mente; pero no es una respuesta a la cuestión original. La cuestión que encaró el ejecutivo (¿debo invertir en acciones de la Ford?) era difícil, pero inmediatamente vino a su mente la respuesta a una cuestión más fácil y en sintonía con ella (¿me gustan los automóviles Ford?), y esta determinó su elección. Tal es la esencia de la heurística intuitiva: cuando nos vemos ante una cuestión difícil, a menudo respondemos a otra más fácil, por lo general sin advertir la sustitución.[11] La búsqueda espontánea de una solución intuitiva a veces fracasa: no nos viene a la mente ni una solución experta, ni una respuesta heurística. En
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 255-256 | Añadido el sábado, 14 de febrero de 2026 23:25:43
+
+La cuestión que encaró el ejecutivo (¿debo invertir en acciones de la Ford?) era difícil, pero inmediatamente vino a su mente la respuesta a una cuestión más fácil y en sintonía con ella (¿me gustan los automóviles Ford?), y esta determinó su elección.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 255-258 | Añadido el sábado, 14 de febrero de 2026 23:25:47
+
+La cuestión que encaró el ejecutivo (¿debo invertir en acciones de la Ford?) era difícil, pero inmediatamente vino a su mente la respuesta a una cuestión más fácil y en sintonía con ella (¿me gustan los automóviles Ford?), y esta determinó su elección. Tal es la esencia de la heurística intuitiva: cuando nos vemos ante una cuestión difícil, a menudo respondemos a otra más fácil, por lo general sin advertir la sustitución.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 17 | posición 260-263 | Añadido el sábado, 14 de febrero de 2026 23:26:11
+
+En estos casos es frecuente que nos pasemos a una forma más lenta, meditada y esforzada de pensar. Este es el pensamiento lento que evoca el título del libro. El pensamiento rápido incluye las dos variantes del pensamiento intuitivo —el experto y el heurístico—, así como las actividades mentales puramente automáticas de la percepción y la memoria, las operaciones que nos permiten saber que hay una lámpara en el escritorio o recordar el nombre de la capital de Rusia.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 18 | posición 265-266 | Añadido el sábado, 14 de febrero de 2026 23:26:32
+
+llamados Sistema 1 y Sistema 2, que producen respectivamente pensamiento rápido y pensamiento lento.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 18 | posición 271-271 | Añadido el domingo, 15 de febrero de 2026 22:42:54
+
+Elabora la distinción entre las operaciones automáticas del Sistema 1 y las operaciones controladas del Sistema 2,
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 18 | posición 272-273 | Añadido el domingo, 15 de febrero de 2026 22:43:12
+
+la memoria asociativa, el núcleo del Sistema 1, continuamente construye una interpretación coherente de lo que sucede en nuestro mundo en cada instante.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 20 | posición 296-296 | Añadido el domingo, 15 de febrero de 2026 22:46:31
+
+nuevamente encontramos que lo que hace feliz al yo que experimenta no es precisamente lo mismo que
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 20 | posición 296-297 | Añadido el domingo, 15 de febrero de 2026 22:46:36
+
+lo que satisface al yo que recuerda.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 22 | posición 329-330 | Añadido el domingo, 15 de febrero de 2026 22:50:01
+
+y adónde va, al tiempo que retiene cada resultado. El proceso es un trabajo mental: deliberado, esforzado y ordenado; un prototipo del pensamiento lento.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 338-339 | Añadido el domingo, 15 de febrero de 2026 22:50:52
+
+El Sistema 1 opera de manera rápida y automática, con poco o ningún esfuerzo y sin sensación de control voluntario.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 340-340 | Añadido el domingo, 15 de febrero de 2026 22:50:57
+
+El Sistema 2 centra la atención en las actividades mentales esforzadas que lo
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 340-341 | Añadido el domingo, 15 de febrero de 2026 22:51:03
+
+demandan, incluidos los cálculos complejos. Las operaciones del Sistema 2 están a menudo asociadas a la experiencia subjetiva de actuar, elegir y concentrarse.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 347-348 | Añadido el domingo, 15 de febrero de 2026 22:51:51
+
+Las operaciones automáticas del Sistema 1 generan patrones de ideas sorprendentemente complejos, pero solo el lento Sistema 2 puede construir pensamientos en una serie ordenada
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 347-348 | Añadido el domingo, 15 de febrero de 2026 22:51:57
+
+Las operaciones automáticas del Sistema 1 generan patrones de ideas sorprendentemente complejos, pero solo el lento Sistema 2 puede construir pensamientos en una serie ordenada de
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 23 | posición 347-348 | Añadido el domingo, 15 de febrero de 2026 22:52:07
+
+Las operaciones automáticas del Sistema 1 generan patrones de ideas sorprendentemente complejos, pero solo el lento Sistema 2 puede construir pensamientos en una serie ordenada de pasos.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 25 | posición 374-375 | Añadido el domingo, 15 de febrero de 2026 23:51:13
+
+Las muy variadas operaciones del Sistema 2 tienen un rasgo común: requieren atención y resultan perturbadas cuando la atención se aparta de ellas.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 26 | posición 386-387 | Añadido el domingo, 15 de febrero de 2026 23:51:45
+
+El Sistema 2 tiene cierta capacidad para cambiar la manera de trabajar del Sistema 1 programando las funciones normalmente automáticas de la atención y la memoria.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 26 | posición 396-396 | Añadido el domingo, 15 de febrero de 2026 23:53:20
+
+Podemos hacer varias cosas a la vez, pero solo sin son fáciles y cómodas.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 415-416 | Añadido el domingo, 15 de febrero de 2026 23:55:41
+
+En esta historia contaré que los Sistemas 1 y 2 están siempre activos mientras permanecemos despiertos.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 415-417 | Añadido el domingo, 15 de febrero de 2026 23:55:49
+
+En esta historia contaré que los Sistemas 1 y 2 están siempre activos mientras permanecemos despiertos. El Sistema 1 actúa automáticamente y el Sistema 2 se halla normalmente en un confortable modo de mínimo esfuerzo en el que solo una fracción de su capacidad está ocupada.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 415-418 | Añadido el domingo, 15 de febrero de 2026 23:55:54
+
+En esta historia contaré que los Sistemas 1 y 2 están siempre activos mientras permanecemos despiertos. El Sistema 1 actúa automáticamente y el Sistema 2 se halla normalmente en un confortable modo de mínimo esfuerzo en el que solo una fracción de su capacidad está ocupada. El Sistema 1 hace continuamente sugerencias al Sistema
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 415-418 | Añadido el domingo, 15 de febrero de 2026 23:56:04
+
+En esta historia contaré que los Sistemas 1 y 2 están siempre activos mientras permanecemos despiertos. El Sistema 1 actúa automáticamente y el Sistema 2 se halla normalmente en un confortable modo de mínimo esfuerzo en el que solo una fracción de su capacidad está ocupada. El Sistema 1 hace continuamente sugerencias al Sistema 2:
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 419-420 | Añadido el domingo, 15 de febrero de 2026 23:56:27
+
+Si todo se desarrolla sin complicaciones, como ocurre la mayor parte del tiempo, el Sistema 2 acepta las sugerencias del Sistema 1 con escasa o ninguna modificación.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 422-423 | Añadido el domingo, 15 de febrero de 2026 23:56:54
+
+El Sistema 2 es movilizado cuando surge un problema para el que el Sistema 1 no tiene solución alguna,
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 28 | posición 428-428 | Añadido el domingo, 15 de febrero de 2026 23:57:43
+
+El Sistema 2 es también capaz de controlar continuamente su propio comportamiento:
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 29 | posición 436-436 | Añadido el domingo, 15 de febrero de 2026 23:58:56
+
+Sin embargo, en el Sistema 1 hay sesgos, errores sistemáticos que es propenso a cometer en circunstancias específicas.
+==========
+﻿Pensar rápido, pensar despacio (Daniel Kahneman)
+- La subrayado en la página 31 | posición 461-461 | Añadido el lunes, 16 de febrero de 2026 0:02:54
+
+En otras palabras, el Sistema 2 es el encargado del autocontrol.
+==========

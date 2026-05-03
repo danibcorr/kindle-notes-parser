@@ -8,6 +8,10 @@ use std::path::PathBuf;
 #[command(arg_required_else_help = true)]
 pub struct KindleCLI {
     /// Parse the txt file given the directory of that file
-    #[arg(short, long, value_name = "FILE PATH")]
-    pub(crate) parser: Option<PathBuf>,
+    #[arg(short, long, num_args = 2, value_names = ["INPUT_FILE_PATH", "OUTPUT_FILE_PATH"])]
+    pub(crate) parser: Option<Vec<PathBuf>>,
+
+    /// Delete all notes for a given title from the directory containing that file
+    #[arg(short, long, num_args = 2, value_names = ["INPUT_FILE_PATH", "OUTPUT_FILE_PATH"])]
+    pub(crate) delete: Option<Vec<PathBuf>>,
 }
