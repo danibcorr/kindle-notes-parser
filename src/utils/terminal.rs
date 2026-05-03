@@ -21,6 +21,7 @@ pub fn terminal_processing(
         .interact_opt()
         .expect("Error in the terminal");
 
+    // This is another menu for the confirmation, to display a y/n option
     let selection_confirmation =
         dialoguer::Confirm::with_theme(&ColorfulTheme::default())
             .with_prompt("Do you want to continue?")

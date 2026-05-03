@@ -80,6 +80,8 @@ pub fn select_book_title_index(available_titles: Vec<String>) -> String {
 
     // The selection retains the title's index, we need to select the entire title
     if selection_confirmation {
+        terminal.clear_last_lines(1).unwrap();
+
         match selection {
             Some(index) => {
                 let selected_full = available_titles[index].clone();
@@ -88,7 +90,7 @@ pub fn select_book_title_index(available_titles: Vec<String>) -> String {
 
                 println!(
                     "{} {} {}",
-                    style("📖").green(),
+                    style("📖"),
                     style("Selected:").bold(),
                     style(&display_labels[index]).yellow()
                 );
@@ -145,8 +147,15 @@ pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str
     let unified_content = selected_title_content.join("\n");
 
     match file.write_all(unified_content.as_bytes()) {
-        Ok(_) => println!("The file has been saved successfully"),
-        Err(_) => println!("Error saving the file"),
+        Ok(_) => {
+            println!(
+                "🟢 {}",
+                style("The file has been saved successfully").bold()
+            );
+        }
+        Err(_) => {
+            println!("🔴 {}", style("Error saving the file").bold());
+        }
     };
 }
 
