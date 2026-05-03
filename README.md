@@ -1,45 +1,41 @@
-# Kindle Notes Parser
+## Kindle Notes Parser
 
-Kindle Notes Parser is a command-line interface utility developed in Rust for the
-purpose of extracting annotations from Kindle devices.
+**Kindle Notes Parser** is a Rust-based command-line interface tool that extracts
+highlights and annotations from your Kindle. Physical Kindle devices store this data in
+a file called `My Clippings.txt`. This tool is ideal for users who need clean, distilled
+text for personal knowledge management (like Obsidian or Notion) or as input for AI
+models.
 
-This tool is designed for users who require distilled text for integration into personal
-knowledge management systems or as optimized input for large language models.
+### Installation
 
-## Installation and Compilation
+You can download ready-to-use versions for Windows, macOS, and Linux from the
+**[releases](https://github.com/danibcorr/kindle-notes-parser/releases)** page.
 
-Pre-compiled binaries for Linux, Windows, and macOS are available for immediate use on
-the official releases page. Users who prefer to build the software from the source must
-ensure that the Rust toolchain and Cargo package manager are installed on their system.
+To build it yourself, make sure you have the Rust toolchain and Cargo installed, then
+follow these steps:
 
-To begin the build process, clone the repository using the following command:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/danibcorr/kindle-notes-parser
+   ```
+2. **Compile the project:**
+   ```bash
+   cd kindle-notes-parser
+   cargo build --release
+   ```
+   The compiled executable will be in `target/release/`.
+
+### Usage
+
+Before running the tool on macOS or Linux, you must grant it execution permissions
+_(replace `knp` with the name of the file you downloaded)_:
 
 ```bash
-git clone https://github.com/danibcorr/kindle-notes-parser
+chmod +x knp
 ```
 
-Navigate into the project directory and execute the compilation command:
+To view all available options and features, use the `help` flag:
 
 ```bash
-cargo build --release
+./knp -h
 ```
-
-The resulting executable is located within the `target/release/` directory.
-
-## Usage
-
-The application requires a path to the source clippings file provided via the `-p` flag.
-Execution follows this syntax:
-
-```bash
-./target/release/kindle-notes-parser -p /path/to/your/annotations.txt
-```
-
-The parser analyzes the provided file and allows for the selection of specific titles.
-Upon completion, the tool generates a clean text file containing only the highlighted
-passages.
-
-Processed content is automatically exported to the `outputs/` directory using the naming
-convention `[Book Name].txt`. The output logic prioritizes the integrity of the original
-highlights while systematically removing non-essential data such as timestamps, page
-numbers, and location coordinates.
