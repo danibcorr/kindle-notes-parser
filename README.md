@@ -1,41 +1,37 @@
 ## Kindle Notes Parser
 
-**Kindle Notes Parser** is a Rust-based command-line interface tool that extracts
-highlights and annotations from your Kindle. Physical Kindle devices store this data in
-a file called `My Clippings.txt`. This tool is ideal for users who need clean, distilled
-text for personal knowledge management (like Obsidian or Notion) or as input for AI
-models.
+A Rust CLI tool that extracts and manages highlights from your Kindle's
+`My Clippings.txt` file. Ideal for exporting clean notes into personal knowledge tools
+(Obsidian, Notion) or as input for AI models. Licensed under [MIT](LICENSE).
 
 ### Installation
 
-You can download ready-to-use versions for Windows, macOS, and Linux from the
-**[releases](https://github.com/danibcorr/kindle-notes-parser/releases)** page.
+Download prebuilt binaries for Windows, macOS, and Linux from the
+[releases](https://github.com/danibcorr/kindle-notes-parser/releases) page.
 
-To build it yourself, make sure you have the Rust toolchain and Cargo installed, then
-follow these steps:
+Alternatively, you can build from source if you have Rust installed:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/danibcorr/kindle-notes-parser
-   ```
-2. **Compile the project:**
-   ```bash
-   cd kindle-notes-parser
-   cargo build --release
-   ```
-   The compiled executable will be in `target/release/`.
+```bash
+git clone https://github.com/danibcorr/kindle-notes-parser
+cd kindle-notes-parser
+cargo build --release
+```
 
-### Usage
+The compiled binary will be at `target/release/knp`.
 
-Before running the tool on macOS or Linux, you must grant it execution permissions
-_(replace `knp` with the name of the file you downloaded)_:
+### Usage and Available Commands
+
+On macOS/Linux, make sure the binary has execution permissions:
 
 ```bash
 chmod +x knp
 ```
 
-To view all available options and features, use the `help` flag:
+Both commands will display an interactive menu where you can select the book title you
+want to operate on.
 
-```bash
-./knp -h
-```
+| Command                     | Description                                                                 |
+| --------------------------- | --------------------------------------------------------------------------- |
+| `./knp -p <INPUT> <OUTPUT>` | Extract deduplicated highlights for a selected book to the output file.     |
+| `./knp -d <INPUT> <OUTPUT>` | Remove all notes for a selected book and write the rest to the output file. |
+| `./knp -h`                  | Show help.                                                                  |
