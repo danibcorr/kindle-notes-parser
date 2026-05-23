@@ -2,6 +2,8 @@ use clap::Parser;
 use std::path::PathBuf;
 mod cli;
 mod utils;
+use std::io::{self, Write};
+use std::process;
 
 fn process_input_args(input_args: &Vec<PathBuf>) -> (PathBuf, Option<&str>) {
     // The input could have one or two arguments
@@ -66,7 +68,19 @@ fn process_show_option(available_titles: &Vec<String>) {
     utils::utils::show_all_books(&available_titles);
 }
 
+fn process_exit_handler() {
+    ctrlc::set_handler(move || {
+        // ANSI code to display the cursor
+        print!("\x1b[?25h");
+        let _ = io::stdout().flush();
+        process::exit(0);
+    })
+    .expect("Error configuring Ctrl+C");
+}
+
 fn main() {
+    process_exit_handler();
+
     let cli_input = cli::structure::KindleCLI::parse();
 
     if let Some(input_args) = cli_input

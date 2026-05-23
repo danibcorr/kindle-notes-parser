@@ -16,7 +16,7 @@ pub fn read_file_notes(notes_path: &PathBuf) -> String {
         Ok(content) => content,
         Err(e) => {
             panic!("Error reading file: {}", e);
-        }
+        },
     };
 }
 
@@ -64,10 +64,7 @@ pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
             if content.chars().count() > MAX_TITLE_LENGTH {
                 format!(
                     "{}...",
-                    content
-                        .chars()
-                        .take(MAX_TITLE_LENGTH as usize)
-                        .collect::<String>()
+                    content.chars().take(MAX_TITLE_LENGTH as usize).collect::<String>()
                 )
             } else {
                 content.clone()
@@ -107,7 +104,7 @@ pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
                 );
 
                 selected_full
-            }
+            },
             None => std::process::exit(0),
         }
     } else {
@@ -159,14 +156,11 @@ pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str
 
     match file.write_all(unified_content.as_bytes()) {
         Ok(_) => {
-            println!(
-                "🟢 {}",
-                style("The file has been saved successfully").bold()
-            );
-        }
+            println!("🟢 {}", style("The file has been saved successfully").bold());
+        },
         Err(_) => {
             println!("🔴 {}", style("Error saving the file").bold());
-        }
+        },
     };
 }
 

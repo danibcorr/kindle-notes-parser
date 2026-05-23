@@ -21,14 +21,19 @@ pub fn terminal_processing(
             .items(display_labels)
             .default(0)
             .interact_opt()
-            .expect("Error in the terminal");
+            .unwrap_or(None);
 
-        // This is another menu for the confirmation, to display a y/n option
-        let selection_confirmation =
-            dialoguer::Confirm::with_theme(&ColorfulTheme::default())
-                .with_prompt("Do you want to continue?")
-                .interact_on(&terminal)
-                .unwrap();
+        let selection_confirmation = {
+            if !selection.is_none() {
+                // This is another menu for the confirmation, to display a y/n option
+                dialoguer::Confirm::with_theme(&ColorfulTheme::default())
+                    .with_prompt("Do you want to continue?")
+                    .interact_on(&terminal)
+                    .unwrap()
+            } else {
+                std::process::exit(0);
+            }
+        };
 
         return (terminal, selection, selection_confirmation);
     } else {
