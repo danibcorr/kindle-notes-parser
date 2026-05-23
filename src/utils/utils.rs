@@ -55,10 +55,10 @@ pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
     return available_titles_filtered;
 }
 
-pub fn select_book_title_index(available_titles: Vec<String>) -> String {
+pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
     // Book titles can be very long, so we can count the number of characters in each
     // title and, if it exceeds a certain limit, add an ellipsis
-    let display_labels: Vec<String> = available_titles
+    return available_titles
         .iter()
         .map(|content| {
             if content.chars().count() > MAX_TITLE_LENGTH {
@@ -74,9 +74,20 @@ pub fn select_book_title_index(available_titles: Vec<String>) -> String {
             }
         })
         .collect();
+}
+
+pub fn show_all_books(available_titles: &Vec<String>) {
+    let display_labels: Vec<String> = display_labels(&available_titles);
+    terminal::terminal_processing(&display_labels, false);
+}
+
+pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
+    // Book titles can be very long, so we can count the number of characters in each
+    // title and, if it exceeds a certain limit, add an ellipsis
+    let display_labels: Vec<String> = display_labels(&available_titles);
 
     let (terminal, selection, selection_confirmation) =
-        terminal::terminal_processing(&display_labels);
+        terminal::terminal_processing(&display_labels, true);
 
     // The selection retains the title's index, we need to select the entire title
     if selection_confirmation {

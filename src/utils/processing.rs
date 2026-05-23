@@ -1,6 +1,6 @@
 pub fn clean_content(content: &str) -> String {
-    // Remove whitespace, convert to a string, and replace
-    // a character that appears in the notes
+    // Remove whitespace, convert to a string, and replace a character that appears
+    // in the notes
     return content.trim().to_string().replace("\u{feff}", "");
 }
 
