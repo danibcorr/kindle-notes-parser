@@ -16,7 +16,7 @@ pub fn read_file_notes(notes_path: &PathBuf) -> String {
         Ok(content) => content,
         Err(e) => {
             panic!("Error reading file: {}", e);
-        }
+        },
     };
 }
 
@@ -55,28 +55,36 @@ pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
     return available_titles_filtered;
 }
 
-pub fn select_book_title_index(available_titles: Vec<String>) -> String {
+pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
     // Book titles can be very long, so we can count the number of characters in each
     // title and, if it exceeds a certain limit, add an ellipsis
-    let display_labels: Vec<String> = available_titles
+    return available_titles
         .iter()
         .map(|content| {
             if content.chars().count() > MAX_TITLE_LENGTH {
                 format!(
                     "{}...",
-                    content
-                        .chars()
-                        .take(MAX_TITLE_LENGTH as usize)
-                        .collect::<String>()
+                    content.chars().take(MAX_TITLE_LENGTH as usize).collect::<String>()
                 )
             } else {
                 content.clone()
             }
         })
         .collect();
+}
+
+pub fn show_all_books(available_titles: &Vec<String>) {
+    let display_labels: Vec<String> = display_labels(&available_titles);
+    terminal::terminal_processing(&display_labels, false);
+}
+
+pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
+    // Book titles can be very long, so we can count the number of characters in each
+    // title and, if it exceeds a certain limit, add an ellipsis
+    let display_labels: Vec<String> = display_labels(&available_titles);
 
     let (terminal, selection, selection_confirmation) =
-        terminal::terminal_processing(&display_labels);
+        terminal::terminal_processing(&display_labels, true);
 
     // The selection retains the title's index, we need to select the entire title
     if selection_confirmation {
@@ -96,7 +104,7 @@ pub fn select_book_title_index(available_titles: Vec<String>) -> String {
                 );
 
                 selected_full
-            }
+            },
             None => std::process::exit(0),
         }
     } else {
@@ -148,14 +156,11 @@ pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str
 
     match file.write_all(unified_content.as_bytes()) {
         Ok(_) => {
-            println!(
-                "🟢 {}",
-                style("The file has been saved successfully").bold()
-            );
-        }
+            println!("🟢 {}", style("The file has been saved successfully").bold());
+        },
         Err(_) => {
             println!("🔴 {}", style("Error saving the file").bold());
-        }
+        },
     };
 }
 
