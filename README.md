@@ -32,6 +32,7 @@ want to operate on.
 
 | Command                     | Description                                                                 |
 | --------------------------- | --------------------------------------------------------------------------- |
+| `./knp -s <INPUT>`          | Show all available book titles in the file.                                 |
 | `./knp -p <INPUT> <OUTPUT>` | Extract deduplicated highlights for a selected book to the output file.     |
 | `./knp -d <INPUT> <OUTPUT>` | Remove all notes for a selected book and write the rest to the output file. |
 | `./knp -h`                  | Show help.                                                                  |
