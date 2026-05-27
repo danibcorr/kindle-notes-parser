@@ -1,7 +1,7 @@
 pub fn clean_content(content: &str) -> String {
     // Remove whitespace, convert to a string, and replace a character that appears
     // in the notes
-    return content.trim().to_string().replace("\u{feff}", "");
+    content.trim().to_string().replace("\u{feff}", "")
 }
 
 pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
@@ -10,7 +10,7 @@ pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
         content.into_iter().enumerate().collect();
 
     // Sort the content by string length in descending order
-    indexed_content.sort_by(|a, b| b.1.len().cmp(&a.1.len()));
+    indexed_content.sort_by(|vect_a, vect_b| vect_b.1.len().cmp(&vect_a.1.len()));
 
     // Create a new vector to store the filtered results
     let mut results: Vec<(usize, String)> = Vec::new();
@@ -18,14 +18,15 @@ pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
     // Iterate to check if the indexed content is a substring of an existing result;
     // push it if it's not already contained
     for (idx, content) in indexed_content {
-        if !results.iter().any(|(_, r_content)| r_content.contains(&content)) {
+        if !results.iter().any(|(_, result_content)| result_content.contains(&content))
+        {
             results.push((idx, content));
         }
     }
 
     // Sort the results by their original keys (the indices) to restore chronological order
-    results.sort_by_key(|(r_idx, _)| *r_idx);
+    results.sort_by_key(|(result_idx, _)| *result_idx);
 
     // Extract only the text content for the final output
-    return results.into_iter().map(|(_, r_content)| r_content).collect();
+    results.into_iter().map(|(_, result_content)| result_content).collect()
 }

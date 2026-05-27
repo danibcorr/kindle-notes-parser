@@ -5,6 +5,7 @@ use std::collections::HashSet;
 use std::fs;
 use std::fs::File;
 use std::io::Write;
+use std::path::Path;
 use std::path::PathBuf;
 
 const NUM_LINES_CLIPPING_FORMAT: usize = 5;
@@ -12,12 +13,12 @@ const STARTING_INDEX_CONTENT: usize = 3;
 const MAX_TITLE_LENGTH: usize = 50;
 
 pub fn read_file_notes(notes_path: &PathBuf) -> String {
-    return match fs::read_to_string(notes_path) {
+    match fs::read_to_string(notes_path) {
         Ok(content) => content,
         Err(e) => {
             panic!("Error reading file: {}", e);
         },
-    };
+    }
 }
 
 pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
@@ -52,13 +53,13 @@ pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
         available_titles_filtered.into_iter().collect();
     available_titles_filtered.sort();
 
-    return available_titles_filtered;
+    available_titles_filtered
 }
 
 pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
     // Book titles can be very long, so we can count the number of characters in each
     // title and, if it exceeds a certain limit, add an ellipsis
-    return available_titles
+    available_titles
         .iter()
         .map(|content| {
             if content.chars().count() > MAX_TITLE_LENGTH {
@@ -70,7 +71,7 @@ pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
                 content.clone()
             }
         })
-        .collect();
+        .collect()
 }
 
 pub fn show_all_books(available_titles: &Vec<String>) {
@@ -109,8 +110,7 @@ pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
         }
     } else {
         terminal.clear_last_lines(2).unwrap();
-        select_book_title_index(available_titles);
-        std::process::exit(0);
+        select_book_title_index(available_titles)
     }
 }
 
@@ -133,26 +133,18 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
         }
     }
 
-    return processing::delete_duplicates(results);
+    processing::delete_duplicates(results)
 }
 
 pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str) {
-    // We need to extract from the output format, i.e., output/output.txt,
-    // the initial part without the file name, i.e., output, to create a folder with that
-    // name
-    let path_directory: Vec<&str> = output_path_notes.split('/').collect();
-    let path_directory_without_file =
-        path_directory.get(0..path_directory.len() - 1).unwrap();
-    let path_directory_without_file = path_directory_without_file.join("/");
-
-    // Once we have parsed the expecte output path we create this folder
-    fs::create_dir_all(path_directory_without_file)
-        .expect("Error creating the output folder");
+    let path: &Path = Path::new(output_path_notes);
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).expect("Error creating the output folder");
+    }
 
     // Now we can create the file in this folder
-    let mut file = File::create(output_path_notes).expect("Error creating file");
-
-    let unified_content = selected_title_content.join("\n");
+    let mut file: File = File::create(output_path_notes).expect("Error creating file");
+    let unified_content: String = selected_title_content.join("\n");
 
     match file.write_all(unified_content.as_bytes()) {
         Ok(_) => {
@@ -188,5 +180,5 @@ pub fn delete_content(notes_content: &str, selected_title: &str) -> Vec<String> 
         }
     }
 
-    return results;
+    results
 }

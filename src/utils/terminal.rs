@@ -20,22 +20,28 @@ pub fn terminal_processing(
             .with_prompt("Select one of the titles found")
             .items(display_labels)
             .default(0)
-            .interact_opt()
-            .unwrap_or(None);
+            .interact_on_opt(&terminal)
+            .unwrap_or_else(|_| {
+                let _ = terminal.show_cursor();
+                std::process::exit(0);
+            });
 
         let selection_confirmation = {
-            if !selection.is_none() {
+            if let Some(_) = selection {
                 // This is another menu for the confirmation, to display a y/n option
                 dialoguer::Confirm::with_theme(&ColorfulTheme::default())
                     .with_prompt("Do you want to continue?")
                     .interact_on(&terminal)
-                    .unwrap()
+                    .unwrap_or_else(|_| {
+                        let _ = terminal.show_cursor();
+                        std::process::exit(0);
+                    })
             } else {
                 std::process::exit(0);
             }
         };
 
-        return (terminal, selection, selection_confirmation);
+        (terminal, selection, selection_confirmation)
     } else {
         // This is to copy the same style as ColorfulTheme
         println!(
@@ -49,6 +55,6 @@ pub fn terminal_processing(
             println!("{} {titles}", style("❯".to_string()).for_stderr().green());
         }
 
-        return (terminal, None, false);
+        (terminal, None, false)
     }
 }
