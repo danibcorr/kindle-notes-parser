@@ -1,3 +1,6 @@
+use crate::utils::constants::{
+    MAX_TITLE_LENGTH, NUM_LINES_CLIPPING_FORMAT, STARTING_INDEX_CONTENT,
+};
 use crate::utils::processing;
 use crate::utils::terminal;
 use console::style;
@@ -7,10 +10,6 @@ use std::fs::File;
 use std::io::Write;
 use std::path::Path;
 use std::path::PathBuf;
-
-const NUM_LINES_CLIPPING_FORMAT: usize = 5;
-const STARTING_INDEX_CONTENT: usize = 3;
-const MAX_TITLE_LENGTH: usize = 50;
 
 pub fn read_file_notes(notes_path: &PathBuf) -> String {
     match fs::read_to_string(notes_path) {

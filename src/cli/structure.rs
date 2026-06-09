@@ -1,4 +1,4 @@
-use clap::{ColorChoice, Parser};
+use clap::{ColorChoice, Parser, Subcommand};
 use std::path::PathBuf;
 
 #[derive(Parser)]
@@ -7,15 +7,38 @@ use std::path::PathBuf;
 #[command(color = ColorChoice::Auto)]
 #[command(arg_required_else_help = true)]
 pub struct KindleCLI {
+    #[command(subcommand)]
+    pub(crate) command: Commands,
+}
+
+#[derive(Subcommand)]
+pub enum Commands {
     /// Show all available books in the file
-    #[arg(short, long, num_args = 1, value_names = ["INPUT_FILE_PATH"], group = "action")]
-    pub(crate) show: Option<Vec<PathBuf>>,
+    Show {
+        /// Path to the Kindle 'My Clippings.txt' file
+        #[arg(short, long)]
+        input_path_notes: PathBuf,
+    },
 
     /// Parse the txt file given the directory of that file
-    #[arg(short, long, num_args = 2, value_names = ["INPUT_FILE_PATH", "OUTPUT_FILE_PATH"], group = "action")]
-    pub(crate) parser: Option<Vec<PathBuf>>,
+    Parser {
+        /// Path to the Kindle 'My Clippings.txt' file
+        #[arg(short, long)]
+        input_path_notes: PathBuf,
+
+        /// Path where the parsed notes will be saved
+        #[arg(short, long)]
+        output_path_notes: PathBuf,
+    },
 
     /// Delete all notes for a given title from the directory containing that file
-    #[arg(short, long, num_args = 2, value_names = ["INPUT_FILE_PATH", "OUTPUT_FILE_PATH"], group = "action")]
-    pub(crate) delete: Option<Vec<PathBuf>>,
+    Delete {
+        /// Path to the Kindle 'My Clippings.txt' file
+        #[arg(short, long)]
+        input_path_notes: PathBuf,
+
+        /// Path to the output directory/file
+        #[arg(short, long)]
+        output_path_notes: PathBuf,
+    },
 }

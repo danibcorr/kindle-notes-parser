@@ -15,7 +15,7 @@ pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
     // Create a new vector to store the filtered results
     let mut results: Vec<(usize, String)> = Vec::new();
 
-    // Iterate to check if the indexed content is a substring of an existing result;
+    // Iterate to check if the indexed content is a substring of an existing result,
     // push it if it's not already contained
     for (idx, content) in indexed_content {
         if !results.iter().any(|(_, result_content)| result_content.contains(&content))
