@@ -18,7 +18,9 @@ pub fn delete_duplicates(content: Vec<String>) -> Vec<String> {
     // push it if it's not already contained
     for (idx, content) in indexed_content {
         if content.is_empty()
-            || results.iter().any(|(_, result_content)| result_content.contains(&content))
+            || results
+                .iter()
+                .any(|(_, result_content)| result_content.contains(&content))
         {
             continue;
         }

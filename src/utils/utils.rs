@@ -77,19 +77,9 @@ pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
 
         // The selection retains the title's index, we need to select the entire title
         if confirmed {
-            terminal.clear_last_lines(1).unwrap();
-
             match selection {
                 Some(index) => {
                     terminal.clear_last_lines(1).unwrap();
-
-                    println!(
-                        "{} {} {}",
-                        style("📖"),
-                        style("Selected:").bold(),
-                        style(&display_labels[index]).yellow()
-                    );
-
                     return available_titles[index].clone();
                 },
                 None => std::process::exit(0),

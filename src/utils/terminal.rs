@@ -24,6 +24,18 @@ pub fn terminal_processing(
                 std::process::exit(0);
             });
 
+        terminal.clear_last_lines(1).unwrap();
+
+        let selected_index =
+            selection_menu_titles.unwrap_or_else(|| std::process::exit(0));
+
+        println!(
+            "{} {} · {}",
+            style("📖"),
+            style("Selected title").bold(),
+            style(display_labels[selected_index].clone()).green()
+        );
+
         let selection_menu_confirmation: bool =
             Confirm::with_theme(&ColorfulTheme::default())
                 .with_prompt("Do you want to continue?")
@@ -39,7 +51,7 @@ pub fn terminal_processing(
         println!(
             "{} {} {}",
             style("📚".to_string()),
-            style("Here are all the available titles").bold(),
+            style("Available titles").bold(),
             style("›".to_string()).for_stderr().black().bright(),
         );
 
