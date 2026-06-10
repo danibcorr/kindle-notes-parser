@@ -1,18 +1,15 @@
 use crate::utils::constants::{
     MAX_TITLE_LENGTH, NUM_LINES_CLIPPING_FORMAT, STARTING_INDEX_CONTENT,
 };
-use crate::utils::processing;
-use crate::utils::terminal;
+use crate::utils::processing::{clean_content, delete_duplicates};
+use crate::utils::terminal::terminal_processing;
 use console::style;
 use std::collections::HashSet;
-use std::fs;
-use std::fs::File;
-use std::io::Write;
+use std::fs::{create_dir_all, read_to_string, write};
 use std::path::Path;
-use std::path::PathBuf;
 
-pub fn read_file_notes(notes_path: &PathBuf) -> String {
-    match fs::read_to_string(notes_path) {
+pub fn read_file_notes(notes_path: &Path) -> String {
+    match read_to_string(notes_path) {
         Ok(content) => content,
         Err(e) => {
             panic!("Error reading file: {}", e);
@@ -21,38 +18,29 @@ pub fn read_file_notes(notes_path: &PathBuf) -> String {
 }
 
 pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
-    let iterable_doc_content = notes_content.lines();
+    let mut titles_seen = HashSet::new();
 
     // We create an iterable from the contents of the notes, which allows us to iterate
     // through each line. When we use `enumerate`, for each line iterated, we get its
     // index and value. If the index, when divided by 5 (which represents each block of
     // a note for a book), yields an exact result, then we have the title of the book
     // for that note
-    let mut available_titles: Vec<String> = iterable_doc_content
+    let mut available_titles: Vec<String> = notes_content
+        .lines()
         .enumerate()
         .filter_map(|(index, content)| {
             if index % NUM_LINES_CLIPPING_FORMAT == 0 {
-                Some(processing::clean_content(content))
+                let title = clean_content(content);
+                if titles_seen.insert(title.clone()) { Some(title) } else { None }
             } else {
                 None
             }
         })
         .collect();
 
-    // We can remove duplicate titles that appear in different sections of the
-    // notes by using a HashSet. We create an empty one and insert the values; it
-    // only keeps unique values
-    let mut available_titles_filtered: HashSet<String> = HashSet::new();
+    available_titles.sort();
+
     available_titles
-        .retain(|titles| available_titles_filtered.insert(titles.to_string()));
-
-    // Convert the HashSet to a string to iterate through the available titles
-    // and sort them so that they are always displayed in the same order on the terminal
-    let mut available_titles_filtered: Vec<String> =
-        available_titles_filtered.into_iter().collect();
-    available_titles_filtered.sort();
-
-    available_titles_filtered
 }
 
 pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
@@ -75,7 +63,7 @@ pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
 
 pub fn show_all_books(available_titles: &Vec<String>) {
     let display_labels: Vec<String> = display_labels(&available_titles);
-    terminal::terminal_processing(&display_labels, false);
+    terminal_processing(&display_labels, false);
 }
 
 pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
@@ -83,33 +71,32 @@ pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
     // title and, if it exceeds a certain limit, add an ellipsis
     let display_labels: Vec<String> = display_labels(&available_titles);
 
-    let (terminal, selection, selection_confirmation) =
-        terminal::terminal_processing(&display_labels, true);
+    loop {
+        let (terminal, selection, confirmed) =
+            terminal_processing(&display_labels, true);
 
-    // The selection retains the title's index, we need to select the entire title
-    if selection_confirmation {
-        terminal.clear_last_lines(1).unwrap();
+        // The selection retains the title's index, we need to select the entire title
+        if confirmed {
+            terminal.clear_last_lines(1).unwrap();
 
-        match selection {
-            Some(index) => {
-                let selected_full = available_titles[index].clone();
+            match selection {
+                Some(index) => {
+                    terminal.clear_last_lines(1).unwrap();
 
-                terminal.clear_last_lines(1).unwrap();
+                    println!(
+                        "{} {} {}",
+                        style("📖"),
+                        style("Selected:").bold(),
+                        style(&display_labels[index]).yellow()
+                    );
 
-                println!(
-                    "{} {} {}",
-                    style("📖"),
-                    style("Selected:").bold(),
-                    style(&display_labels[index]).yellow()
-                );
-
-                selected_full
-            },
-            None => std::process::exit(0),
+                    return available_titles[index].clone();
+                },
+                None => std::process::exit(0),
+            }
+        } else {
+            terminal.clear_last_lines(2).unwrap();
         }
-    } else {
-        terminal.clear_last_lines(2).unwrap();
-        select_book_title_index(available_titles)
     }
 }
 
@@ -117,12 +104,12 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
     // We convert an &str to a Vector to iterate over it
     let notes_content_vector: Vec<&str> = notes_content.lines().collect();
 
-    let mut results = Vec::new();
-
     // We iterate every 5 lines, which correspond to each block of a note in a book.
     // The content is always 3 positions away from the block's starting position.
+    let mut results = Vec::new();
+
     for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
-        let book_title = processing::clean_content(notes_content_vector[index]);
+        let book_title = clean_content(notes_content_vector[index]);
         if book_title == selected_title {
             if let Some(book_content) =
                 notes_content_vector.get(index + STARTING_INDEX_CONTENT)
@@ -132,20 +119,17 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
         }
     }
 
-    processing::delete_duplicates(results)
+    delete_duplicates(results)
 }
 
-pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &str) {
-    let path: &Path = Path::new(output_path_notes);
-    if let Some(parent) = path.parent() {
-        fs::create_dir_all(parent).expect("Error creating the output folder");
+pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &Path) {
+    if let Some(parent) = output_path_notes.parent() {
+        create_dir_all(parent).expect("Error creating the output folder");
     }
 
-    // Now we can create the file in this folder
-    let mut file: File = File::create(output_path_notes).expect("Error creating file");
     let unified_content: String = selected_title_content.join("\n");
 
-    match file.write_all(unified_content.as_bytes()) {
+    match write(output_path_notes, unified_content) {
         Ok(_) => {
             println!("🟢 {}", style("The file has been saved successfully").bold());
         },
@@ -168,7 +152,7 @@ pub fn delete_content(notes_content: &str, selected_title: &str) -> Vec<String> 
     // of the notes, we must add “\n” between each line of the content and, at the end
     // of the block, “==========”
     for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
-        let book_title = processing::clean_content(notes_content_vector[index]);
+        let book_title = clean_content(notes_content_vector[index]);
         if book_title != selected_title {
             if let Some(book_content) =
                 notes_content_vector.get(index..index + NUM_LINES_CLIPPING_FORMAT - 1)
