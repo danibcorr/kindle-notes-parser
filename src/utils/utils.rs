@@ -4,7 +4,7 @@ use crate::utils::constants::{
 use crate::utils::processing::{clean_content, delete_duplicates};
 use crate::utils::terminal::terminal_processing;
 use console::style;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::fs::{create_dir_all, read_to_string, write};
 use std::path::Path;
 
@@ -112,7 +112,26 @@ pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
     delete_duplicates(results)
 }
 
-pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &Path) {
+pub fn get_all_content(notes_content: &str) -> HashMap<String, Vec<String>> {
+    let notes_content_vector: Vec<&str> = notes_content.lines().collect();
+    let mut map: HashMap<String, Vec<String>> = HashMap::new();
+
+    for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
+        let title = clean_content(notes_content_vector[index]);
+        if let Some(content) = notes_content_vector.get(index + STARTING_INDEX_CONTENT)
+        {
+            map.entry(title).or_default().push(content.to_string());
+        }
+    }
+
+    map.into_iter().map(|(title, notes)| (title, delete_duplicates(notes))).collect()
+}
+
+pub fn save_content(
+    title: &String,
+    selected_title_content: &Vec<String>,
+    output_path_notes: &Path,
+) {
     if let Some(parent) = output_path_notes.parent() {
         create_dir_all(parent).expect("Error creating the output folder");
     }
@@ -121,7 +140,14 @@ pub fn save_content(selected_title_content: Vec<String>, output_path_notes: &Pat
 
     match write(output_path_notes, unified_content) {
         Ok(_) => {
-            println!("🟢 {}", style("The file has been saved successfully").bold());
+            println!(
+                "🟢 {}",
+                style(format!(
+                    "The file '{}' has been saved successfully",
+                    style(&title).italic()
+                ))
+                .bold()
+            );
         },
         Err(_) => {
             println!("🔴 {}", style("Error saving the file").bold());

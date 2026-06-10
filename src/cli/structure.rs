@@ -35,7 +35,7 @@ pub enum Commands {
     /// Parse the txt file given the directory of that file
     #[command(
         short_flag = 'p',
-        override_usage = "knp {parser|-p} {--input-path-notes|-i} <INPUT_PATH_NOTES> {--output-path-notes|-o} <OUTPUT_PATH_NOTES>"
+        override_usage = "knp {parser|-p} {--input-path-notes|-i} <INPUT_PATH_NOTES> [{--output-path-notes|-o} <OUTPUT_PATH_NOTES>] [{--export-all-notes|-a}]"
     )]
     Parser {
         /// Path to the Kindle 'My Clippings.txt' file
@@ -43,8 +43,12 @@ pub enum Commands {
         input_path_notes: PathBuf,
 
         /// Path where the parsed notes will be saved
-        #[arg(short = 'o', long)]
-        output_path_notes: PathBuf,
+        #[arg(short = 'o', long, required_unless_present = "export_all_notes")]
+        output_path_notes: Option<PathBuf>,
+
+        /// Export all notes to individual files in an outputs/ directory
+        #[arg(short = 'a', long)]
+        export_all_notes: bool,
     },
 
     /// Delete all notes for a given title from the directory containing that file
