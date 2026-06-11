@@ -6,9 +6,10 @@ use clap::Parser;
 use cli::structure::{Commands, KindleCLI};
 use handlers::terminal::set_ctrlc_handler;
 use std::path::PathBuf;
-use std::thread;
 use utils::io::{read_file_notes, save_content};
-use utils::parser::{delete_content, extract_book_titles, get_all_content, get_content};
+use utils::parser::{
+    delete_content, extract_book_titles, get_all_content, get_content,
+};
 use utils::selection::{select_book_title_index, show_all_books};
 
 fn main() {
@@ -27,21 +28,12 @@ fn main() {
             if export_all_notes {
                 let all_notes = get_all_content(&content);
 
-                let handles = all_notes
-                    .into_iter()
-                    .map(|(title, notes)| {
-                        thread::spawn(move || {
-                            save_content(
-                                &title,
-                                &notes,
-                                &PathBuf::from(format!("outputs/{}.txt", title)),
-                            );
-                        })
-                    })
-                    .collect::<Vec<_>>();
-
-                for handle in handles {
-                    handle.join().unwrap();
+                for (title, notes) in all_notes {
+                    save_content(
+                        &title,
+                        &notes,
+                        &PathBuf::from(format!("outputs/{}.txt", title)),
+                    );
                 }
             } else {
                 let title = select_book_title_index(&titles);
