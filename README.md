@@ -1,8 +1,9 @@
 ## Kindle Notes Parser
 
-A Rust CLI tool that extracts and manages highlights from your Kindle's
-`My Clippings.txt` file. Ideal for exporting clean notes into personal knowledge tools
-(Obsidian, Notion) or as input for AI models. Licensed under [MIT](LICENSE).
+Kindle Notes Parser (`knp`) is a Rust CLI tool that extracts and manages highlights from
+your Kindle's `My Clippings.txt` file. Ideal for exporting clean notes into personal
+knowledge tools (i.e. Obsidian, Notion) or as input for AI models. Licensed under
+[MIT](LICENSE).
 
 ### Installation
 
@@ -36,6 +37,14 @@ chmod +x knp
 | `knp delete` / `knp -d` | Remove all notes for a selected book and write the rest to the output file. |
 | `knp help` / `knp -h`   | Show help.                                                                  |
 
+#### Flags Reference
+
+| Flag | Long                  | Description                                   |
+| ---- | --------------------- | --------------------------------------------- |
+| `-i` | `--input-path-notes`  | Path to the Kindle `My Clippings.txt` file.   |
+| `-o` | `--output-path-notes` | Path where the output will be saved.          |
+| `-a` | `--export-all-notes`  | Export all books at once (only for `parser`). |
+
 #### Examples
 
 Show all book titles:
@@ -61,11 +70,3 @@ Delete all notes for a selected book:
 ```bash
 knp delete -i "My Clippings.txt" -o "cleaned.txt"
 ```
-
-#### Flags Reference
-
-| Flag | Long                  | Description                                   |
-| ---- | --------------------- | --------------------------------------------- |
-| `-i` | `--input-path-notes`  | Path to the Kindle `My Clippings.txt` file.   |
-| `-o` | `--output-path-notes` | Path where the output will be saved.          |
-| `-a` | `--export-all-notes`  | Export all books at once (only for `parser`). |
