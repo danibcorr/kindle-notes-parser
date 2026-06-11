@@ -7,10 +7,9 @@ use cli::structure::{Commands, KindleCLI};
 use handlers::terminal::set_ctrlc_handler;
 use std::path::PathBuf;
 use std::thread;
-use utils::utils::{
-    delete_content, extract_book_titles, get_all_content, get_content, read_file_notes,
-    save_content, select_book_title_index, show_all_books,
-};
+use utils::io::{read_file_notes, save_content};
+use utils::parser::{delete_content, extract_book_titles, get_all_content, get_content};
+use utils::selection::{select_book_title_index, show_all_books};
 
 fn main() {
     set_ctrlc_handler();

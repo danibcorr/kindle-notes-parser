@@ -2,20 +2,7 @@ use crate::utils::constants::{
     MAX_TITLE_LENGTH, NUM_LINES_CLIPPING_FORMAT, STARTING_INDEX_CONTENT,
 };
 use crate::utils::processing::{clean_content, delete_duplicates};
-use crate::utils::terminal::terminal_processing;
-use console::style;
 use std::collections::{HashMap, HashSet};
-use std::fs::{create_dir_all, read_to_string, write};
-use std::path::Path;
-
-pub fn read_file_notes(notes_path: &Path) -> String {
-    match read_to_string(notes_path) {
-        Ok(content) => content,
-        Err(e) => {
-            panic!("Error reading file: {}", e);
-        },
-    }
-}
 
 pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
     let mut titles_seen = HashSet::new();
@@ -61,35 +48,6 @@ pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
         .collect()
 }
 
-pub fn show_all_books(available_titles: &Vec<String>) {
-    let display_labels: Vec<String> = display_labels(&available_titles);
-    terminal_processing(&display_labels, false);
-}
-
-pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
-    // Book titles can be very long, so we can count the number of characters in each
-    // title and, if it exceeds a certain limit, add an ellipsis
-    let display_labels: Vec<String> = display_labels(&available_titles);
-
-    loop {
-        let (terminal, selection, confirmed) =
-            terminal_processing(&display_labels, true);
-
-        // The selection retains the title's index, we need to select the entire title
-        if confirmed {
-            match selection {
-                Some(index) => {
-                    terminal.clear_last_lines(1).unwrap();
-                    return available_titles[index].clone();
-                },
-                None => std::process::exit(0),
-            }
-        } else {
-            terminal.clear_last_lines(2).unwrap();
-        }
-    }
-}
-
 pub fn get_content(notes_content: &str, selected_title: &str) -> Vec<String> {
     // We convert an &str to a Vector to iterate over it
     let notes_content_vector: Vec<&str> = notes_content.lines().collect();
@@ -127,34 +85,6 @@ pub fn get_all_content(notes_content: &str) -> HashMap<String, Vec<String>> {
     map.into_iter().map(|(title, notes)| (title, delete_duplicates(notes))).collect()
 }
 
-pub fn save_content(
-    title: &String,
-    selected_title_content: &Vec<String>,
-    output_path_notes: &Path,
-) {
-    if let Some(parent) = output_path_notes.parent() {
-        create_dir_all(parent).expect("Error creating the output folder");
-    }
-
-    let unified_content: String = selected_title_content.join("\n");
-
-    match write(output_path_notes, unified_content) {
-        Ok(_) => {
-            println!(
-                "🟢 {}",
-                style(format!(
-                    "The file '{}' has been saved successfully",
-                    style(&title).italic()
-                ))
-                .bold()
-            );
-        },
-        Err(_) => {
-            println!("🔴 {}", style("Error saving the file").bold());
-        },
-    };
-}
-
 pub fn delete_content(notes_content: &str, selected_title: &str) -> Vec<String> {
     // We convert an &str to a Vector to iterate over it
     let notes_content_vector: Vec<&str> = notes_content.lines().collect();
@@ -165,8 +95,8 @@ pub fn delete_content(notes_content: &str, selected_title: &str) -> Vec<String> 
     // The content is always 3 positions away from the block's starting position.
     // We only keep the content if the title does not match the title
     // of the book selected by the user, and to maintain the consistency of the format
-    // of the notes, we must add “\n” between each line of the content and, at the end
-    // of the block, “==========”
+    // of the notes, we must add "\n" between each line of the content and, at the end
+    // of the block, "=========="
     for index in (0..notes_content_vector.len()).step_by(NUM_LINES_CLIPPING_FORMAT) {
         let book_title = clean_content(notes_content_vector[index]);
         if book_title != selected_title {
