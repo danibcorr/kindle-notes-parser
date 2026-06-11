@@ -19,7 +19,7 @@ cargo build --release
 
 The compiled binary will be at `target/release/knp`.
 
-### Usage and Available Commands
+### Usage
 
 On macOS/Linux, make sure the binary has execution permissions:
 
@@ -27,12 +27,45 @@ On macOS/Linux, make sure the binary has execution permissions:
 chmod +x knp
 ```
 
-Both commands will display an interactive menu where you can select the book title you
-want to operate on.
+#### Available Commands
 
-| Command                     | Description                                                                 |
-| --------------------------- | --------------------------------------------------------------------------- |
-| `./knp -s <INPUT>`          | Show all available book titles in the file.                                 |
-| `./knp -p <INPUT> <OUTPUT>` | Extract deduplicated highlights for a selected book to the output file.     |
-| `./knp -d <INPUT> <OUTPUT>` | Remove all notes for a selected book and write the rest to the output file. |
-| `./knp -h`                  | Show help.                                                                  |
+| Command                 | Description                                                                 |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `knp show` / `knp -s`   | Show all available book titles in the file.                                 |
+| `knp parser` / `knp -p` | Extract deduplicated highlights for a selected book to an output file.      |
+| `knp delete` / `knp -d` | Remove all notes for a selected book and write the rest to the output file. |
+| `knp help` / `knp -h`   | Show help.                                                                  |
+
+#### Examples
+
+Show all book titles:
+
+```bash
+knp show -i "My Clippings.txt"
+```
+
+Extract highlights for a single book (interactive selection):
+
+```bash
+knp parser -i "My Clippings.txt" -o "notes.txt"
+```
+
+Export all books to individual files in an `outputs/` directory:
+
+```bash
+knp parser -i "My Clippings.txt" --export-all-notes
+```
+
+Delete all notes for a selected book:
+
+```bash
+knp delete -i "My Clippings.txt" -o "cleaned.txt"
+```
+
+#### Flags Reference
+
+| Flag | Long                  | Description                                   |
+| ---- | --------------------- | --------------------------------------------- |
+| `-i` | `--input-path-notes`  | Path to the Kindle `My Clippings.txt` file.   |
+| `-o` | `--output-path-notes` | Path where the output will be saved.          |
+| `-a` | `--export-all-notes`  | Export all books at once (only for `parser`). |
