@@ -2,7 +2,7 @@ use console::{Term, style};
 use dialoguer::{Confirm, Select, theme::ColorfulTheme};
 
 pub fn terminal_processing(
-    display_labels: &Vec<String>,
+    display_labels: &[String],
     use_title_selector: bool,
 ) -> (Term, Option<usize>, bool) {
     let terminal: Term = Term::stdout();

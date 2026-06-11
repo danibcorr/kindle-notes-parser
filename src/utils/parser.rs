@@ -30,7 +30,7 @@ pub fn extract_book_titles(notes_content: &str) -> Vec<String> {
     available_titles
 }
 
-pub fn display_labels(available_titles: &Vec<String>) -> Vec<String> {
+pub fn display_labels(available_titles: &[String]) -> Vec<String> {
     // Book titles can be very long, so we can count the number of characters in each
     // title and, if it exceeds a certain limit, add an ellipsis
     available_titles

@@ -1,15 +1,15 @@
 use crate::utils::parser::display_labels;
 use crate::utils::terminal::terminal_processing;
 
-pub fn show_all_books(available_titles: &Vec<String>) {
-    let display_labels: Vec<String> = display_labels(&available_titles);
+pub fn show_all_books(available_titles: &[String]) {
+    let display_labels: Vec<String> = display_labels(available_titles);
     terminal_processing(&display_labels, false);
 }
 
-pub fn select_book_title_index(available_titles: &Vec<String>) -> String {
+pub fn select_book_title_index(available_titles: &[String]) -> String {
     // Book titles can be very long, so we can count the number of characters in each
     // title and, if it exceeds a certain limit, add an ellipsis
-    let display_labels: Vec<String> = display_labels(&available_titles);
+    let display_labels: Vec<String> = display_labels(available_titles);
 
     loop {
         let (terminal, selection, confirmed) =

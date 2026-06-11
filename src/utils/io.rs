@@ -12,8 +12,8 @@ pub fn read_file_notes(notes_path: &Path) -> String {
 }
 
 pub fn save_content(
-    title: &String,
-    selected_title_content: &Vec<String>,
+    title: &str,
+    selected_title_content: &[String],
     output_path_notes: &Path,
 ) {
     if let Some(parent) = output_path_notes.parent() {
