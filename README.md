@@ -1,3 +1,17 @@
+<p align="center">
+  <img src="./assets/imgs/knp_logo.png" height="200"/>
+  <br/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/danibcorr/kindle-notes-parser/actions/workflows/workflow.yml">
+    <img src="https://github.com/danibcorr/kindle-notes-parser/actions/workflows/workflow.yml/badge.svg">
+  </a>
+  <a href="https://github.com/danibcorr/kindle-notes-parser/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/danibcorr/kindle-notes-parser" alt="License">
+  </a>
+</p>
+
 ## Kindle Notes Parser
 
 Kindle Notes Parser (`knp`) is a Rust CLI tool that extracts and manages highlights from
